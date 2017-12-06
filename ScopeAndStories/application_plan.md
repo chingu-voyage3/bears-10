@@ -9,6 +9,7 @@
 
 ### Inventory Management
 * Track inventory for all items client wishes to track (items both for sale and not for sale)
+
 ### Point of Sale
 * App will have a user interface to handle transactions.  
   * User will be able to add items to a cart and close out sale with the option to print a reciept.

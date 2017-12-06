@@ -6,7 +6,7 @@ This serves as a base guideline for collaborating Git workflow for the Bears10 t
 
 The team will be using a Features branch workflow. This workflow will consist of a master, development, and features git branch on a central repository. The master branch will hold the official history of the project and the development branch will be an integration branch to branch releases off of that will be merged back into master and development. The features branch will be an integration branch for finished features that will be staged to merge into development for release.
 
-![](/assets/git flow.png)
+![](https://raw.githubusercontent.com/chingu-voyage3/bears-10/blob/assets/git flow.png)
 
 ### Walkthrough
 

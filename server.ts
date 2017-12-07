@@ -1,6 +1,11 @@
+// authentication modified from https://scotch.io/tutorials/easy-node-authentication-setup-and-local
 const express = require('express');
+const passport = require('passport');
+
 const path = require('path');
 const http = require('http');
+
+var configDB = require('./config/database.ts');
 
 const app = express();
 

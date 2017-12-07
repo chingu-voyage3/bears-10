@@ -9,6 +9,8 @@ var configDB = require('./config/database.ts');
 
 const app = express();
 
+require('./server/routes.ts')(app, passport)
+
 require('dotenv').config();
 
 // app.get('/some', (req, res) => { res.json('some')})

@@ -6,7 +6,7 @@ const app = express();
 
 require('dotenv').config();
 
-
+app.get('/some', (req, res) => { res.json('some')})
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('*', (req, res) => {

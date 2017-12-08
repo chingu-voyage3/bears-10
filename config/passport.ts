@@ -9,7 +9,6 @@ console.log('User is: ', User)
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
-    console.log('configuring passport!')
     // =========================================================================
     // passport session setup ==================================================
     // =========================================================================
@@ -36,19 +35,15 @@ module.exports = function(passport) {
 
     passport.use(new LocalStrategy(
     function(username, password, done) {
-        console.log('signing up with passport!')
         // asynchronous
         // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
 
         // find a user whose username is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        console.log('user.findone is about to fire')
         User.findOne({ 'local.username':  username }, function(err, user) {
             // if there are any errors, return the error
-            console.log('finding user...')
             if (err) {
-                console.log('there was an error...')
                 return done(err);
             }
             
@@ -56,9 +51,10 @@ module.exports = function(passport) {
             // check to see if theres already a user with that email
             if (user) {
                 console.log('user is already registered')
-                // return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                return done(null, false, {
+                    message: 'This user is already registered.'
+                });
             } else {
-                console.log('saving user...')
                 // if there is no user with that email
                 // create the user
                 var newUser            = new User();

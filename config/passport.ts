@@ -1,6 +1,7 @@
 
 // load all the things we need
 var LocalStrategy   = require('passport-local').Strategy;
+var CustomStrategy = require('passport-custom').Strategy;
 
 // load up the user model
 
@@ -26,54 +27,45 @@ module.exports = function(passport) {
         });
     });
 
-    // =========================================================================
-    // LOCAL SIGNUP ============================================================
-    // =========================================================================
-    // we are using named strategies since we have one for login and one for signup
-    // by default, if there was no name, it would just be called 'local'
-
-    passport.use(new LocalStrategy(
-    function(username, password, done) {
-        // asynchronous
-        // User.findOne wont fire unless data is sent back
+    var roleSignupStrategy = new CustomStrategy(function(req, done) {
         process.nextTick(function() {
-
-        // find a user whose username is the same as the forms email
-        // we are checking to see if the user trying to login already exists
-        User.findOne({ 'local.username':  username }, function(err, user) {
-            // if there are any errors, return the error
-            if (err) {
-                return done(err);
-            }
-            
-
-            // check to see if theres already a user with that email
-            if (user) {
-                console.log('user is already registered')
-                return done(null, false, {
-                    message: 'This user is already registered.'
-                });
-            } else {
-                // if there is no user with that email
-                // create the user
-                var newUser            = new User();
-
-                // set the user's local credentials
-                newUser.local.username    = username;
-                newUser.local.password = newUser.generateHash(password);
-
-                // save the user
-                newUser.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, newUser);
-                });
-            }
-
-        });    
-
-        });
-
-    }));
+            User.findOne({
+                username: req.body.username,
+            }, function(err, user) {
+                if (err) {
+                    return done(err)
+                }
+                if (user) {
+                    console.log('This user is already registered.')
+                    return done(null, false, {
+                        message: 'This user is already registered.'
+                    });
+                } else {
+                    const newUser = new User();
+                    newUser.username = req.body.username;
+                    newUser.password = newUser.generateHash(req.body.password);
+                    // by default, the new user will be an Admin
+                    if (req.body.role && req.body.role !== 'user' && req.body.role !== 'admin') {
+                        return done(null, false, {
+                            message: 'This is not a valid role.'
+                        })
+                    } else if (req.body.role === 'user') {
+                        newUser.role = 'user';
+                    } else {
+                        newUser.role = 'admin';
+                    }
+    
+                    newUser.save(function(err) {
+                        if (err)
+                            throw err;
+                        return done(null, newUser);
+                    });
+                }
+            })
+        })
+        
+    })
+    
+    passport.use(roleSignupStrategy);
 
 };

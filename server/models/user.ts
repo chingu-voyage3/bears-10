@@ -5,10 +5,17 @@ const Schema = mongoose.Schema;
 const bcrypt   = require('bcrypt-nodejs');
 
 const userSchema = new Schema({
-    local: {
-        username: String,
-        password: String
-    }
+    
+        username: {
+            type: String,
+            required: true,
+            message: 'username is required'
+        },
+        password: {
+            type: String,
+            required: true
+        },
+        role: String
 })
 
 // methods ======================

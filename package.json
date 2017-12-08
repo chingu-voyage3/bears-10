@@ -28,6 +28,7 @@
     "express": "^4.16.2",
     "mongoose": "^4.13.6",
     "passport": "^0.4.0",
+    "passport-custom": "^1.0.5",
     "passport-local": "^1.0.0",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"

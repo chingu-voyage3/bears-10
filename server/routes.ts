@@ -10,7 +10,7 @@ module.exports = function(passport) {
     }
     router.post('/signup', 
                 logger, 
-                passport.authenticate('local')
+                passport.authenticate('custom')
             )
     return router;
 }

@@ -1,24 +1,36 @@
 // authentication modified from https://scotch.io/tutorials/easy-node-authentication-setup-and-local
-const express = require('express');
+var express = require('express');
+require('dotenv').config();
+var mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const passport = require('passport');
+const app = express();
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 const path = require('path');
 const http = require('http');
 
 var configDB = require('./config/database.ts');
 
-const app = express();
+mongoose.connect(configDB.url, { useMongoClient: true })
 
-require('./server/routes.ts')(app, passport)
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json());
 
-require('dotenv').config();
+require('./config/passport.ts')(passport); // pass passport for configuration   
 
-// app.get('/some', (req, res) => { res.json('some')})
+
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
+
+const api = require('./server/routes.ts')(passport)
+
+app.use('/api', api)
 
 const port = process.env.port || '3000';
 app.set('port', port);

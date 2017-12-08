@@ -1,8 +1,10 @@
 //adapted from https://scotch.io/tutorials/easy-node-authentication-setup-and-local
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
 const bcrypt   = require('bcrypt-nodejs');
 
-const userSchema = mongoose.Schema({
+const userSchema = new Schema({
     local: {
         username: String,
         password: String
@@ -20,4 +22,4 @@ userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
 
-module.exports.userSchema = mongoose.model('User', userSchema)
+module.exports.User = mongoose.model('User', userSchema)

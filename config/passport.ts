@@ -3,11 +3,13 @@
 var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
-var User            = require('../server/models/user');
+
+var User            = require('../server/models/user.ts').User;
+console.log('User is: ', User)
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
-
+    console.log('configuring passport!')
     // =========================================================================
     // passport session setup ==================================================
     // =========================================================================
@@ -32,29 +34,31 @@ module.exports = function(passport) {
     // we are using named strategies since we have one for login and one for signup
     // by default, if there was no name, it would just be called 'local'
 
-    passport.use('local-signup', new LocalStrategy({
-        usernameField : 'username',
-        passwordField : 'password',
-        passReqToCallback : true // allows us to pass back the entire request to the callback
-    },
-    function(req, username, password, done) {
-
+    passport.use(new LocalStrategy(
+    function(username, password, done) {
+        console.log('signing up with passport!')
         // asynchronous
         // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
 
         // find a user whose username is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        User.findOne({ 'local.username' :  username }, function(err, user) {
+        console.log('user.findone is about to fire')
+        User.findOne({ 'local.username':  username }, function(err, user) {
             // if there are any errors, return the error
-            if (err)
+            console.log('finding user...')
+            if (err) {
+                console.log('there was an error...')
                 return done(err);
+            }
+            
 
             // check to see if theres already a user with that email
             if (user) {
-                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                console.log('user is already registered')
+                // return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
             } else {
-
+                console.log('saving user...')
                 // if there is no user with that email
                 // create the user
                 var newUser            = new User();

@@ -1,14 +1,16 @@
-module.exports = function(app, passport) {
-    // app.get('/something', (req, res) => {
-    //     res.json('something1')
-    // })
-
-    // app.post('/login', (req, res) => {
-    // })
-    const logger = (req, res) => { 
-        console.log('signing up!', req) }
-    app.post('/signup', logger, passport.authenticate('local-signup', {
-        successRedirect : '/items', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
-    }))
+var express = require('express')
+const router = express.Router()
+module.exports = function(passport) {
+    const logger = (req, res, next) => {
+        console.log('request ', req.body) 
+        console.log('username ', req.body.username) 
+        console.log('password ', req.body.password) 
+        next()
+        // console.log('passport authenticate is: ', passport.authenticate('local-signup'))
+    }
+    router.post('/signup', 
+                logger, 
+                passport.authenticate('local')
+            )
+    return router;
 }

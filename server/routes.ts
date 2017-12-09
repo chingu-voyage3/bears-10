@@ -10,7 +10,14 @@ module.exports = function(passport) {
     }
     router.post('/signup', 
                 logger, 
-                passport.authenticate('custom')
+                passport.authenticate('custom'),
+                function(req, res, next) {
+                    console.log('req.body is: ', req.body)
+                    res.header("Access-Control-Allow-Origin", "*");
+                    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                    // res.json('astring')
+                    res.json({payload: 'signup something'})
+                }
             )
     return router;
 }

@@ -4,9 +4,15 @@ require('dotenv').config();
 var mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
 const passport = require('passport');
+const passportJWT = require('passport-jwt');
 const cors = require('cors');
 const app = express();
+
+const ExtractJwt = passportJWT.ExtractJwt;
+const JWTStrategy = passportJWT.Strategy;
+
 app.use(cors());
 app.options('*', cors()) // enable pre-flight request for DELETE request
 
@@ -25,9 +31,9 @@ mongoose.connect(configDB.url, { useMongoClient: true })
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 
-
 require('./config/passport.ts')(passport); // pass passport for configuration   
-const api = require('./server/routes.ts')(passport)
+require('./config/jwtAuth.ts')(passport, ExtractJwt, JWTStrategy); // configure jwt authentication
+const api = require('./server/routes.ts')(passport, ExtractJwt, jwt)
 
 app.use('/api', api)
 app.use(express.static(path.join(__dirname, 'dist')));

@@ -14,13 +14,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ItemsComponent } from './items/items.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    SignupComponent
+    SignupComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,

@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemsComponent } from './items/items.component';
+import { InventoryComponent } from './inventory/inventory.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { ItemsComponent } from './items/items.component';
     HomeComponent,
     SignupComponent,
     ItemsComponent,
+    InventoryComponent,
   ],
   imports: [
     BrowserModule,

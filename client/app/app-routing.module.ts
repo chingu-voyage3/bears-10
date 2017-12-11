@@ -7,7 +7,7 @@ import { ItemsComponent } from './items/items.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'sign_up', component: SignupComponent},
-  {path: 'items', component: ItemsComponent}
+  {path: 'inventory', component: InventoryComponent}
 ];
 
 @NgModule({

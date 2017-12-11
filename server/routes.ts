@@ -3,11 +3,7 @@ var User = require('./models/user.ts').User
 const router = express.Router()
 module.exports = function(passport, ExtractJWT, jwt, bcrypt) {
     const logger = (req, res, next) => {
-        console.log('request ', req.body) 
-        console.log('username ', req.body.username) 
-        console.log('password ', req.body.password) 
         next()
-        // console.log('passport authenticate is: ', passport.authenticate('local-signup'))
     }
     const options = { jwtFromRequest: '', secretOrKey: '' }
     options.jwtFromRequest = ExtractJWT.fromHeader('Authorization')

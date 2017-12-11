@@ -15,7 +15,6 @@ import { FormsModule } from '@angular/forms';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemsComponent } from './items/items.component';
-import { SigninComponent } from './signin/signin.component';
 
 
 @NgModule({
@@ -24,7 +23,6 @@ import { SigninComponent } from './signin/signin.component';
     HomeComponent,
     SignupComponent,
     ItemsComponent,
-    SigninComponent
   ],
   imports: [
     BrowserModule,

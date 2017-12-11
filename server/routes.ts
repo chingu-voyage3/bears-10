@@ -9,7 +9,7 @@ module.exports = function(passport, ExtractJWT, jwt, bcrypt) {
     const loginUser = require('./actions/loginUser.ts')(User, bcrypt, jwt, options)        
 
     options.jwtFromRequest = ExtractJWT.fromHeader('Authorization')
-    options.secretOrKey = 'tasmanianDevil'
+    options.secretOrKey = process.env.SECRET_JWT_KEY 
 
     router.post('/signup', 
                     passport.authenticate('custom'),

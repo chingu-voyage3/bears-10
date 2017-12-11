@@ -21,7 +21,7 @@ module.exports = function(passport, ExtractJWT, jwt, bcrypt) {
                     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
                     User.findOne({username: req.body.username}, function(err, user) {
-                        if (err) throw err;
+                        if (err) {console.log(err)};
                         if(bcrypt.compareSync(req.body.password, user.password)) {
                             console.log('good password')
                             const payload = { id: user._id }

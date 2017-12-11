@@ -2,14 +2,10 @@ var express = require('express')
 var User = require('./models/user.ts').User
 const router = express.Router()
 module.exports = function(passport, ExtractJWT, jwt, bcrypt) {
-    const logger = (req, res, next) => {
-        next()
-    }
     const options = { jwtFromRequest: '', secretOrKey: '' }
     options.jwtFromRequest = ExtractJWT.fromHeader('Authorization')
     options.secretOrKey = 'tasmanianDevil'
     router.post('/signup', 
-                logger, 
                 passport.authenticate('custom'),
                 function(req, res, next) {
                     // TODO: refactor so user is not found twice

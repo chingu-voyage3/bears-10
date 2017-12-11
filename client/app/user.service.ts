@@ -20,7 +20,7 @@ export class UserService {
     .subscribe(
       (res: any) => {
         localStorage.setItem('token', res.token)
-        this.router.navigate(['/items'])
+        this.router.navigate(['/inventory'])
       },
       (err: any) => {
         console.log(err)
@@ -33,7 +33,7 @@ export class UserService {
     .subscribe(
       (res: any) => {
         localStorage.setItem('token', res.token)
-        this.router.navigate(['/items'])
+        this.router.navigate(['/inventory'])
       },
       (err: any) => {
         console.log(err)

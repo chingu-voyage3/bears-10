@@ -1,0 +1,27 @@
+<h1 style="font-family: 'Montserrat', sans-serif">Create Inventory Management Account</h1>
+<form  #f="ngForm" (ngSubmit)="handleSubmit(f)">
+    <mat-form-field>
+        <input matInput placeholder="Username" name="username"
+        ngModel>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input 
+        matInput
+         placeholder="Password" 
+         name="password"
+         ngModel>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput
+        placeholder="Confirm Password"
+        name="confirmpassword"
+        ngModel>
+    </mat-form-field>
+    <br>
+    <button 
+    mat-raised-button
+    color="primary"
+    type="submit">Submit</button>
+</form>

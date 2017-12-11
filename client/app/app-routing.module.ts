@@ -7,7 +7,6 @@ import { ItemsComponent } from './items/items.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'sign_up', component: SignupComponent},
-  {path: 'sign_in', component: SigninComponent},
   {path: 'items', component: ItemsComponent}
 ];
 

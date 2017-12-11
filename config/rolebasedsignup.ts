@@ -3,6 +3,12 @@ var User            = require('../server/models/user.ts').User;
 
 module.exports = new CustomStrategy(function(req, done) {
     process.nextTick(function() {
+        console.log('in role based signup, req.body is: ', req.body)
+        if (req.body.password !== req.body.confirmpassword) {
+            return done(null, false, {
+                message: 'Your password doesn\'t match your confirmation password.'
+            })
+        }
         User.findOne({
             username: req.body.username,
         }, function(err, user) {

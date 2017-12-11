@@ -5,6 +5,8 @@ var mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
+
+const bcrypt = require('bcrypt-nodejs')
 const passport = require('passport');
 const passportJWT = require('passport-jwt');
 const cors = require('cors');
@@ -33,7 +35,7 @@ app.use(bodyParser.json());
 
 require('./config/passport.ts')(passport); // pass passport for configuration   
 require('./config/jwtAuth.ts')(passport, ExtractJwt, JWTStrategy); // configure jwt authentication
-const api = require('./server/routes.ts')(passport, ExtractJwt, jwt)
+const api = require('./server/routes.ts')(passport, ExtractJwt, jwt, bcrypt)
 
 app.use('/api', api)
 app.use(express.static(path.join(__dirname, 'dist')));

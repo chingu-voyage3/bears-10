@@ -2,7 +2,7 @@
 module.exports = function(passport, ExtractJWT, JWTStrategy) {
   var options = {}
   options.jwtFromRequest = ExtractJWT.fromHeader('Authorization')
-  options.secretOrKey = 'tasmanianDevil'
+  options.secretOrKey = process.env.SECRET_JWT_KEY
 
   var strategy = new JWTStrategy(options, function(jwt_payload, done) {
       const user = User.findOne({username: jwt_payload.username}, function(err, user) {

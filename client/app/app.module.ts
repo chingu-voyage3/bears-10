@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { SignupComponent } from './signup/signup.component';
+import { HomeComponent } from './pages/home/home.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
@@ -14,8 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ItemsComponent } from './items/items.component';
-import { InventoryComponent } from './inventory/inventory.component';
+import { InventoryComponent } from './pages/inventory/inventory.component';
 
 
 @NgModule({
@@ -23,7 +22,6 @@ import { InventoryComponent } from './inventory/inventory.component';
     AppComponent,
     HomeComponent,
     SignupComponent,
-    ItemsComponent,
     InventoryComponent,
   ],
   imports: [

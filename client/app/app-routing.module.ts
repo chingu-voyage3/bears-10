@@ -7,7 +7,11 @@ import {InventoryComponent} from './pages/inventory/inventory.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'sign_up', component: SignupComponent},
-  {path: 'inventory', component: InventoryComponent}
+  {path: 'inventory', component: InventoryComponent},
+  {
+    path: 'login',
+    loadChildren: './pages/login/login.module#LoginModule'
+  }
 ];
 
 @NgModule({

@@ -3,11 +3,11 @@
   <div class='form-container'>
     <form #loginForm (ngSubmit)="submitLoginForm(loginForm)">
       <mat-form-field class="full-width">
-        <input matInput name="username" placeholder="Username" ngModel>
+        <input matInput name="username" placeholder="Username" required ngModel>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-          <input matInput name="password" placeholder="Password"
+          <input matInput name="password" required placeholder="Password"
           ngModel>
       </mat-form-field>
 

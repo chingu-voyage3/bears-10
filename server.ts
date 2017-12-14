@@ -35,7 +35,7 @@ app.use(bodyParser.json());
 
 require('./config/passport.ts')(passport); // pass passport for configuration   
 require('./config/jwtAuth.ts')(passport, ExtractJwt, JWTStrategy); // configure jwt authentication
-const api = require('./server/routes.ts')(passport, ExtractJwt, jwt, bcrypt)
+const api = require('./server/routes.ts')(passport, ExtractJwt, jwt, bcrypt, express, User);
 
 app.use('/api', api)
 app.use(express.static(path.join(__dirname, 'dist')));

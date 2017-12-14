@@ -1,6 +1,15 @@
 language: node_js
 node_js:
-  - "lts/*"
+- lts/*
 cache:
   directories:
-    - "node_modules"
+  - node_modules
+if: branch IN (master, development, features)
+deploy:
+  provider: heroku
+  api_key:
+    secure: UJLyO7eW5VairoY4N8hL853k6pqOjJcmWU680PxGOimm1adqdSMo3tsXCpRy6Pz0mgT3KMEgxL2JGWMdv5KFLE7Lkdn6ylfF4w7AwxNye4B1ZAElOAOxgOvHZYC6IkTQmH8uJ4vlk9ItBb+9U+rcr7N/ob+NCrvMZyl3KAIE6Skt644Xs+kr11/bmbzGIeF4jyN4RMsC32xfsSvQQwXcxknqmsjjeT/tOZswd+MUsdIYBUnkujj57L2H6aipFgFHF4HFjkkGzX/ymQq83ayTuFaCsgDSpHsyeLN6hJ0h0S2ayQfBbCs2EwaO1uWRzDhdgoYMxT8n/h411KLsuhqYvOxdkvYma1Yp7Sph+ATOhFXSdy3P/9yWIzieGYUSCwXInk6s5xrAoove/Oyoa9RBEM/wHnBvqmzdnojED2kc7hxsTJMjpuHq+/JXFgRK1Jluq2ScQjNBVkiwLFqnO1I4iX05V/J7d82+T6uhlPraedFu2ZQLi9BnI4bFjxsznD4cJaprMwCy2PbT9ySdXbRcUkVNvxuE5k5jIBVeQ0tbiHDpcyKJepa2h/pL0wGqFqSDBxGMbTzCpUDATT6HiQ7NJp88FjgbVla6D74J4/c5yRzlKisvAHNA9D0r8dHXF+c0okDenPI40RottY1SMg0ntat2yT28G2jSigzwk6DOt8c=
+  strategy: git
+  app: bears-ims
+  on:
+    repo: chingu-voyage3/bears-10

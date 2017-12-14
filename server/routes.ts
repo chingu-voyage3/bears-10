@@ -9,7 +9,9 @@ module.exports = function(passport, ExtractJWT, jwt, bcrypt, express, User) {
     options.secretOrKey = process.env.SECRET_JWT_KEY;
 
     router.post('/signup',
-                    passport.authenticate('custom'),
+                    passport.authenticate('custom', {
+                        session: false
+                    }),
                     signupUser
                 );
 

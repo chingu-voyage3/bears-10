@@ -1,0 +1,33 @@
+<div>
+  <h1 class='center-text'>Inventory Manager</h1>
+  <div class='form-container'>
+    <form #loginForm="ngForm" (ngSubmit)="submitLoginForm(loginForm)">
+      <mat-form-field class="full-width">
+        <input matInput name="username" placeholder="Username" required ngModel>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+          <input matInput name="password" required placeholder="Password"
+          ngModel>
+      </mat-form-field>
+
+      <mat-grid-list cols="6" rowHeight="1:1">
+        <mat-grid-tile colspan="1">
+            <button
+            mat-raised-button
+            color="primary"
+            type="submit">Submit</button>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="5">
+          <p>
+            <mat-checkbox>Remember me</mat-checkbox>
+          </p>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <p>
+        <a href='/sign_up'>Sign Up</a>
+      </p>
+    </form>
+  </div>
+</div>

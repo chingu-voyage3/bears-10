@@ -1,24 +1,28 @@
-var express = require('express')
-var User = require('./models/user.ts').User
+module.exports = function(passport, ExtractJWT, jwt, bcrypt, express, User) {
+    const router = express.Router();
+    const options = { jwtFromRequest: '', secretOrKey: '' };
 
-const router = express.Router()
-module.exports = function(passport, ExtractJWT, jwt, bcrypt) {
-    const options = { jwtFromRequest: '', secretOrKey: '' }
+    const signupUser = require('./actions/signupUser.ts')(User, bcrypt, jwt, options),
+          loginUser = require('./actions/loginUser.ts')(User, bcrypt, jwt, options),
+          addItem = require('./actions/addItem.ts')(User, bcrypt, jwt, options);
 
-    const signupUser = require('./actions/signupUser.ts')(User, bcrypt, jwt, options)
-    const loginUser = require('./actions/loginUser.ts')(User, bcrypt, jwt, options)        
+    options.jwtFromRequest = ExtractJWT.fromHeader('Authorization');
+    options.secretOrKey = process.env.SECRET_JWT_KEY;
 
-    options.jwtFromRequest = ExtractJWT.fromHeader('Authorization')
-    options.secretOrKey = process.env.SECRET_JWT_KEY 
-
-    router.post('/signup', 
-                    passport.authenticate('custom'),
+    router.post('/signup',
+                    passport.authenticate('custom', {
+                        session: false
+                    }),
                     signupUser
-                )
+                );
 
     router.post('/login',
-                 loginUser 
-               )
+                 loginUser
+               );
+
+    router.post('/add_item',
+                 addItem
+               );
 
     return router;
-}
+};

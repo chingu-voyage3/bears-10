@@ -49,3 +49,12 @@
 | received | Boolean | |
 | defaultTaxRate | Number | |
 
+## User
+| Property | Type | Required |
+|----------|------|----------|
+| username | String | true |
+| password | String | true |
+| role | String | true |
+| admins | [Schema.ObjectId] (Users) | |
+| users | [Schema.ObjectId] (Users) | |
+

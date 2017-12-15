@@ -11,7 +11,7 @@ module.exports = (mongoose) => {
     expectedDelivery: {
         type: Date
     },
-           count: {
+          count: {
         type: Number
     },
     backordered: {

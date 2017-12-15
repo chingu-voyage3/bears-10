@@ -12,7 +12,7 @@ import { InventoryComponent } from './pages/inventory/inventory.component';
 
 @NgModule({
   declarations: [ AppComponent, HomeComponent, SignupComponent, InventoryComponent ],
-  imports: [ BrowserModule, BrowserAnimationsModule, AppRoutingModule, SharedModule, CoreModule ],
+  imports: [ BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}

@@ -1,5 +1,4 @@
 // adapted from https://scotch.io/tutorials/easy-node-authentication-setup-and-local
-// var mongoose = require('mongoose');
 
 module.exports = function(mongoose, bcrypt) {
     const Schema = mongoose.Schema;
@@ -8,7 +7,6 @@ module.exports = function(mongoose, bcrypt) {
             username: {
                 type: String,
                 required: true,
-                message: 'username is required'
             },
             password: {
                 type: String,

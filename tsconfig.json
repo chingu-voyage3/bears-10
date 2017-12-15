@@ -15,9 +15,9 @@
       "es2017",
       "dom"
     ],
-		"extends": [
-			"tslint:latest",
-			"tslint-config-prettier"
-		]
+		// "extends": [
+		// 	"tslint:latest",
+		// 	"tslint-config-prettier"
+		// ]
   }
 }

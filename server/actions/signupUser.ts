@@ -9,7 +9,7 @@ module.exports = function(User, bcrypt, jwt, options) {
             console.log('user is ', user);
             console.log('req.body is: ', req.body);
             if (bcrypt.compareSync(req.body.password, user.password)) {
-                const payload = { id: user._id };
+                const payload = { id: user._id, isAdmin: user.role === 'admin' };
                 const token = jwt.sign(payload, options.secretOrKey);
                 res.json({success: true, message: 'ok', token: token});
             } else if (req.body.password !== req.body.confirmpassword) {

@@ -1,6 +1,3 @@
-// const CustomStrategy = require('passport-custom').Strategy;
-// var User            = require('../server/models/user.ts').User;
-
 module.exports = function(CustomStrategy, User) {
       return new CustomStrategy(function(req, done) {
         process.nextTick(function() {

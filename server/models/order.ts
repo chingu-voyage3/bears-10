@@ -12,7 +12,7 @@ module.exports = (mongoose) => {
         type: Date
     },
           count: {
-        type: Number
+       type: Number
     },
     backordered: {
         type: Boolean

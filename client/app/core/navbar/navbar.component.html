@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar *ngIf="!loggedIn" color="primary">
   <span>
     <button mat-button routerLink="/" routerLinkActive="active">Bears IMS</button>
   </span>
@@ -8,7 +8,13 @@
   <span>
     <button mat-button routerLink="/sign_up" routerLinkActive="active">Sign Up</button>
   </span>
+</mat-toolbar>
+<mat-toolbar *ngIf="loggedIn" color="primary">
+  <span>
+    <button mat-button routerLink="/" routerLinkActive="active">Bears IMS</button>
+  </span>
   <span>
     <button mat-button routerLink="/inventory">Inventory</button>
   </span>
 </mat-toolbar>
+

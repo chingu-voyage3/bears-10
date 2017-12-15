@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class UserService {
@@ -14,6 +15,8 @@ export class UserService {
   constructor(private http: HttpClient,
               private router: Router) { }
 
+  signInStatusSubject = new Subject<any>();
+
   registerAdmin(formValue: { username: string, password: string }) {
     console.log('registering user...', formValue)
     this.http.post(this.url.signup, formValue)
@@ -21,6 +24,7 @@ export class UserService {
       (res: any) => {
         localStorage.setItem('token', res.token)
         this.router.navigate(['/inventory'])
+        this.signInStatusSubject.next(true);
       },
       (err: any) => {
         console.log(err)
@@ -34,6 +38,7 @@ export class UserService {
       (res: any) => {
         localStorage.setItem('token', res.token)
         this.router.navigate(['/inventory'])
+        this.signInStatusSubject.next(true);
       },
       (err: any) => {
         console.log(err)

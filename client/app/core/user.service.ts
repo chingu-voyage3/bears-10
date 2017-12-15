@@ -10,7 +10,7 @@ export class UserService {
   url = {
     signup: 'http://localhost:3000/api/signup',
     login: 'http://localhost:3000/api/login',
-  }   
+  };
   // proxy = 'https://cors-anywhere.herokuapp.com/';
   constructor(private http: HttpClient,
               private router: Router) { }
@@ -36,13 +36,19 @@ export class UserService {
     this.http.post(this.url.login, formValue)
     .subscribe(
       (res: any) => {
-        localStorage.setItem('token', res.token)
-        this.router.navigate(['/inventory'])
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['/inventory']);
         this.signInStatusSubject.next(true);
       },
       (err: any) => {
-        console.log(err)
+        console.log(err);
       }
-    )
+    );
+  }
+
+  logout() {
+    localStorage.clear();
+    this.signInStatusSubject.next(false);
+    this.router.navigate(['/']);
   }
 }

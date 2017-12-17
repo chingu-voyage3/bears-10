@@ -1,0 +1,23 @@
+<mat-toolbar *ngIf="!loggedIn" color="primary">
+  <span>
+    <button mat-button routerLink="/" routerLinkActive="active">Bears IMS</button>
+  </span>
+  <span>
+    <button mat-button routerLink="login" routerLinkActive="active">Sign In</button>
+  </span>
+  <span>
+    <button mat-button routerLink="/sign_up" routerLinkActive="active">Sign Up</button>
+  </span>
+</mat-toolbar>
+<mat-toolbar *ngIf="loggedIn" color="primary">
+  <span>
+    <button mat-button routerLink="/" routerLinkActive="active">Bears IMS</button>
+  </span>
+  <span>
+    <button mat-button routerLink="/inventory">Inventory</button>
+  </span>
+  <span>
+    <button mat-button imsLogout>Log Out</button>
+  </span>
+</mat-toolbar>
+

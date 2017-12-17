@@ -27,18 +27,20 @@ export class UserService {
         this.signInStatusSubject.next(true);
       },
       (err: any) => {
-        console.log(err)
+        console.log(err);
       }
-    )
+    );
   }
 
   signIn(formValue: {username: string, password: string}) {
     this.http.post(this.url.login, formValue)
     .subscribe(
       (res: any) => {
-        localStorage.setItem('token', res.token);
-        this.router.navigate(['/inventory']);
-        this.signInStatusSubject.next(true);
+        if (res.token) {
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['/inventory']);
+          this.signInStatusSubject.next(true);
+        }
       },
       (err: any) => {
         console.log(err);

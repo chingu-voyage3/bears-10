@@ -6,5 +6,5 @@ const router = express.Router();
 
 router.post('/create-item', itemControllers.createItem);
 
-module.exports = router;
+export { router };
 

@@ -4,7 +4,7 @@ import * as itemControllers from "../actions/item";
 
 const router = express.Router();
 
-router.get('/create-item', itemControllers.createItem);
+router.post('/create-item', itemControllers.createItem);
 
 module.exports = router;
 

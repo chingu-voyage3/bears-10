@@ -36,10 +36,10 @@ app.use(bodyParser.json());
 require('./config/passport.ts')(passport, User); // pass passport for configuration
 require('./config/jwtAuth.ts')(passport, ExtractJwt, JWTStrategy); // configure jwt authentication
 const api = require('./server/routes.ts')(passport, ExtractJwt, jwt, bcrypt, express, User);
-const itemRouter = require('./server/routes/itemRoutes');
+const itemRoutes = require('./server/routes/itemRoutes');
 
 app.use('/api', api);
-app.use('/item', itemRouter );
+app.use('/item', itemRoutes );
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('*', (req, res) => {

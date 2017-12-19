@@ -5,7 +5,7 @@ const itemSchema = new Schema({
   name: {
     type: String
   },
-  ID: {
+  SKU: {
     type: String
   },
   sellable: {

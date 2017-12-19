@@ -39,8 +39,8 @@ const api = require('./server/routes.ts')(passport, ExtractJwt, jwt, bcrypt, exp
 
 import { router as itemRoutes } from './server/routes/itemRoutes';
 
+app.use('/api/item', itemRoutes );
 app.use('/api', api);
-app.use('/item', itemRoutes );
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('*', (req, res) => {

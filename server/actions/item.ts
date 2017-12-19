@@ -20,7 +20,7 @@ function getAll(req, res){
 function createItem(req, res){
     const newItem = new Item({
         name: req.body.name,
-        ID: req.body.ID,
+        SKU: req.body.SKU,
         sellable: req.body.sellable,
         retailPrice: req.body.retailPrice,
         orderPrice: req.body.orderPrice,
@@ -35,17 +35,28 @@ function createItem(req, res){
         backordered: req.body.backordered,
         expectedDelivery: req.body.expectedDelivery
     });
-    newItem.save((err) => {
-        if (err){ 
+    newItem.save()
+        .then((item) =>{
+        return res.json({"itemCreated": newItem})
+        })
+        .catch((err) => {
             return res.status(500).json({
                 title: 'An error has occured',
                 error: err
             })
-        }
-        return res.json({"itemCreated": newItem})
-    })
+        })
+}
+
+function updateItem(req, res){
+    const itemId = req.params.itemId;
+
+    Item.findById()
 }
 
 
 
-export { createItem, getAll };
+export { 
+    createItem,
+    getAll,
+    updateItem
+};

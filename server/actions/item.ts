@@ -4,6 +4,19 @@ import * as express from "express";
 import * as mongoose from "mongoose";
 import * as jwt from "jsonwebtoken";
 
+function getAll(req, res){
+    Item.find({})
+        .exec((err, items) => {
+            if(err){
+                return res.status(500).json({
+                    title: "An error occured",
+                    error: err
+                })
+            }
+            res.json({"Items": items})
+        })
+}
+
 function createItem(req, res){
     const newItem = new Item({
         name: req.body.name,
@@ -35,4 +48,4 @@ function createItem(req, res){
 
 
 
-export { createItem };
+export { createItem, getAll };

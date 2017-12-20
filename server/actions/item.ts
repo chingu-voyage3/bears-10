@@ -85,8 +85,23 @@ function updateItem(req: express.Request, res: express.Response){
             })
 }
 
+function deleteItem(req: express.Request, res: express.Response){
+    const itemId = req.params.itemId;
+    Item.findById(itemId)
+        .remove(() => {
+            return res.json({"itemDeleted": itemId });
+        })
+        .catch((err) => {
+            return res.status(500).json({
+                title: 'An error has occured',
+                error: err
+            })
+        })
+}
+
 export { 
     createItem,
     getAll,
-    updateItem
+    updateItem,
+    deleteItem
 };

@@ -1,14 +1,16 @@
-const Schema = require('mongoose').Schema;
+import * as mongoose from 'mongoose';
+const Schema = mongoose.Schema;
 
 const itemSchema = new Schema({
   name: {
     type: String
   },
-  ID: {
+  SKU: {
     type: String
   },
   sellable: {
-    type: Boolean
+    type: Boolean,
+    default: true
   },
   retailPrice: {
     type: Number
@@ -26,26 +28,33 @@ const itemSchema = new Schema({
     type: String
   },
   taxExempt: {
-    type: Boolean
+    type: Boolean,
+    default: false
   },
   count: {
     type: Number
   },
   reorderedCount: {
-    type: Number
+    type: Number,
+    default: 0
   },
   orderNeeded: {
-    type: Boolean
+    type: Boolean,
+    default: false
   },
   orderPlaced: {
-    type: Boolean
+    type: Boolean,
+    default: false
   },
   backordered: {
-    type: Boolean
+    type: Boolean,
+    default: false
   },
   expectedDelivery: {
     type: Date
   }
 });
 
-module.exports.Item = mongoose.model('Item', itemSchema);
+export var Item = mongoose.model('Item', itemSchema);
+
+

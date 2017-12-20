@@ -1,23 +1,23 @@
-import { Item } from "../models/item";
+import { Item } from '../models/item';
 
-import * as express from "express";
-import * as mongoose from "mongoose";
-import * as jwt from "jsonwebtoken";
+import * as express from 'express';
+import * as mongoose from 'mongoose';
+import * as jwt from 'jsonwebtoken';
 
-function getAll(req, res){
+function getAll(req, res) {
     Item.find({})
         .exec((err, items) => {
             if(err){
                 return res.status(500).json({
-                    title: "An error occured",
+                    title: 'An error occured',
                     error: err
-                })
+                });
             }
-            res.json({"Items": items})
-        })
+            res.json({'Items': items});
+        });
 }
 
-function createItem(req, res){
+function createItem(req, res) {
     const newItem = new Item({
         name: req.body.name,
         SKU: req.body.SKU,
@@ -37,14 +37,14 @@ function createItem(req, res){
     });
     newItem.save()
         .then((item) =>{
-        return res.json({"itemCreated": newItem})
+        return res.json({'itemCreated': newItem})
         })
         .catch((err) => {
             return res.status(500).json({
                 title: 'An error has occured',
                 error: err
-            })
-        })
+            });
+        });
 }
 
 // function updateItem(req, res){
@@ -55,7 +55,7 @@ function createItem(req, res){
 
 
 
-export { 
+export {
     createItem,
     getAll,
     // updateItem

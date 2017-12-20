@@ -47,16 +47,16 @@ function createItem(req, res){
         })
 }
 
-function updateItem(req, res){
-    const itemId = req.params.itemId;
+// function updateItem(req, res){
+//     const itemId = req.params.itemId;
 
-    Item.findById()
-}
+//     Item.findById()
+// }
 
 
 
 export { 
     createItem,
     getAll,
-    updateItem
+    // updateItem
 };

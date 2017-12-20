@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/all', itemControllers.getAll);
 
 //MODIFY AN EXISTING ITEM
-router.post('/update/:projectId', itemControllers.updateItem);
+//router.post('/update/:projectId', itemControllers.updateItem);
 
 //CREATE A NEW ITEM
 router.post('/new', itemControllers.createItem);

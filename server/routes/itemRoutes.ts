@@ -8,7 +8,7 @@ const itemRouter = Router();
 itemRouter.get('/all', itemControllers.getAll);
 
 //MODIFY AN EXISTING ITEM
-//router.post('/update/:projectId', itemControllers.updateItem);
+itemRouter.post('/update/:itemId', itemControllers.updateItem);
 
 //CREATE A NEW ITEM
 itemRouter.post('/new', itemControllers.createItem);

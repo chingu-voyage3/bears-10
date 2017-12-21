@@ -12,7 +12,7 @@
     "e2e": "ng e2e"
   },
   "lint-staged": {
-    "*.{ts,tsx}": ["tslint --parser typescript --write", "git add"]
+    "*.{ts,tsx}": ["tslint --fix", "git add"]
   },
   "private": true,
   "dependencies": {

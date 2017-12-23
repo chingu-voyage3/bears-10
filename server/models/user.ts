@@ -2,7 +2,7 @@
 // var mongoose = require('mongoose');
 
 import * as mongoose from 'mongoose';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt-nodejs';
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({

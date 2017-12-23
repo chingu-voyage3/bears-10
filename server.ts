@@ -14,7 +14,8 @@ import * as path from 'path';
 
 import apiRouter from './server/routes/index';
 
-const User = require('./server/models/user.ts')(mongoose, bcrypt);
+import User from './server/models/user';
+// const User = require('./server/models/user.ts')(mongoose, bcrypt);
 /**
  * Instantiate express app
  */

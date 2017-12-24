@@ -14,7 +14,8 @@ import * as path from 'path';
 
 import apiRouter from './server/routes/index';
 
-const User = require('./server/models/user.ts')(mongoose, bcrypt);
+import User from './server/models/user';
+// const User = require('./server/models/user.ts')(mongoose, bcrypt);
 /**
  * Instantiate express app
  */
@@ -39,9 +40,6 @@ app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-require('./config/passport.ts')(passport, User); // pass passport for configuration
-require('./config/jwtAuth.ts')(passport, ExtractJwt, JWTStrategy); // configure jwt authentication
-const api = require('./server/routes.ts')(passport, ExtractJwt, jwt, bcrypt, express, User);
 /**
  * Api Routes
  */

@@ -1,4 +1,4 @@
-import { Item } from "../models/item";
+import { Item } from '../models/item';
 
 import * as express from 'express';
 import * as mongoose from 'mongoose';
@@ -99,7 +99,7 @@ function deleteItem(req: express.Request, res: express.Response){
         })
 }
 
-export { 
+export {
     createItem,
     getAll,
     updateItem,

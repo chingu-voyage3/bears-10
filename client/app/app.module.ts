@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import { FlashMessagesModule } from 'ngx-flash-messages';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -12,7 +13,7 @@ import { InventoryComponent } from './pages/inventory/inventory.component';
 
 @NgModule({
   declarations: [ AppComponent, HomeComponent, SignupComponent, InventoryComponent ],
-  imports: [ BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule ],
+  imports: [ BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule, FlashMessagesModule ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}

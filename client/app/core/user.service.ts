@@ -18,7 +18,6 @@ export class UserService {
   signInStatusSubject = new Subject<any>();
 
   registerAdmin(formValue: { username: string, password: string }) {
-    console.log('registering user...', formValue)
     this.http.post(this.url.signup, formValue)
     .subscribe(
       (res: any) => {

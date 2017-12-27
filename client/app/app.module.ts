@@ -4,12 +4,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
-import { FlashMessagesModule } from 'ngx-flash-messages';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { InventoryComponent } from './pages/inventory/inventory.component';
+import { FlashMessagesModule } from 'ngx-flash-messages';
 
 @NgModule({
   declarations: [ AppComponent, HomeComponent, SignupComponent, InventoryComponent ],

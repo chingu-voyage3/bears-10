@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
+import { FlashMessagesService } from 'ngx-flash-messages';
 
 @Injectable()
 export class UserService {
@@ -13,27 +14,33 @@ export class UserService {
   };
   // proxy = 'https://cors-anywhere.herokuapp.com/';
   constructor(private http: HttpClient,
-              private router: Router) { }
+              private router: Router,
+              ) { }
 
   signInStatusSubject = new Subject<any>();
 
   registerAdmin(formValue: { username: string, password: string }) {
-    this.http.post(this.url.signup, formValue)
-    .subscribe(
+    const requestStream = this.http.post(this.url.signup, formValue);
+
+    requestStream.subscribe(
       (res: any) => {
-        localStorage.setItem('token', res.token)
-        this.router.navigate(['/inventory'])
+        console.log('res is: ', res);
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['/inventory']);
         this.signInStatusSubject.next(true);
       },
       (err: any) => {
         console.log(err);
       }
     );
+
+    return requestStream;
   }
 
-  signIn(formValue: {username: string, password: string}) {
-    this.http.post(this.url.login, formValue)
-    .subscribe(
+  signIn(formValue: {username: string, password: string}): Observable<any> {
+    const requestStream = this.http.post(this.url.login, formValue);
+
+    requestStream.subscribe(
       (res: any) => {
         if (res.token) {
           localStorage.setItem('token', res.token);
@@ -45,6 +52,8 @@ export class UserService {
         console.log(err);
       }
     );
+
+    return requestStream;
   }
 
   logout() {

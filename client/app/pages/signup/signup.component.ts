@@ -5,6 +5,7 @@ import { FlashMessagesService } from 'ngx-flash-messages';
 import { Observable } from 'rxjs/Observable';
 interface ServerMessage {
   message: string;
+  ok: boolean;
 }
 
 @Component({
@@ -19,22 +20,6 @@ export class SignupComponent implements OnInit {
   ngOnInit () {}
   handleSubmit (form: NgForm) {
     this.userService
-        .registerAdmin(form.value)
-        .subscribe(
-          (res: ServerMessage) => {
-            console.log(res);
-            this.flashMessagesService.show(res.message, {
-              classes: ['alert', 'alert-warning'], // You can pass as many classes as you need
-              timeout: 1000, // Default is 3000
-            });
-          },
-          (err) => {
-            console.log(err);
-            this.flashMessagesService.show(err.message, {
-              classes: ['alert', 'alert-warning'],
-              timeout: 1000
-            });
-          }
-        );
+        .registerAdmin(form.value);
   }
 }

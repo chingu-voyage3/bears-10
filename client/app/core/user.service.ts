@@ -41,6 +41,7 @@ export class UserService {
           this.router.navigate(['/inventory']);
           this.signInStatusSubject.next(true);
         }
+        console.log(res)
       },
       (err: any) => {
         console.log(err);

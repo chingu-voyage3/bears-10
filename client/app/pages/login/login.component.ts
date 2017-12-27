@@ -9,8 +9,14 @@ import { UserService } from '../../core/user.service';
 })
 export class LoginComponent implements OnInit {
   constructor (private userService: UserService) {}
+  user = {
+    username: '',
+    password: ''
+  };
 
-  ngOnInit () {}
+  ngOnInit () {
+
+  }
 
   submitLoginForm (form: NgForm) {
     this.userService.signIn(form.value);

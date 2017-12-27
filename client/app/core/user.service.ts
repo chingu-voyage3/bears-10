@@ -15,14 +15,18 @@ export class UserService {
   // proxy = 'https://cors-anywhere.herokuapp.com/';
   constructor(private http: HttpClient,
               private router: Router,
+              private flashMessagesService: FlashMessagesService
               ) { }
 
   signInStatusSubject = new Subject<any>();
 
-  registerAdmin(formValue: { username: string, password: string }) {
-    const requestStream = this.http.post(this.url.signup, formValue);
+  registerAdmin(formValue: { username: string, password: string, confirmpassword: string }): void {
+    let pwMatch = true;
+    if (formValue.password !== formValue.confirmpassword) {
+      pwMatch = false;
+    }
 
-    requestStream.subscribe(
+    this.http.post(this.url.signup, formValue).subscribe(
       (res: any) => {
         console.log('res is: ', res);
         localStorage.setItem('token', res.token);
@@ -30,11 +34,19 @@ export class UserService {
         this.signInStatusSubject.next(true);
       },
       (err: any) => {
-        console.log(err);
+        let errMessage = '';
+        if (!pwMatch) {
+          errMessage = 'Your passwords don\'t match';
+        } else {
+          errMessage = 'The user already exists.';
+        }
+        this.flashMessagesService.show(errMessage, {
+          classes: ['alert', 'alert-warning'], // You can pass as many classes as you need
+          timeout: 1000, // Default is 3000
+        });
       }
-    );
 
-    return requestStream;
+    );
   }
 
   signIn(formValue: {username: string, password: string}): Observable<any> {
@@ -50,6 +62,10 @@ export class UserService {
       },
       (err: any) => {
         console.log(err);
+        this.flashMessagesService.show('there was an error...', {
+          classes: ['alert', 'alert-warning'],
+          timeout: 1000,
+        });
       }
     );
 

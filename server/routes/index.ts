@@ -7,7 +7,6 @@ import * as passportJWT from 'passport-jwt';
 import User from '../models/user';
 import bcrypt from 'bcrypt-nodejs';
 import jwt from 'jsonwebtoken';
-import express from 'express';
 
 const ExtractJwt = passportJWT.ExtractJwt,
       JWTStrategy = passportJWT.Strategy;

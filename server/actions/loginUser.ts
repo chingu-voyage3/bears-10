@@ -13,11 +13,11 @@ import * as jwt from 'jsonwebtoken';
             const token = jwt.sign(payload, process.env.SECRET_JWT_KEY);
             res.json({message: 'ok', token: token});
         } else if (!user) {
-            res.json('there is no user with that username');
+            res.json({message: 'there is no user with that username'});
         } else if (!bcrypt.compareSync(req.body.password, user.password)) {
             res.json({message: 'bad password'});
         } else {
-            res.json('there was an error...');
+            res.json({message: 'there was an error...'});
         }
     });
 }

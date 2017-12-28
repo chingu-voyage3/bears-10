@@ -8,16 +8,8 @@ export default function(req, res, next) {
 
     User.findOne({username: req.body.username}, function(err, user) {
         if (err) { return err; }
-        console.log('user is ', user);
-        console.log('req.body is: ', req.body);
-        if (bcrypt.compareSync(req.body.password, user.password)) {
-            const payload = { id: user._id, isAdmin: user.role === 'admin' };
-            const token = jwt.sign(payload, process.env.SECRET_JWT_KEY);
-            res.json({success: true, message: 'ok', token: token});
-        } else if (req.body.password !== req.body.confirmpassword) {
-            res.json({success: false, message: 'password doesn\'t match'});
-        } else {
-            res.json({success: false, message: 'bad password'});
-        }
+        const payload = { id: user._id, isAdmin: user.role === 'admin' };
+        const token = jwt.sign(payload, process.env.SECRET_JWT_KEY);
+        res.json({success: true, message: 'ok', token: token});
     });
 }

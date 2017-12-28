@@ -9,7 +9,6 @@ export class LogoutDirective {
   constructor(private userService: UserService) { }
 
   @HostListener('click') onclick() {
-    console.log('clicked!');
     this.userService.logout();
   }
 }

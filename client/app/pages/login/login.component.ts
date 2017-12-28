@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       if (!fieldsFilled) {
         errMessage = 'Please enter your username and password';
       } else {
-        errMessage = 'bad password';
+        errMessage = 'Incorrect username or password';
       }
       console.log('flashing message...', res);
       if (messageIsAnError) {

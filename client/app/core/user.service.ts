@@ -22,10 +22,13 @@ export class UserService {
 
   registerAdmin(formValue: { username: string, password: string, confirmpassword: string }): void {
     const formValuesFilled = formValue.username && formValue.password && formValue.confirmpassword;
+    const passwordIsCorrectLength = formValue.password.length >= 6 && formValue.password.length <= 20;
     const errorMessage = (() => {
       let errMessage = '';
       if (!formValuesFilled) {
         errMessage = 'All fields must be be filled.';
+      } else if (!passwordIsCorrectLength) {
+        errMessage = 'password must be between 6 and 20 characters';
       } else if (formValue.password !== formValue.confirmpassword) {
         errMessage = 'Your passwords don\'t match';
       } else {
@@ -34,7 +37,7 @@ export class UserService {
       return errMessage;
     })();
 
-    if (formValuesFilled) {
+    if (formValuesFilled && passwordIsCorrectLength) {
       this.http.post(this.url.signup, formValue).subscribe(
         (res: any) => {
           console.log('res is: ', res);

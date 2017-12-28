@@ -16,6 +16,11 @@ interface ServerMessage {
 export class SignupComponent implements OnInit {
   constructor (private userService: UserService,
                private flashMessagesService: FlashMessagesService) {}
+  user = {
+    username: '',
+    password: '',
+    confirmpassword: '',
+  };
 
   ngOnInit () {}
   handleSubmit (form: NgForm) {

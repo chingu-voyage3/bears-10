@@ -11,8 +11,14 @@ import { FlashMessagesService } from 'ngx-flash-messages';
 export class LoginComponent implements OnInit {
   constructor (private userService: UserService,
                private flashMessagesService: FlashMessagesService) {}
+   user = {
+     username: '',
+     password: ''
+   };
 
-  ngOnInit () {}
+  ngOnInit () {
+
+  }
 
   submitLoginForm (form: NgForm) {
     this.userService

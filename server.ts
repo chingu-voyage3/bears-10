@@ -5,6 +5,7 @@ import * as mongoose from 'mongoose';
 import * as bcrypt from 'bcrypt-nodejs';
 import * as morgan from 'morgan';
 import * as bodyParser from 'body-parser';
+import * as helmet from 'helmet';
 import * as jwt from 'jsonwebtoken';
 import * as cors from 'cors';
 import * as passport from 'passport';
@@ -33,6 +34,7 @@ mongoose.connect(configDB.url, { useMongoClient: true });
 /**
  * Middleware Setup
  */
+app.use(helmet());
 app.use(cors());
 app.options('*', cors()); // enable pre-flight request for DELETE request
 app.use(passport.initialize());

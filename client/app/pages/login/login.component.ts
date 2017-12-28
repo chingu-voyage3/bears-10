@@ -18,10 +18,17 @@ export class LoginComponent implements OnInit {
     this.userService
     .signIn(form.value)
     .subscribe((res) => {
-      const messageIsAnError = !res.ok && res.message !== 'ok';
+      let errMessage = '';
+      const messageIsAnError = !res.ok && res.message !== 'ok' && !res.success;
+      const fieldsFilled = form.value.username && form.value.password;
+      if (!fieldsFilled) {
+        errMessage = 'Please enter your username and password';
+      } else {
+        errMessage = 'bad password';
+      }
       console.log('flashing message...', res);
       if (messageIsAnError) {
-        this.flashMessagesService.show(res.message, {
+        this.flashMessagesService.show(errMessage, {
           classes: ['alert', 'alert-warning'], // You can pass as many classes as you need
           timeout: 1000, // Default is 3000
         });

@@ -18,8 +18,9 @@ export class LoginComponent implements OnInit {
     this.userService
     .signIn(form.value)
     .subscribe((res) => {
+      const messageIsAnError = !res.ok && res.message !== 'ok';
       console.log('flashing message...', res);
-      if (!res.ok) {
+      if (messageIsAnError) {
         this.flashMessagesService.show(res.message, {
           classes: ['alert', 'alert-warning'], // You can pass as many classes as you need
           timeout: 1000, // Default is 3000

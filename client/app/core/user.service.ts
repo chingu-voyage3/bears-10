@@ -21,32 +21,41 @@ export class UserService {
   signInStatusSubject = new Subject<any>();
 
   registerAdmin(formValue: { username: string, password: string, confirmpassword: string }): void {
-    let pwMatch = true;
-    if (formValue.password !== formValue.confirmpassword) {
-      pwMatch = false;
-    }
-
-    this.http.post(this.url.signup, formValue).subscribe(
-      (res: any) => {
-        console.log('res is: ', res);
-        localStorage.setItem('token', res.token);
-        this.router.navigate(['/inventory']);
-        this.signInStatusSubject.next(true);
-      },
-      (err: any) => {
-        let errMessage = '';
-        if (!pwMatch) {
-          errMessage = 'Your passwords don\'t match';
-        } else {
-          errMessage = 'The user already exists.';
-        }
-        this.flashMessagesService.show(errMessage, {
-          classes: ['alert', 'alert-warning'], // You can pass as many classes as you need
-          timeout: 1000, // Default is 3000
-        });
+    const formValuesFilled = formValue.username && formValue.password && formValue.confirmpassword;
+    const errorMessage = (() => {
+      let errMessage = '';
+      if (!formValuesFilled) {
+        errMessage = 'All fields must be be filled.';
+      } else if (formValue.password !== formValue.confirmpassword) {
+        errMessage = 'Your passwords don\'t match';
+      } else {
+        errMessage = 'The user already exists.';
       }
+      return errMessage;
+    })();
 
-    );
+    if (formValuesFilled) {
+      this.http.post(this.url.signup, formValue).subscribe(
+        (res: any) => {
+          console.log('res is: ', res);
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['/inventory']);
+          this.signInStatusSubject.next(true);
+        },
+        (err: any) => {
+          this.flashMessagesService.show(errorMessage, {
+            classes: ['alert', 'alert-warning'], // You can pass as many classes as you need
+            timeout: 1000, // Default is 3000
+          });
+        }
+
+      );
+    } else {
+      this.flashMessagesService.show(errorMessage, {
+        classes: [],
+        timeout: 1000,
+      });
+    }
   }
 
   signIn(formValue: {username: string, password: string}): Observable<any> {

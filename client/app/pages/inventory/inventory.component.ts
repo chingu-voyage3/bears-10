@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemsService } from '../../core/items.service';
 
 @Component({
   selector: 'ims-inventory',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InventoryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private items: ItemsService) { }
 
-  ngOnInit() {
+  ngOnInit() {    
+    this.items.getAllItems();
+  }
+
+  getAllItems(){
+    console.log('button clicked');
   }
 
 }

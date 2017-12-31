@@ -17,5 +17,4 @@ export class InventoryComponent implements OnInit {
   getAllItems(){
     console.log('button clicked');
   }
-
 }

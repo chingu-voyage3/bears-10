@@ -37,7 +37,6 @@ import {
     MatToolbarModule,
     MatIconModule,
     MatGridListModule,
-    MatTableModule,
     MatTableModule
   ],
   declarations: []

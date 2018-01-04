@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 import { Item } from '../models/item.interface';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ItemsService {
@@ -14,10 +15,14 @@ export class ItemsService {
   items: Item [] = [];
 
   getAllItems() {
-    this.http.get('/api/items/all')
-      .subscribe(data => {
-        this.items = data['Items'];
-        console.log(this.items);
-      })
+    return this.http.get<Item[]>('/api/items/all')
+    .map(data => {
+       return this.items = data['Items'];
+      // console.log('service = ' + this.items)
+    })
+  }
+
+  returnItems(){
+    return this.items;
   }
 }

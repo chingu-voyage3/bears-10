@@ -12,10 +12,11 @@ import { InventoryComponent } from './pages/inventory/inventory.component';
 import { FlashMessagesModule } from 'ngx-flash-messages';
 import { ItemsService } from './core/items.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, SignupComponent, InventoryComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule, FlashMessagesModule ],
+  imports: [BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule, FlashMessagesModule, MatTableModule ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

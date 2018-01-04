@@ -12,17 +12,16 @@ export class ItemsService {
 
   constructor(private http: HttpClient) { }
 
-  items: Item [] = [];
+  items: Item[] = [];
 
   getAllItems() {
     return this.http.get<Item[]>('/api/items/all')
-    .map(data => {
-       return this.items = data['Items'];
-      // console.log('service = ' + this.items)
-    })
+      .map(data => {
+        return this.items = data['Items'];
+      })
   }
 
-  returnItems(){
+  returnItems() {
     return this.items;
   }
 }

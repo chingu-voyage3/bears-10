@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatTableModule } from '@angular/material/table';
 
 import {
   MatMenuModule,
@@ -10,8 +11,7 @@ import {
   MatCheckboxModule,
   MatToolbarModule,
   MatIconModule,
-  MatGridListModule,
-  MatTableModule
+  MatGridListModule
 } from '@angular/material';
 
 @NgModule({

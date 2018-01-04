@@ -13,15 +13,12 @@ export class InventoryComponent implements OnInit {
 
   items: Item[];
 
-  ngOnInit() {    
+  ngOnInit() {
     this.itemService.getAllItems()
-    .subscribe(data => {
-      this.items = data;
-    })
+      .subscribe(data => {
+        this.items = data;
+      })
   }
 
-  getAllItems(){
-    console.log(this.items);
-    console.log(this.itemService.returnItems())
-  }
 }
+

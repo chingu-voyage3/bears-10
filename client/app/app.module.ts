@@ -10,10 +10,11 @@ import { HomeComponent } from './pages/home/home.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { InventoryComponent } from './pages/inventory/inventory.component';
 import { FlashMessagesModule } from 'ngx-flash-messages';
+import { ItemsService } from './core/items.service';
 
 @NgModule({
-  declarations: [ AppComponent, HomeComponent, SignupComponent, InventoryComponent ],
-  imports: [ BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule, FlashMessagesModule ],
-  bootstrap: [ AppComponent ]
+  declarations: [AppComponent, HomeComponent, SignupComponent, InventoryComponent],
+  imports: [BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule, FlashMessagesModule ],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

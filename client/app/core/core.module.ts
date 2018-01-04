@@ -7,11 +7,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { UserService } from './user.service';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { LogoutDirective } from './directives/logout.directive';
+import { ItemsService } from './items.service';
 
 @NgModule({
   imports: [ CommonModule, HttpClientModule, RouterModule, SharedModule ],
   exports: [ NavbarComponent ],
-  providers: [ UserService ],
+  providers: [ UserService, ItemsService ],
   declarations: [ NavbarComponent, LogoutDirective ]
 })
 export class CoreModule {

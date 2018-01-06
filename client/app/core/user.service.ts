@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 import { FlashMessagesService } from 'ngx-flash-messages';
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable()
 export class UserService {
@@ -67,6 +68,11 @@ export class UserService {
     requestStream.subscribe(
       (res: any) => {
         if (res.token) {
+          const decodedToken = jwt_decode(res.token);
+          const tokenExpiration = JSON.stringify(decodedToken.exp * 1000);
+          const adminCheck = JSON.stringify(decodedToken.isAdmin);
+          localStorage.setItem('expiresIn', tokenExpiration);
+          localStorage.setItem('isAdmin', adminCheck);
           localStorage.setItem('token', res.token);
           this.router.navigate(['/inventory']);
           this.signInStatusSubject.next(true);
@@ -89,5 +95,10 @@ export class UserService {
     localStorage.clear();
     this.signInStatusSubject.next(false);
     this.router.navigate(['/']);
+  }
+
+  get isTokenValid(): boolean {
+    const expiresIn = JSON.parse(localStorage.getItem('expiresIn'));
+    return Date.now() < expiresIn;
   }
 }

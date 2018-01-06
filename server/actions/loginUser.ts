@@ -10,7 +10,7 @@ import * as jwt from 'jsonwebtoken';
         }
         if (user && bcrypt.compareSync(req.body.password, user.password)) {
             const payload = { id: user._id, isAdmin: user.role === 'admin' };
-            const token = jwt.sign(payload, process.env.SECRET_JWT_KEY);
+            const token = jwt.sign(payload, process.env.SECRET_JWT_KEY, { expiresIn: '1hr' });
             res.json({message: 'ok', token: token});
         } else if (!user) {
             res.json({message: 'there is no user with that username'});

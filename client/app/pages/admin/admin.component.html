@@ -1,0 +1,40 @@
+<div>
+  <mat-sidenav-container>
+    <mat-sidenav>
+      hello
+    </mat-sidenav>
+  </mat-sidenav-container>
+  <div >
+    <br>
+    <button 
+        *ngIf="!pageState.addingUser"
+        mat-raised-button 
+    (click)="toggleNewUser()"
+    color="primary">Add New User</button>
+    <button
+      *ngIf="pageState.addingUser"
+      mat-raised-button
+      (click)="toggleNewUser()"
+      color="primary"
+    >
+      Close
+    </button>
+  </div>
+  <div *ngIf="pageState.addingUser">
+    <h1 class="center-text" style="font-family: 'Montserrat', sans-serif">Create a New User on this Account</h1>
+    <div class="form-container">
+        <form  #f="ngForm" (ngSubmit)="handleSubmit(f)">
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Username" name="username"
+                ngModel>
+            </mat-form-field>
+            <br>
+            <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!f.form.valid">Submit</button>
+        </form>
+    </div>
+  </div>
+</div>

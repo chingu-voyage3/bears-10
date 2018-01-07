@@ -5,9 +5,13 @@ cache:
   directories:
   - node_modules
 if: branch IN (master, development, features)
-before_script: "tsc"
+before_script:
+  - npm run setup
+  - npm run build:client
+  - npm run build:server
 deploy:
   provider: heroku
+  skip_cleanup: true
   api_key:
     secure: LHiI4Sn3hPS7TycXcYQwruSN0TQSjTwII1kzdCDJkK08WTkmem2TGG+oxS/XGWTJ5Md+JCVHZLZX5TcKk63SQMHuTabVGFmlSF6DcoCEBiVlJgzBN5Lmyzm53gwKewZqH77DOyIp56MgLp3H1hJ2DPxNtXjVpgTo80zHJCzfkvjr5+kCzHkmV6UoebpKgnjVxrCVeW8O7Jv03IFmnDrYcealUh/+ls9brkED4ww+bMOXY7sqxVw50BJWTtH9hL7gz1R+sBg2I1f6DdQO2a7dV1OnxwnwdvyJ7UZIwEiyZzBFcORJpk5QHq4AH/8WG+ETiF1qd1XEflWSswK8Lp4Kxi+1F1rlmumugZTZsn+ZzGMNYjz8w/f7WzpqgBDcsYjKNYqRbQ3e2m4ua+UoUOukgaZFiB9tSPVbYFjNgLsp1MLvYFrU43hxeS2oQ/p6gk+tFZuSbK5q/sSZkRWJIm5p12R1PDmlpNWusyTcSuK0g+h8BpZkCOGCLlV9wMyPtxETPtOz60DOmAd0szPBDkff3dE9ZcgmU7sCGwFPyx8wu4idA2teSC8uQiHjJ0Ptag+GdT9vwHQ95WnZbkz4jshGQY064L/NXXcl6pOUj/wpaS+yF/wXkvnENexpwRCLhoANm7hSVZemyC6BeF7aVMvYM8q2JIKCg4Q8Pac9Yo915Lw=
   app: bears-ims

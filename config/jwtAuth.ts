@@ -1,5 +1,5 @@
 // modified from: https://jonathanmh.com/express-passport-json-web-token-jwt-authentication-beginners/
-const User = require('../server/models/user')
+const User = require('../server/models/user');
 module.exports = function(passport, ExtractJWT, JWTStrategy) {
   const options = {jwtFromRequest: '', secretOrKey: ''};
   options.jwtFromRequest = ExtractJWT.fromHeader('Authorization');

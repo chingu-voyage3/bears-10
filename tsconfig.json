@@ -23,8 +23,5 @@
     "docs",
     "e2e",
     "ScopeAndStories"
-  ],
-  "include": [
-    "**/*.ts"
   ]
 }

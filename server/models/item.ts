@@ -55,6 +55,6 @@ const itemSchema = new Schema({
   }
 });
 
-export var Item = mongoose.model('Item', itemSchema);
+export let Item = mongoose.model('Item', itemSchema);
 
 

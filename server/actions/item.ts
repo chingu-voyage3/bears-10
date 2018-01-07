@@ -1,13 +1,13 @@
-import { Item } from "../models/item";
+import { Item } from '../models/item';
 
 import * as express from 'express';
 import * as mongoose from 'mongoose';
 import * as jwt from 'jsonwebtoken';
 
-function getAll(req: express.Request, res: express.Response){
+function getAll(req: express.Request, res: express.Response) {
     Item.find({})
         .exec((err, items) => {
-            if(err){
+            if (err) {
                 return res.status(500).json({
                     title: 'An error occured',
                     error: err
@@ -17,7 +17,7 @@ function getAll(req: express.Request, res: express.Response){
         });
 }
 
-function createItem(req: express.Request, res: express.Response){
+function createItem(req: express.Request, res: express.Response) {
     const newItem = new Item({
         name: req.body.name,
         SKU: req.body.SKU,
@@ -36,8 +36,8 @@ function createItem(req: express.Request, res: express.Response){
         expectedDelivery: req.body.expectedDelivery
     });
     newItem.save()
-        .then((item) =>{
-        return res.json({"itemCreated": item})
+        .then((item) => {
+        return res.json({'itemCreated': item});
         })
         .catch((err) => {
             return res.status(500).json({
@@ -47,7 +47,7 @@ function createItem(req: express.Request, res: express.Response){
         });
 }
 
-function updateItem(req: express.Request, res: express.Response){
+function updateItem(req: express.Request, res: express.Response) {
     const itemId = req.params.itemId;
     Item.findById(itemId)
         .then((item) => {
@@ -65,41 +65,41 @@ function updateItem(req: express.Request, res: express.Response){
             item.orderNeeded = req.body.orderNeeded;
             item.orderPlaced = req.body.orderPlaced;
             item.backordered = req.body.backordered;
-            item.expectedDelivery = req.body.expectedDelivery
+            item.expectedDelivery = req.body.expectedDelivery;
             item.save()
                 .then(() => {
-                    return res.json({"itemUpdated": item });
+                    return res.json({'itemUpdated': item });
                 })
                 .catch((err) => {
                     return res.status(500).json({
                         title: 'An error has occured',
                         error: err
-                    })
-                })    
+                    });
+                });
             })
             .catch((err) => {
                 return res.status(500).json({
                     title: 'An error has occured',
                     error: err
-                })
-            })
+                });
+            });
 }
 
-function deleteItem(req: express.Request, res: express.Response){
+function deleteItem(req: express.Request, res: express.Response) {
     const itemId = req.params.itemId;
     Item.findById(itemId)
         .remove(() => {
-            return res.json({"itemDeleted": itemId });
+            return res.json({'itemDeleted': itemId });
         })
         .catch((err) => {
             return res.status(500).json({
                 title: 'An error has occured',
                 error: err
-            })
-        })
+            });
+        });
 }
 
-export { 
+export {
     createItem,
     getAll,
     updateItem,

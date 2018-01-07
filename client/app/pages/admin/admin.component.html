@@ -1,20 +1,15 @@
 <div>
-  <mat-sidenav-container>
-    <mat-sidenav>
-      hello
-    </mat-sidenav>
-  </mat-sidenav-container>
   <div >
     <br>
     <button 
-        *ngIf="!pageState.addingUser"
+        *ngIf="!pageState.addingUser && !pageState.creatingUser"
         mat-raised-button 
     (click)="toggleNewUser()"
     color="primary">Add New User</button>
     <button
-      *ngIf="pageState.addingUser"
+      *ngIf="pageState.addingUser || pageState.creatingUser"
       mat-raised-button
-      (click)="toggleNewUser()"
+      (click)="close()"
       color="primary"
     >
       Close
@@ -36,5 +31,8 @@
             [disabled]="!f.form.valid">Submit</button>
         </form>
     </div>
+  </div>
+  <div *ngIf="pageState.creatingUser">
+    <h1>{{pageState.newUsername}}</h1>
   </div>
 </div>

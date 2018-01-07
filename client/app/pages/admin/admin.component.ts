@@ -6,17 +6,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  pageState = {
-    addingUser:  false,
-  };
+  pageState = this.refreshPageState();
 
   constructor() { }
+
 
   ngOnInit() {
   }
 
   toggleNewUser() {
     this.pageState.addingUser = !this.pageState.addingUser;
+  }
+
+  refreshPageState() {
+    return {
+      addingUser: false,
+      creatingUser: false,
+      newUsername: '',
+    };
+  }
+
+  close() {
+    this.toggleNewUser();
+    this.pageState = this.refreshPageState();
+  }
+
+  handleSubmit(f) {
+    this.pageState.creatingUser = true;
+    this.pageState.addingUser = false;
+    this.pageState.newUsername = f.value.username;
+    console.log(f.value);
   }
 
 }

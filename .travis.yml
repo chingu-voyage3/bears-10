@@ -5,6 +5,7 @@ cache:
   directories:
   - node_modules
 if: branch IN (master, development, features)
+before_script: "tsc"
 deploy:
   provider: heroku
   api_key:

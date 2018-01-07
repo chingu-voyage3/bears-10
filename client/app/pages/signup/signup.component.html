@@ -1,0 +1,30 @@
+<div>
+    <h1 class="center-text" style="font-family: 'Montserrat', sans-serif">Create Inventory Management Account</h1>
+    <div class="form-container">
+        <form  #f="ngForm" (ngSubmit)="handleSubmit(f)">
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Username" name="username"
+                ngModel>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="full-width">
+                <input matInput type="password" name="password" required minlength="6" maxlength="20" placeholder="Password" #password="ngModel" [(ngModel)]="user.password">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="full-width">
+                <input matInput type="password" name="confirmpassword" required minlength="6" maxlength="20" placeholder="Confirm Password" #password="ngModel" [(ngModel)]="user.confirmpassword">
+                <mat-hint>Password must be between 6 and 20 characters.</mat-hint>
+            </mat-form-field>
+            <br>
+            <mat-grid-list cols="6" rowHeight="1:1">
+                    <mat-grid-tile colspan="1">
+                        <button
+                        mat-raised-button
+                        color="primary"
+                        type="submit"
+                        [disabled]="!f.form.valid">Submit</button>
+                    </mat-grid-tile>
+            </mat-grid-list>
+        </form>
+    </div>
+</div>

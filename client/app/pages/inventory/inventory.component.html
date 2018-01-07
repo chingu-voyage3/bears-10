@@ -1,0 +1,8 @@
+<div>
+  <h1>Inventory</h1>
+</div>
+<ng-container *ngIf='items'>
+  <div *ngFor='let item of items'>
+    <p>{{item.name}}</p>
+  </div>
+</ng-container>

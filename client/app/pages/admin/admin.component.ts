@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../core/user.service';
+import { FlashMessagesService } from 'ngx-flash-messages';
 
 @Component({
   selector: 'ims-admin',
@@ -7,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
   pageState = this.refreshPageState();
+  user = {
+    password: '',
+    confirmPassword: '',
+  };
 
-  constructor() { }
+  constructor(private userService: UserService,
+              private flashMessagesService: FlashMessagesService) { }
 
 
   ngOnInit() {
@@ -36,6 +43,13 @@ export class AdminComponent implements OnInit {
     this.pageState.addingUser = false;
     this.pageState.newUsername = f.value.username;
     console.log(f.value);
+  }
+
+  submitUser(f) {
+    this.userService
+    .addNewUser(f);
+    console.log('the passwords are: ' , this.user);
+    console.log('the username is: ', this.pageState.newUsername);
   }
 
 }

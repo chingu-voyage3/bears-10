@@ -4,7 +4,7 @@ import orderRouter from './orderRoutes';
 import userRouter from './userRoutes';
 import * as passport from 'passport';
 import * as passportJWT from 'passport-jwt';
-import User from '../models/user';
+import { User } from '../models/user';
 import * as bcrypt from 'bcrypt-nodejs';
 import * as jwt from 'jsonwebtoken';
 

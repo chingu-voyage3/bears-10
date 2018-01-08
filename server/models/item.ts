@@ -1,6 +1,24 @@
 import * as mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
+interface IItem extends mongoose.Document {
+  name: string;
+  SKU: string;
+  sellable: boolean;
+  retailPrice: number;
+  orderPrice: number;
+  manufacturer: string;
+  description: string;
+  size: string;
+  taxExempt: boolean;
+  count: number;
+  reorderedCount: number;
+  orderNeeded: boolean;
+  orderPlaced: boolean;
+  backordered: boolean;
+  expectedDelivery: Date;
+}
+
 const itemSchema = new Schema({
   name: {
     type: String
@@ -55,6 +73,6 @@ const itemSchema = new Schema({
   }
 });
 
-export let Item = mongoose.model('Item', itemSchema);
+export let Item: mongoose.Model<IItem> = mongoose.model('Item', itemSchema);
 
 

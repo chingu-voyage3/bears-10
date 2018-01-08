@@ -5,6 +5,12 @@ import * as mongoose from 'mongoose';
 import * as bcrypt from 'bcrypt-nodejs';
 const Schema = mongoose.Schema;
 
+interface IUser extends mongoose.Document {
+  username: string;
+  password: string;
+  role: string;
+}
+
 const userSchema = new Schema({
         username: {
             type: String,
@@ -24,4 +30,4 @@ userSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
 };
 
-export default mongoose.model('User', userSchema);
+export let User: mongoose.Model<IUser> = mongoose.model('User', userSchema);

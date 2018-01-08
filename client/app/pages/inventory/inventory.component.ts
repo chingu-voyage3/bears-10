@@ -17,7 +17,7 @@ export class InventoryComponent implements OnInit {
     this.itemService.getAllItems()
       .subscribe(data => {
         this.items = data;
-      })
+      });
   }
 
 }

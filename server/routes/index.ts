@@ -5,8 +5,8 @@ import userRouter from './userRoutes';
 import * as passport from 'passport';
 import * as passportJWT from 'passport-jwt';
 import User from '../models/user';
-import bcrypt from 'bcrypt-nodejs';
-import jwt from 'jsonwebtoken';
+import * as bcrypt from 'bcrypt-nodejs';
+import * as jwt from 'jsonwebtoken';
 
 const ExtractJwt = passportJWT.ExtractJwt,
       JWTStrategy = passportJWT.Strategy;

@@ -17,7 +17,7 @@ import * as path from 'path';
 import apiRouter from './server/routes/index';
 
 import User from './server/models/user';
-// const User = require('./server/models/user.ts')(mongoose, bcrypt);
+// const User = require('./server/models/user')(mongoose, bcrypt);
 /**
  * Instantiate express app
  */
@@ -28,7 +28,7 @@ const JWTStrategy = passportJWT.Strategy;
 /**
  * Database instance
  */
-const configDB = require('./config/database.ts');
+const configDB = require('./config/database');
 
 mongoose.connect(configDB.url, { useMongoClient: true });
 

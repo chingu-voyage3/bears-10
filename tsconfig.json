@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
+    "outDir": "./",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -16,5 +16,12 @@
       "es2017",
       "dom"
     ]
-  }
+  },
+  "exclude": [
+    "balsamiq mockups",
+    "client",
+    "docs",
+    "e2e",
+    "ScopeAndStories"
+  ]
 }

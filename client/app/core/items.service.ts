@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
@@ -18,7 +18,7 @@ export class ItemsService {
     return this.http.get<Item[]>('/api/items/all')
       .map(data => {
         return this.items = data['Items'];
-      })
+      });
   }
 
   returnItems() {

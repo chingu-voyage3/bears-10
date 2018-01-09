@@ -100,6 +100,10 @@ export class UserService {
     this.router.navigate(['/']);
   }
 
+  addNewUser(f) {
+    console.log('in add new user method', f.value);
+  }
+
   get isTokenValid(): boolean {
     const expiresIn = JSON.parse(localStorage.getItem('expiresIn'));
     return Date.now() < expiresIn;

@@ -11,7 +11,8 @@ import {
   MatToolbarModule,
   MatIconModule,
   MatGridListModule,
-  MatTableModule
+  MatTableModule,
+  MatSidenavModule
 } from '@angular/material';
 
 @NgModule({
@@ -25,7 +26,8 @@ import {
     MatToolbarModule,
     MatIconModule,
     MatGridListModule,
-    MatTableModule
+    MatTableModule,
+    MatSidenavModule
   ],
   exports: [
     MatFormFieldModule,
@@ -37,7 +39,8 @@ import {
     MatToolbarModule,
     MatIconModule,
     MatGridListModule,
-    MatTableModule
+    MatTableModule,
+    MatSidenavModule
   ],
   declarations: []
 })

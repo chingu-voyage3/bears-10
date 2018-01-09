@@ -13,9 +13,10 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { InventoryComponent } from './pages/inventory/inventory.component';
 import { FlashMessagesModule } from 'ngx-flash-messages';
 import { ItemsService } from './core/items.service';
+import { ViewItemComponent } from './pages/inventory/view-item/view-item.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, SignupComponent, InventoryComponent],
+  declarations: [AppComponent, HomeComponent, SignupComponent, InventoryComponent, ViewItemComponent],
   imports: [BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule, FlashMessagesModule ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

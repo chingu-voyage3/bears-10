@@ -24,4 +24,10 @@ export class ItemsService {
   returnItems() {
     return this.items;
   }
+
+  getItem(sku: string){
+    return this.items.find((i) => {
+      return i.SKU == sku;
+    })
+  }
 }

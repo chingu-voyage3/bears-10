@@ -1,17 +1,27 @@
 <mat-tab-group>
   <mat-tab label="Create Order">
     <h2>New Order</h2>
+    <br>
+    <input type="search" placeholder="Search By Vendor, Product, or Sku">
+    <br>
+    <div class="itemsAdded" ng-show="addItem">
+      <p>Sku</p>
+      <p>Quanity</p> o23
+    </div>
+    <div class="itemAdd">
     <mat-form-field>
     <input matInput placeholder="Sku #">
   </mat-form-field>
     <mat-form-field>
     <input matInput placeholder="Quantity">
   </mat-form-field>
-  <br>
-  <mat-icon>add Item</mat-icon>
+  <input type="submit" name="Add Item" value="" ng-model="addItem">
+  <mat-icon>Delete Item</mat-icon>
+  </div>
   <br>
   <br>
   <button type="button" name="button">Submit Order</button>
+  <button type="button" name="button">Clear Order</button>
   </mat-tab>
 
   <mat-tab label="Open Orders">

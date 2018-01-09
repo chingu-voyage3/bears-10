@@ -10,11 +10,14 @@ import {
   MatCheckboxModule,
   MatToolbarModule,
   MatIconModule,
-  MatGridListModule
+  MatGridListModule,
+  MatTabsModule,
+  MatExpansionModule
 } from '@angular/material';
 
 @NgModule({
   imports: [
+    MatTabsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -23,9 +26,11 @@ import {
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
-    MatGridListModule
+    MatGridListModule,
+    MatExpansionModule
   ],
   exports: [
+    MatTabsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -34,7 +39,8 @@ import {
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
-    MatGridListModule
+    MatGridListModule,
+    MatExpansionModule
   ],
   declarations: []
 })

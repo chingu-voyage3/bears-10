@@ -9,12 +9,12 @@ import { Item } from '../../models/item.interface';
 })
 export class InventoryComponent implements OnInit {
 
-  constructor(private itemsService: ItemsService) { }
+  constructor(private itemService: ItemsService) { }
 
   items: Item[];
 
   ngOnInit() {
-    this.itemsService.getAllItems()
+    this.itemService.getAllItems()
       .subscribe(data => {
         this.items = data;
       });

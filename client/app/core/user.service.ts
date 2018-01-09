@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
@@ -42,7 +42,7 @@ export class UserService {
       this.http.post(this.url.signup, formValue).subscribe(
         (res: any) => {
           console.log('res is: ', res);
-          localStorage.setItem('token', res.token);
+          this.setSession(res.token);
           this.router.navigate(['/inventory']);
           this.signInStatusSubject.next(true);
         },
@@ -68,16 +68,10 @@ export class UserService {
     requestStream.subscribe(
       (res: any) => {
         if (res.token) {
-          const decodedToken = jwt_decode(res.token);
-          const tokenExpiration = JSON.stringify(decodedToken.exp * 1000);
-          const adminCheck = JSON.stringify(decodedToken.isAdmin);
-          localStorage.setItem('expiresIn', tokenExpiration);
-          localStorage.setItem('isAdmin', adminCheck);
-          localStorage.setItem('token', res.token);
+          this.setSession(res.token);
           this.router.navigate(['/inventory']);
           this.signInStatusSubject.next(true);
         }
-        console.log(res)
       },
       (err: any) => {
         console.log(err);
@@ -89,6 +83,15 @@ export class UserService {
     );
 
     return requestStream;
+  }
+
+  setSession(token): void {
+    const decodedToken = jwt_decode(token);
+    const tokenExpiration = JSON.stringify(decodedToken.exp * 1000);
+    const adminCheck = JSON.stringify(decodedToken.isAdmin);
+    localStorage.setItem('expiresIn', tokenExpiration);
+    localStorage.setItem('isAdmin', adminCheck);
+    localStorage.setItem('token', token);
   }
 
   logout() {

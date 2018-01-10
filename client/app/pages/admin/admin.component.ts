@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../core/user.service';
 import { FlashMessagesService } from 'ngx-flash-messages';
-import { NgForm } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ims-admin',
@@ -12,10 +10,8 @@ import { FormsModule } from '@angular/forms';
 export class AdminComponent implements OnInit {
   pageState = this.refreshPageState();
   user = {
-    username: '',
     password: '',
     confirmPassword: '',
-    access: ''
   };
 
   constructor(private userService: UserService,
@@ -23,10 +19,6 @@ export class AdminComponent implements OnInit {
 
 
   ngOnInit() {
-  }
-
-  onRadioClick(option: string) {
-    this.user.access = option;
   }
 
   toggleNewUser() {
@@ -50,13 +42,14 @@ export class AdminComponent implements OnInit {
     this.pageState.creatingUser = true;
     this.pageState.addingUser = false;
     this.pageState.newUsername = f.value.username;
+    console.log(f.value);
   }
 
-  submitUser() {
-    this.user.username = this.pageState.newUsername;
-    console.log('user is: ', this.user);
+  submitUser(f) {
     this.userService
-    .addNewUser(this.user);
+    .addNewUser(f);
+    console.log('the passwords are: ' , this.user);
+    console.log('the username is: ', this.pageState.newUsername);
   }
 
 }

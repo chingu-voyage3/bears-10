@@ -12,8 +12,7 @@ import {
   MatIconModule,
   MatGridListModule,
   MatTableModule,
-  MatSidenavModule,
-  MatRadioModule
+  MatSidenavModule
 } from '@angular/material';
 
 @NgModule({
@@ -28,8 +27,7 @@ import {
     MatIconModule,
     MatGridListModule,
     MatTableModule,
-    MatSidenavModule,
-    MatRadioModule
+    MatSidenavModule
   ],
   exports: [
     MatFormFieldModule,
@@ -42,8 +40,7 @@ import {
     MatIconModule,
     MatGridListModule,
     MatTableModule,
-    MatSidenavModule,
-    MatRadioModule
+    MatSidenavModule
   ],
   declarations: []
 })

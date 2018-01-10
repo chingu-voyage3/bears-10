@@ -111,8 +111,8 @@ export class UserService {
     this.router.navigate(['/']);
   }
 
-  addNewUser(usr) {
-    console.log('in add new user method', usr);
+  addNewUser(f) {
+    console.log('in add new user method', f.value);
   }
 
   get isTokenValid(): boolean {

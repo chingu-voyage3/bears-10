@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { FlashMessagesService } from 'ngx-flash-messages';
 import * as jwt_decode from 'jwt-decode';
 
@@ -13,13 +13,24 @@ export class UserService {
     signup: 'http://localhost:3000/api/signup',
     login: 'http://localhost:3000/api/login',
   };
+  loggedIn: boolean;
+  isLoggedIn = new BehaviorSubject<boolean>(this.loggedIn);
   // proxy = 'https://cors-anywhere.herokuapp.com/';
   constructor(private http: HttpClient,
               private router: Router,
               private flashMessagesService: FlashMessagesService
-              ) { }
+              ) {
+                if (this.isTokenValid) {
+                  this.setLoggedInStatus(true);
+                } else if (!this.isTokenValid) {
+                  this.logout();
+                }
+              }
 
-  signInStatusSubject = new Subject<any>();
+  setLoggedInStatus (value: boolean) {
+    this.isLoggedIn.next(value);
+    this.loggedIn = value;
+  }
 
   registerAdmin(formValue: { username: string, password: string, confirmpassword: string }): void {
     const formValuesFilled = formValue.username && formValue.password && formValue.confirmpassword;
@@ -44,7 +55,7 @@ export class UserService {
           console.log('res is: ', res);
           this.setSession(res.token);
           this.router.navigate(['/inventory']);
-          this.signInStatusSubject.next(true);
+          this.setLoggedInStatus(true);
         },
         (err: any) => {
           this.flashMessagesService.show(errorMessage, {
@@ -70,7 +81,7 @@ export class UserService {
         if (res.token) {
           this.setSession(res.token);
           this.router.navigate(['/inventory']);
-          this.signInStatusSubject.next(true);
+          this.setLoggedInStatus(true);
         }
       },
       (err: any) => {
@@ -96,8 +107,12 @@ export class UserService {
 
   logout() {
     localStorage.clear();
-    this.signInStatusSubject.next(false);
+    this.setLoggedInStatus(false);
     this.router.navigate(['/']);
+  }
+
+  addNewUser(f) {
+    console.log('in add new user method', f.value);
   }
 
   get isTokenValid(): boolean {

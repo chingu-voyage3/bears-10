@@ -7,17 +7,9 @@ import { UserService } from '../user.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  loggedIn = false;
 
   constructor(private userService: UserService) { }
 
-  ngOnInit() {
-    this.userService.signInStatusSubject.subscribe(
-      loggedInStatus => {
-        this.loggedIn = loggedInStatus;
-      },
-      err => console.log('there was an error...')
-    );
-  }
+  ngOnInit() {}
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../core/user.service';
 import { FlashMessagesService } from 'ngx-flash-messages';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'ims-admin',
@@ -45,11 +46,12 @@ export class AdminComponent implements OnInit {
     console.log(f.value);
   }
 
-  submitUser(f) {
-    this.userService
-    .addNewUser(f);
-    console.log('the passwords are: ' , this.user);
-    console.log('the username is: ', this.pageState.newUsername);
+  submitUser(f: NgForm) {
+    console.log('f.value is: ', f.value);
+    // this.userService
+    // .addNewUser(f);
+    // console.log('the passwords are: ' , this.user);
+    // console.log('the username is: ', this.pageState.newUsername);
   }
 
 }

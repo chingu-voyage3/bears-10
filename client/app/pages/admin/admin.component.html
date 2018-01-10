@@ -40,8 +40,14 @@
       </mat-form-field>
       <br>
       <mat-form-field class="full-width">
-        <input matInput type="text" type="password" name="confirmpassword" required minlength="6" maxlength="20" placeholder="Confirm Password" #confirmPassword="ngModel" [(ngModel)]="user.confirmPassword">
+        <input matInput type="password" name="confirmpassword" required minlength="6" maxlength="20" placeholder="Confirm Password" #confirmPassword="ngModel" [(ngModel)]="user.confirmPassword">
       </mat-form-field>
+      <br>
+      <mat-radio-group value="Admin">
+        <mat-radio-button (click)="onRadioClick('admin')">Admin</mat-radio-button>
+        <br>
+        <mat-radio-button (click)="onRadioClick('user')">User</mat-radio-button>
+      </mat-radio-group>
       <br>
       <button 
         type="submit"

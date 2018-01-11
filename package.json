@@ -4,8 +4,12 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build && nodemon server.ts",
+    "serve": "ng serve",
+    "setup": "npm install",
+    "start": "node server.js",
+    "build:live": "ng build && nodemon --exec ./node_modules/.bin/ts-node -- ./server.ts",
+    "build:client": "ng build",
+    "build:server": "tsc",
     "ng:test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -30,10 +34,12 @@
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
+    "helmet": "^3.9.0",
     "jsonwebtoken": "^8.1.0",
     "mocha": "^4.1.0",
     "mongoose": "^4.13.9",
     "morgan": "^1.9.0",
+    "ngx-flash-messages": "^1.0.4",
     "passport": "^0.4.0",
     "passport-custom": "^1.0.5",
     "passport-jwt": "^3.0.1",
@@ -60,9 +66,10 @@
     "karma-coverage-istanbul-reporter": "^1.3.3",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "nodemon": "^1.13.3",
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "~2.4.2"
+    "typescript": "^2.6.2"
   }
 }

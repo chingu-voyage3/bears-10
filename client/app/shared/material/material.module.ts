@@ -12,7 +12,10 @@ import {
   MatIconModule,
   MatGridListModule,
   MatTabsModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatTableModule,
+  MatSidenavModule
+
 } from '@angular/material';
 
 @NgModule({
@@ -27,7 +30,9 @@ import {
     MatToolbarModule,
     MatIconModule,
     MatGridListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTableModule,
+    MatSidenavModule
   ],
   exports: [
     MatTabsModule,
@@ -40,7 +45,9 @@ import {
     MatToolbarModule,
     MatIconModule,
     MatGridListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTableModule,
+    MatSidenavModule
   ],
   declarations: []
 })

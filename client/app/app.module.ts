@@ -11,18 +11,13 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { InventoryComponent } from './pages/inventory/inventory.component';
-import { OrderComponent } from './pages/order/order.component';
-import { OrderSubmitComponent } from './pages/order/order-submit/order-submit.component';
-import { OrderPrintComponent } from './pages/order/order-print/order-print.component';
-import { OrderEditComponent } from './pages/order/order-edit/order-edit.component';
 import { FlashMessagesModule } from 'ngx-flash-messages';
 import { ItemsService } from './core/items.service';
 
 @NgModule({
-  declarations: [ AppComponent, HomeComponent, SignupComponent, InventoryComponent, OrderComponent, OrderSubmitComponent, OrderPrintComponent, OrderEditComponent, FlashMessagesModule ],
-  imports: [ BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule ],
+  declarations: [AppComponent, HomeComponent, SignupComponent, InventoryComponent],
+  imports: [BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule, FlashMessagesModule ],
   providers: [AuthGuard],
-  bootstrap: [ AppComponent ]
-
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,27 +1,33 @@
 // adapted from https://scotch.io/tutorials/easy-node-authentication-setup-and-local
 // var mongoose = require('mongoose');
 
-module.exports = function(mongoose, bcrypt) {
-    const Schema = mongoose.Schema;
+import * as mongoose from 'mongoose';
+import * as bcrypt from 'bcrypt-nodejs';
+const Schema = mongoose.Schema;
 
-    const userSchema = new Schema({
-            username: {
-                type: String,
-                required: true,
-                message: 'username is required'
-            },
-            password: {
-                type: String,
-                required: true
-            },
-            role: String
-    });
+interface IUser extends mongoose.Document {
+  username: string;
+  password: string;
+  role: string;
+}
 
-    // methods ======================
-    // generating a hash
-    userSchema.methods.generateHash = function(password) {
-        return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-    };
+const userSchema = new Schema({
+        username: {
+            type: String,
+            required: true,
+            message: 'username is required'
+        },
+        password: {
+            type: String,
+            required: true
+        },
+        role: String
+});
 
-    return mongoose.model('User', userSchema);
+// methods ======================
+// generating a hash
+userSchema.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
 };
+
+export let User: mongoose.Model<IUser> = mongoose.model('User', userSchema);

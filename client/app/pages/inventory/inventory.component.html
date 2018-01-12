@@ -1,3 +1,23 @@
-<p>
-  inventory works!
-</p>
+<div>
+  <h1>Inventory</h1>
+</div>
+<ng-container *ngIf='items'>
+  <table>
+    <tr>
+      <th>SKU</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Size</th>
+      <th>Count</th>
+    </tr>
+    <tr *ngFor='let item of items; let i=index; let odd=odd; let even=even' [ngClass]="{odd: odd, even: even }">
+      <td><a [routerLink]="[item.SKU]">{{item.SKU}}</a></td>
+      <td>{{item.name}}</td>
+      <td>{{item.description}}</td>
+      <td>{{item.retailPrice}}</td>
+      <td>{{item.size}}</td>
+      <td>{{item.count}}</td>
+    </tr>
+  </table>
+</ng-container>

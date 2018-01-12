@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemsService } from '../../core/items.service';
+import { Item } from '../../models/item.interface';
 
 @Component({
   selector: 'ims-inventory',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InventoryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private itemsService: ItemsService) { }
+
+  items: Item[];
 
   ngOnInit() {
+    this.itemsService.getAllItems()
+      .subscribe(data => {
+        this.items = data;
+      });
   }
 
 }
+

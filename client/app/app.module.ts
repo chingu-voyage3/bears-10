@@ -4,6 +4,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import { AuthGuard } from './core/auth.guard';
+import { FlashMessagesModule } from 'ngx-flash-messages';
+import { ItemsService } from './core/items.service';
+import { ViewItemComponent } from './pages/inventory/view-item/view-item.component';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -15,8 +19,19 @@ import { OrderPrintComponent } from './pages/order/order-print/order-print.compo
 import { OrderEditComponent } from './pages/order/order-edit/order-edit.component';
 
 @NgModule({
-  declarations: [ AppComponent, HomeComponent, SignupComponent, InventoryComponent, OrderComponent, OrderSubmitComponent, OrderPrintComponent, OrderEditComponent ],
-  imports: [ BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule ],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    SignupComponent,
+    InventoryComponent,
+    OrderComponent,
+    OrderSubmitComponent,
+    OrderPrintComponent,
+    OrderEditComponent,
+    ViewItemComponent ],
+  imports: [ BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule, FlashMessagesModule ],
+  providers: [AuthGuard],
   bootstrap: [ AppComponent ]
 })
+
 export class AppModule {}

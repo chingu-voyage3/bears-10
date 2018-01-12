@@ -1,4 +1,17 @@
-const Schema = require('mongoose').Schema;
+import * as mongoose from "mongoose";
+
+const Schema = mongoose.Schema;
+
+interface IOrder extends mongoose.Document {
+  item: string;
+  SKU: string;
+  vendor: string;
+  quantity: number;
+  price: number;
+  orderNo: number;
+  dateOrder: number;
+  dateClosed: number;
+}
 
 const orderSchema = new Schema({
   item: {
@@ -28,4 +41,5 @@ const orderSchema = new Schema({
 
 });
 
-module.exports.order = mongoose.model('Order', orderSchema);
+
+export let Order: mongoose.Model<IOrder> = mongoose.model('Order', orderSchema);

@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -23,5 +24,11 @@ export class ItemsService {
 
   returnItems() {
     return this.items;
+  }
+
+  getItem(sku: string) {
+    return this.items.find((i) => {
+      return i.SKU == sku;
+    });
   }
 }

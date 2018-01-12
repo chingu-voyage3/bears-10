@@ -9,16 +9,15 @@ import { Item } from '../../models/item.interface';
 })
 export class InventoryComponent implements OnInit {
 
-  constructor(private itemService: ItemsService) { }
+  constructor(private itemsService: ItemsService) { }
 
   items: Item[];
 
   ngOnInit() {
-    this.itemService.getAllItems()
+    this.itemsService.getAllItems()
       .subscribe(data => {
         this.items = data;
       });
   }
 
 }
-

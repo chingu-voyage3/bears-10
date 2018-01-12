@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'sign_up', component: SignupComponent },
   { path: 'inventory', component: InventoryComponent, canActivate: [AuthGuard] },
+  { path: 'inventory/:SKU', component: ViewItemComponent, canActivate: [AuthGuard] },
   {
     path: 'login',
     loadChildren: './pages/login/login.module#LoginModule'

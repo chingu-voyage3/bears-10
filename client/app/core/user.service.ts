@@ -10,8 +10,8 @@ import * as jwt_decode from 'jwt-decode';
 @Injectable()
 export class UserService {
   url = {
-    signup: 'http://localhost:3000/api/signup',
-    login: 'http://localhost:3000/api/login',
+    signup: '/api/signup',
+    login: '/api/login',
   };
   loggedIn: boolean;
   isLoggedIn = new BehaviorSubject<boolean>(this.loggedIn);

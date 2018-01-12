@@ -17,7 +17,7 @@ const routes: Routes = [
     path: 'login',
     loadChildren: './pages/login/login.module#LoginModule'
   },
-  { path: 'order', component: OrderComponent}
+  { path: 'order', component: OrderComponent},
   {
     path: 'admin',
     loadChildren: './pages/admin/admin.module#AdminModule',
@@ -29,4 +29,5 @@ const routes: Routes = [
   providers: [AuthGuard],
   exports: [ RouterModule ]
 })
+
 export class AppRoutingModule {}

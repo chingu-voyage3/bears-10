@@ -1,9 +1,14 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
+import * as orderControllers from '../actions/order';
 
 const orderRouter = Router();
 
-orderRouter.get('/', (req: Request, res: Response) => {
-  res.json('Order response');
-});
+orderRouter.get('/getOrder', orderControllers.getOrder);
+
+orderRouter.post('/newOrder', orderControllers.createOrder);
+
+orderRouter.post('/updateOrder/:orderId', orderControllers.updateOrder);
+
+orderRouter.delete('/deleteOrder/:orderId', orderControllers.deleteOrder);
 
 export default orderRouter;

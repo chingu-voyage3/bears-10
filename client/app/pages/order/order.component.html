@@ -2,23 +2,28 @@
   <mat-tab label="Create Order">
     <h2>New Order</h2>
     <br>
-    <input type="search" placeholder="Search By Vendor, Product, or Sku">
-    <br>
+    <h3>Item</h3>
     <div class="itemsAdded" ng-show="addItem">
       <p>Sku</p>
-      <p>Quanity</p>
-      <p>Item</p>
       <p>Vendor</p>
+      <p>Quantity</p>
+      <p>Price</p>
     </div>
     <div class="itemAdd">
     <mat-form-field>
     <input matInput placeholder="Sku #">
   </mat-form-field>
     <mat-form-field>
-    <input matInput placeholder="Quantity">
+    <input matInput placeholder="Vendor">
   </mat-form-field>
-  <input type="submit" name="Add Item" value="" ng-model="addItem">
-  <mat-icon>Delete Item</mat-icon>
+  <mat-form-field>
+  <input matInput placeholder="Quantity">
+</mat-form-field>
+<mat-form-field>
+<input matInput placeholder="Price">
+</mat-form-field>
+<button md-button>Clear</button>
+   <button md-button>Save Item</button>
   </div>
   <br>
   <br>
@@ -27,6 +32,8 @@
   </mat-tab>
 
   <mat-tab label="Open Orders">
+    <br>
+    <input type="search" placeholder="Search By Vendor, Product, or Sku">
     <br>
     <mat-expansion-panel [expanded]="false" ng-repeat="x in x">
       <mat-expansion-panel-header style="background: gray;">
@@ -50,6 +57,8 @@
   </mat-tab>
 
   <mat-tab label="Closed Orders">
+    <br>
+    <input type="search" placeholder="Search By Vendor, Product, or Sku">
     <br>
     <mat-expansion-panel [expanded]="false" ng-repeat="x in x">
       <mat-expansion-panel-header style="background: gray;">

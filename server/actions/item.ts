@@ -99,9 +99,35 @@ function deleteItem(req: express.Request, res: express.Response) {
         });
 }
 
+/**
+ * Item category methods
+ */
+
+function queryItems(queryObject: object) {
+  return Item.find(queryObject);
+}
+
+function queryItemsByProp(prop: string) {
+  return Item.distinct(prop);
+}
+
+function getAllCategories(req: express.Request, res: express.Response, next: express.NextFunction) {
+  queryItemsByProp('category')
+  .then((doc) => res.json(doc))
+  .catch((err) => next(err));
+}
+
+function getItemsByCategory(req: express.Request, res: express.Response, next: express.NextFunction) {
+  queryItems({category: req.params.category})
+  .then((docs) => res.json(docs))
+  .catch((err) => next(err));
+}
+
 export {
     createItem,
     getAll,
     updateItem,
-    deleteItem
+    deleteItem,
+    getItemsByCategory,
+    getAllCategories
 };

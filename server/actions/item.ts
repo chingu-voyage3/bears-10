@@ -33,7 +33,8 @@ function createItem(req: express.Request, res: express.Response) {
         orderNeeded: req.body.orderNeeded,
         orderPlaced: req.body.orderPlaced,
         backordered: req.body.backordered,
-        expectedDelivery: req.body.expectedDelivery
+        expectedDelivery: req.body.expectedDelivery,
+        category: req.body.category
     });
     newItem.save()
         .then((item) => {
@@ -66,6 +67,7 @@ function updateItem(req: express.Request, res: express.Response) {
             item.orderPlaced = req.body.orderPlaced;
             item.backordered = req.body.backordered;
             item.expectedDelivery = req.body.expectedDelivery;
+            item.category = req.body.category;
             item.save()
                 .then(() => {
                     return res.json({'itemUpdated': item });
@@ -113,14 +115,14 @@ function queryItemsByProp(prop: string) {
 
 function getAllCategories(req: express.Request, res: express.Response, next: express.NextFunction) {
   queryItemsByProp('category')
-  .then((doc) => res.json(doc))
-  .catch((err) => next(err));
+    .then((doc) => res.json(doc))
+    .catch((err) => next(err));
 }
 
 function getItemsByCategory(req: express.Request, res: express.Response, next: express.NextFunction) {
   queryItems({category: req.params.category})
-  .then((docs) => res.json(docs))
-  .catch((err) => next(err));
+    .then((docs) => res.json(docs))
+    .catch((err) => next(err));
 }
 
 export {

@@ -10,24 +10,22 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class OrderService {
 
-  constructor(
-    private http: HttpClient){
+  constructor(private http: HttpClient) {}
+  orders: Order[] = [];
 
-      orders: Order[] = [];
+  getAllOrders() {
+    return this.http.get<Order[]>('/ap/order/getOrder')
+    .map(data => {
+      return this.orders = data['Orders'];
+    });
+  }
+  returnOrder() {
+    return this.orders;
+  }
+  getOrder(sku: number) {
+    return this.orders.find((i) => {
+      return i.sku === sku;
+    });
+  }
+}
 
-      getAllOrders() {
-        return this.http.get<Order[]>('/ap/order/getOrder')
-        .map(data => {
-          return this.orders = data['Orders'];
-        });
-      }
-      returnOrder(){
-        return this.orders;
-      }
-
-      getOrder(sku: number){
-        return this.orders.find((i) => {
-          return i.sku == sku;
-        });
-      }
-    }

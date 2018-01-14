@@ -43,6 +43,12 @@
         <input matInput type="text" type="password" name="confirmpassword" required minlength="6" maxlength="20" placeholder="Confirm Password" #confirmPassword="ngModel" [(ngModel)]="user.confirmPassword">
       </mat-form-field>
       <br>
+      <mat-radio-group>
+        <mat-radio-button value="1">Admin</mat-radio-button>
+        <br>
+        <mat-radio-button value="2">User</mat-radio-button>
+        <br>
+      </mat-radio-group>
       <button 
         type="submit"
         mat-raised-button

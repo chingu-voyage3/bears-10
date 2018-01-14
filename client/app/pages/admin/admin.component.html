@@ -35,6 +35,7 @@
   <div *ngIf="pageState.creatingUser">
     <h1>{{pageState.newUsername}}</h1>
     <form #f="ngForm" (ngSubmit)="submitUser(f)">
+      <input type="hidden" [ngModel]="pageState.newUsername" name="username" ngModel />
       <mat-form-field class="full-width">
         <input matInput type="text" type="password" name="password" required minlength="6" maxlength="20" placeholder="Password" #password="ngModel" [(ngModel)]="user.password">
       </mat-form-field>
@@ -43,10 +44,10 @@
         <input matInput type="text" type="password" name="confirmpassword" required minlength="6" maxlength="20" placeholder="Confirm Password" #confirmPassword="ngModel" [(ngModel)]="user.confirmPassword">
       </mat-form-field>
       <br>
-      <mat-radio-group>
-        <mat-radio-button value="1">Admin</mat-radio-button>
+      <mat-radio-group ngModel name="accessLevel">
+        <mat-radio-button value="admin">Admin</mat-radio-button>
         <br>
-        <mat-radio-button value="2">User</mat-radio-button>
+        <mat-radio-button value="user">User</mat-radio-button>
         <br>
       </mat-radio-group>
       <button 

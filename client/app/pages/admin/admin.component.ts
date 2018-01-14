@@ -46,10 +46,9 @@ export class AdminComponent implements OnInit {
   }
 
   submitUser(f) {
+    console.log('the value of f is: ', f);
     this.userService
     .addNewUser(f);
-    console.log('the passwords are: ' , this.user);
-    console.log('the username is: ', this.pageState.newUsername);
   }
 
 }

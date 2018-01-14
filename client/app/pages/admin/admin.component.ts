@@ -46,9 +46,14 @@ export class AdminComponent implements OnInit {
   }
 
   submitUser(f) {
-    console.log('the value of f is: ', f);
-    this.userService
-    .addNewUser(f);
+    console.log('the value of accessLevel is: ', f.value.accessLevel);
+    if (f.value.accessLevel == 'admin') {
+      this.userService
+        .registerAdmin(f.value);
+    } else {
+      this.userService
+        .registerUser(f.value);
+    }
   }
 
 }

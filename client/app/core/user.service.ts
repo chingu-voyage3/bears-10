@@ -32,24 +32,31 @@ export class UserService {
     this.loggedIn = value;
   }
 
-  registerAdmin(formValue: { username: string, password: string, confirmpassword: string }): void {
-    const formValuesFilled = formValue.username && formValue.password && formValue.confirmpassword;
-    const passwordIsCorrectLength = formValue.password.length >= 6 && formValue.password.length <= 20;
-    const errorMessage = (() => {
-      let errMessage = '';
-      if (!formValuesFilled) {
-        errMessage = 'All fields must be be filled.';
-      } else if (!passwordIsCorrectLength) {
-        errMessage = 'password must be between 6 and 20 characters';
-      } else if (formValue.password !== formValue.confirmpassword) {
-        errMessage = 'Your passwords don\'t match';
-      } else {
-        errMessage = 'The user already exists.';
-      }
-      return errMessage;
-    })();
+  formValuesFilled(formValue: { username: string, password: string, confirmpassword: string }): boolean {
+    return !!(formValue.username && formValue.password && formValue.confirmpassword);
+  }
 
-    if (formValuesFilled && passwordIsCorrectLength) {
+  passwordIsCorrectLength(formValue: { username: string, password: string, confirmpassword: string }): boolean {
+    return formValue.password.length >= 6 && formValue.password.length <= 20;
+  }
+
+  generateErrorMessage(formValue: { username: string, password: string, confirmpassword: string }): string {
+    let errMessage = '';
+    if (!this.formValuesFilled(formValue)) {
+      errMessage = 'All fields must be be filled.';
+    } else if (!this.passwordIsCorrectLength(formValue)) {
+      errMessage = 'password must be between 6 and 20 characters';
+    } else if (formValue.password !== formValue.confirmpassword) {
+      errMessage = 'Your passwords don\'t match';
+    } else {
+      errMessage = 'The user already exists.';
+    }
+    return errMessage;
+  }
+  registerAdmin(formValue: { username: string, password: string, confirmpassword: string }): void {
+    const errorMessage = this.generateErrorMessage(formValue);
+
+    if (this.formValuesFilled(formValue) && this.passwordIsCorrectLength(formValue)) {
       this.http.post(this.url.signup, formValue).subscribe(
         (res: any) => {
           console.log('res is: ', res);
@@ -71,6 +78,10 @@ export class UserService {
         timeout: 1000,
       });
     }
+  }
+
+  registerUser(f) {
+    console.log('in add new user method', f.value);
   }
 
   signIn(formValue: {username: string, password: string}): Observable<any> {
@@ -111,9 +122,6 @@ export class UserService {
     this.router.navigate(['/']);
   }
 
-  addNewUser(f) {
-    console.log('in add new user method', f.value);
-  }
 
   get isTokenValid(): boolean {
     const expiresIn = JSON.parse(localStorage.getItem('expiresIn'));

@@ -7,6 +7,13 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { FlashMessagesService } from 'ngx-flash-messages';
 import * as jwt_decode from 'jwt-decode';
 
+interface FormValue {
+   username: string;
+   password: string;
+   confirmpassword: string;
+   role?: string;
+}
+
 @Injectable()
 export class UserService {
   url = {
@@ -32,15 +39,15 @@ export class UserService {
     this.loggedIn = value;
   }
 
-  formValuesFilled(formValue: { username: string, password: string, confirmpassword: string }): boolean {
+  formValuesFilled(formValue: FormValue): boolean {
     return !!(formValue.username && formValue.password && formValue.confirmpassword);
   }
 
-  passwordIsCorrectLength(formValue: { username: string, password: string, confirmpassword: string }): boolean {
+  passwordIsCorrectLength(formValue: FormValue): boolean {
     return formValue.password.length >= 6 && formValue.password.length <= 20;
   }
 
-  generateErrorMessage(formValue: { username: string, password: string, confirmpassword: string }): string {
+  generateErrorMessage(formValue: FormValue): string {
     let errMessage = '';
     if (!this.formValuesFilled(formValue)) {
       errMessage = 'All fields must be be filled.';
@@ -53,16 +60,24 @@ export class UserService {
     }
     return errMessage;
   }
-  registerAdmin(formValue: { username: string, password: string, confirmpassword: string }): void {
+  registerNewUser(formValue: FormValue): void {
+    console.log('in register admin method, ');
     const errorMessage = this.generateErrorMessage(formValue);
 
     if (this.formValuesFilled(formValue) && this.passwordIsCorrectLength(formValue)) {
       this.http.post(this.url.signup, formValue).subscribe(
         (res: any) => {
           console.log('res is: ', res);
-          this.setSession(res.token);
-          this.router.navigate(['/inventory']);
-          this.setLoggedInStatus(true);
+          if (!formValue.role) {
+            this.setSession(res.token);
+            this.router.navigate(['/inventory']);
+            this.setLoggedInStatus(true);
+          } else {
+            this.flashMessagesService.show('User successfully created!', {
+              classes: ['alert'],
+              timeout: 2000,
+            });
+          }
         },
         (err: any) => {
           this.flashMessagesService.show(errorMessage, {
@@ -78,10 +93,6 @@ export class UserService {
         timeout: 1000,
       });
     }
-  }
-
-  registerUser(f) {
-    console.log('in add new user method', f.value);
   }
 
   signIn(formValue: {username: string, password: string}): Observable<any> {

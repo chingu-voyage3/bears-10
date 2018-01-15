@@ -54,6 +54,8 @@ export class AdminComponent implements OnInit {
       } else {
         this.userService
           .registerNewUser(f.value);
+        const close = this.close.bind(this);
+        setTimeout(close, 1000);
       }
   }
 

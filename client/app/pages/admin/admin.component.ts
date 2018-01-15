@@ -46,14 +46,15 @@ export class AdminComponent implements OnInit {
   }
 
   submitUser(f) {
-    console.log('the value of accessLevel is: ', f.value.accessLevel);
-    if (f.value.accessLevel == 'admin') {
-      this.userService
-        .registerAdmin(f.value);
-    } else {
-      this.userService
-        .registerUser(f.value);
-    }
+      if (!f.value.role) {
+        this.flashMessagesService.show('Please add a role.', {
+          classes: ['alert'],
+          timeout: 2000,
+        });
+      } else {
+        this.userService
+          .registerNewUser(f.value);
+      }
   }
 
 }

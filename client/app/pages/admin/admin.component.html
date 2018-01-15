@@ -4,8 +4,8 @@
     <button 
         *ngIf="!pageState.addingUser && !pageState.creatingUser"
         mat-raised-button 
-    (click)="toggleNewUser()"
-    color="primary">Add New User</button>
+        (click)="toggleNewUser()"
+        color="primary">Add New User</button>
     <button
       *ngIf="pageState.addingUser || pageState.creatingUser"
       mat-raised-button
@@ -44,7 +44,7 @@
         <input matInput type="text" type="password" name="confirmpassword" required minlength="6" maxlength="20" placeholder="Confirm Password" #confirmPassword="ngModel" [(ngModel)]="user.confirmPassword">
       </mat-form-field>
       <br>
-      <mat-radio-group ngModel name="accessLevel">
+      <mat-radio-group ngModel name="role">
         <mat-radio-button value="admin">Admin</mat-radio-button>
         <br>
         <mat-radio-button value="user">User</mat-radio-button>

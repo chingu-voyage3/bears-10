@@ -25,6 +25,6 @@ export class SignupComponent implements OnInit {
   ngOnInit () {}
   handleSubmit (form: NgForm) {
     this.userService
-        .registerNewUser(form.value);
+        .registerNewUser(form.value, true);
   }
 }

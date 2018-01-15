@@ -12,6 +12,7 @@ interface FormValue {
    password: string;
    confirmpassword: string;
    role?: string;
+   fresh?: boolean;
 }
 
 @Injectable()
@@ -60,9 +61,11 @@ export class UserService {
     }
     return errMessage;
   }
-  registerNewUser(formValue: FormValue): void {
+  registerNewUser(formValue: FormValue, fresh: boolean = false): void {
     console.log('in register admin method, ');
     const errorMessage = this.generateErrorMessage(formValue);
+
+    formValue.fresh = fresh;
 
     if (this.formValuesFilled(formValue) && this.passwordIsCorrectLength(formValue)) {
       this.http.post(this.url.signup, formValue).subscribe(

@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
   <h1>Inventory</h1>
 </div>
 <ng-container *ngIf='items'>
@@ -20,4 +20,40 @@
       <td>{{item.count}}</td>
     </tr>
   </table>
-</ng-container>
+</ng-container> -->
+<!-- ------------------------------------------- -->
+<div>
+  <h1>Inventory</h1>
+</div>
+<div class="inventory-table">
+<div class="inventory-table-header">
+  <h3>Name</h3>
+  <h3>Size</h3>
+  <h3>Description</h3>
+</div>
+<mat-accordion>
+  <mat-expansion-panel *ngFor='let item of items; let i=index; let odd=odd; let even=even' [ngClass]="{odd: odd, even: even }">
+    <mat-expansion-panel-header>
+      <mat-panel-title >
+        <div class="panel-title">
+          <p>{{item.name}}</p>
+          <p>{{item.size}}</p>
+          <p>{{item.description}}</p>
+        </div>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+     <mat-card>
+       <mat-card-title>{{item.name}}</mat-card-title>
+       <mat-card-content>
+         <div class="card-content">
+         <h5>SKU:</h5><p>{{item.SKU}}</p>
+         <h5>Manufacturer:</h5><p>{{item.manufacturer}}</p>
+         <h5>Order Price:</h5><p>{{item.orderPrice}}</p>
+         <h5>Retail Price:</h5><p>{{item.retailPrice}}</p>
+         <h5>Number in Stock:</h5><p>{{item.count}}</p>
+        </div>
+       </mat-card-content>
+     </mat-card>
+  </mat-expansion-panel>
+</mat-accordion>
+</div>

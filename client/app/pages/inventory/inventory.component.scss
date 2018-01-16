@@ -1,38 +1,51 @@
-table{
-  border-collapse: collapse;
+table {
+    border-collapse: collapse;
 }
-h3 {
-  margin: 4px;
-}
-h5, p{
-  margin: 1px;
-}
-td, th {
-  border: 1px solid #A0A0A0;
-  padding: 4px;
-}
-.even{
-  background-color: #D3D3D3;
-}
-.inventory-table{
-  width: 60%;
-}
-mat-expansion-panel, mat-expansion-panel-header, mat-panel-title, .inventory-table-header{
-  padding: 0px 5px;
-}
-.panel-title{
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
 
+h3 {
+    margin: 4px;
 }
-.inventory-table-header{
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
+
+h5,
+p {
+    margin: 1px;
 }
-.card-content{
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+
+td,
+th {
+    border: 1px solid #A0A0A0;
+    padding: 4px;
+}
+
+.even {
+    background-color: #D3D3D3;
+}
+
+.inventory-table {
+    width: 60%;
+}
+
+mat-expansion-panel,
+mat-expansion-panel-header,
+mat-panel-title,
+.inventory-table-header {
+    padding: 0px 5px;
+}
+
+.panel-title {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+}
+
+.inventory-table-header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+}
+
+.card-content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
 }

@@ -1,6 +1,9 @@
 table{
   border-collapse: collapse;
 }
+h3 {
+  margin: 4px;
+}
 h5, p{
   margin: 1px;
 }
@@ -13,6 +16,9 @@ td, th {
 }
 .inventory-table{
   width: 60%;
+}
+mat-expansion-panel, mat-expansion-panel-header, mat-panel-title, .inventory-table-header{
+  padding: 0px 5px;
 }
 .panel-title{
   width: 100%;

@@ -8,8 +8,12 @@ export default function(req, res, next) {
 
     User.findOne({username: req.body.username}, function(err, user) {
         if (err) { return err; }
-        const payload = { id: user._id, isAdmin: user.role === 'admin' };
-        const token = jwt.sign(payload, process.env.SECRET_JWT_KEY, { expiresIn: '1hr' });
-        res.json({success: true, message: 'ok', token: token});
+        if (req.body.fresh) {
+            const payload = { id: user._id, isAdmin: user.role === 'admin' };
+            const token = jwt.sign(payload, process.env.SECRET_JWT_KEY, { expiresIn: '1hr' });
+            res.json({success: true, message: 'ok', token: token});
+        } else {
+            res.json({success: true, message: 'user was successfully created'});
+        }
     });
 }

@@ -46,10 +46,17 @@ export class AdminComponent implements OnInit {
   }
 
   submitUser(f) {
-    this.userService
-    .addNewUser(f);
-    console.log('the passwords are: ' , this.user);
-    console.log('the username is: ', this.pageState.newUsername);
+      if (!f.value.role) {
+        this.flashMessagesService.show('Please add a role.', {
+          classes: ['alert'],
+          timeout: 2000,
+        });
+      } else {
+        this.userService
+          .registerNewUser(f.value);
+        const close = this.close.bind(this);
+        setTimeout(close, 1000);
+      }
   }
 
 }

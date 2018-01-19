@@ -7,7 +7,6 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowJs": true,
     "target": "es6",
     "module":"commonjs",
     "typeRoots": [
@@ -20,6 +19,7 @@
   },
   "exclude": [
     "balsamiq mockups",
+    "client",
     "docs",
     "e2e",
     "ScopeAndStories"

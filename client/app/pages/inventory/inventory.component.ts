@@ -12,6 +12,8 @@ export class InventoryComponent implements OnInit {
   constructor(private itemsService: ItemsService) { }
 
   items: Item[];
+  selectedItem: Item = null;
+  showList: boolean = true;
 
   ngOnInit() {
     this.itemsService.getAllItems()
@@ -20,4 +22,24 @@ export class InventoryComponent implements OnInit {
       });
   }
 
+  editItem(item: Item) {
+    this.selectedItem = item;
+    this.showList = false;
+  }
+
+  onSaveItem(item: Item) {
+    this.itemsService.updateItem(item._id, item)
+      .subscribe(() => {
+        this.itemsService.getAllItems()
+          .subscribe(data => {
+            this.items = data;
+            this.showList = true;
+          })
+      })
+  }
+
+  onCancelEdit() {
+    this.selectedItem = null;
+    this.showList = true;
+  }
 }

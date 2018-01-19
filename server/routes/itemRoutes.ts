@@ -13,7 +13,7 @@ itemRouter.post('/new', itemControllers.createItem);
 // MODIFY AN EXISTING ITEM
 itemRouter.post('/update/:itemId', itemControllers.updateItem);
 
-// MODIFY AN EXISTING ITEM
+// DELETE AN EXISTING ITEM
 itemRouter.delete('/delete/:itemId', itemControllers.deleteItem);
 
 export default itemRouter;

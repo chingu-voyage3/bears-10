@@ -32,7 +32,11 @@ export class ItemsService {
     });
   }
 
-  updateItem(id: string, newItem: Item){
+  updateItem(id: string, newItem: Item) {
     return this.http.post(`/api/items/update/${id}`, newItem)
+  }
+
+  createItem(newItem: Item) {
+    return this.http.post('/api/items/new', newItem)
   }
 }

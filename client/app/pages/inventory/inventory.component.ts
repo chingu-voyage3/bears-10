@@ -27,8 +27,19 @@ export class InventoryComponent implements OnInit {
     this.showList = false;
   }
 
-  onSaveItem(item: Item) {
+  onSaveEdit(item: Item) {
     this.itemsService.updateItem(item._id, item)
+      .subscribe(() => {
+        this.itemsService.getAllItems()
+          .subscribe(data => {
+            this.items = data;
+            this.showList = true;
+          })
+      })
+  }
+
+  onSaveNew(item: Item) {
+    this.itemsService.createItem(item)
       .subscribe(() => {
         this.itemsService.getAllItems()
           .subscribe(data => {

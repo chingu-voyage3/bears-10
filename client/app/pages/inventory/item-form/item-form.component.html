@@ -1,8 +1,8 @@
-<form class="item-form">
+<form #f="ngForm" class="item-form">
   <table>
     <tr>
-      <td><mat-form-field><input matInput placeholder="SKU" name="SKU" [(ngModel)]="newItem.SKU"></mat-form-field></td>
-      <td><mat-form-field><input matInput placeholder="Name" name="Name" [(ngModel)]="newItem.name"></mat-form-field></td>
+      <td><mat-form-field><input required matInput placeholder="SKU" name="SKU" [(ngModel)]="newItem.SKU"></mat-form-field></td>
+      <td><mat-form-field><input required matInput placeholder="Name" name="Name" [(ngModel)]="newItem.name"></mat-form-field></td>
       <td><mat-form-field><input matInput placeholder="Size" name="Size" [(ngModel)]="newItem.size"></mat-form-field></td>
     </tr>
     <tr>
@@ -20,5 +20,11 @@
     </tr>
   </table>
 </form>
-<button mat-raised-button color="primary" (click)="submit.emit(newItem)">Submit</button>
-<button mat-raised-button color="warn" (click)="cancel.emit()">Cancel</button>
+<div *ngIf="!isNewItem">
+  <button mat-raised-button color="primary" (click)="submitEdit.emit(newItem)" [disabled]="!f.form.valid">Submit</button>
+  <button mat-raised-button color="warn" (click)="cancel.emit()">Cancel</button>
+</div>
+<div *ngIf="isNewItem">
+  <button mat-raised-button color="primary" (click)="submitNew.emit(newItem)" [disabled]="!f.form.valid">Submit</button>
+  <button mat-raised-button color="warn" (click)="cancel.emit()">Cancel</button>
+</div>

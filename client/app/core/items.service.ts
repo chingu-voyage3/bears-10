@@ -39,4 +39,8 @@ export class ItemsService {
   createItem(newItem: Item) {
     return this.http.post('/api/items/new', newItem)
   }
+
+  deleteItem(id: string){
+    return this.http.delete(`/api/items/delete/${id}`)
+  }
 }

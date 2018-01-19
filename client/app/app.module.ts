@@ -18,6 +18,7 @@ import { OrderPrintComponent } from './pages/order/order-print/order-print.compo
 import { OrderEditComponent } from './pages/order/order-edit/order-edit.component';
 import { ItemListComponent } from './pages/inventory/item-list/item-list.component';
 import { ItemFormComponent } from './pages/inventory/item-form/item-form.component';
+import { DeleteDialogComponent } from './pages/inventory/item-list/delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,10 +31,12 @@ import { ItemFormComponent } from './pages/inventory/item-form/item-form.compone
     OrderPrintComponent,
     OrderEditComponent,
     ItemListComponent,
-    ItemFormComponent ],
+    ItemFormComponent,
+    DeleteDialogComponent ],
   imports: [ BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule, FlashMessagesModule ],
   providers: [AuthGuard],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  entryComponents: [DeleteDialogComponent]
 })
 
 export class AppModule {}

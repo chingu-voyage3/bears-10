@@ -7,7 +7,6 @@ import { CoreModule } from './core/core.module';
 import { AuthGuard } from './core/auth.guard';
 import { FlashMessagesModule } from 'ngx-flash-messages';
 import { ItemsService } from './core/items.service';
-import { ViewItemComponent } from './pages/inventory/view-item/view-item.component';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -17,6 +16,9 @@ import { OrderComponent } from './pages/order/order.component';
 import { OrderSubmitComponent } from './pages/order/order-submit/order-submit.component';
 import { OrderPrintComponent } from './pages/order/order-print/order-print.component';
 import { OrderEditComponent } from './pages/order/order-edit/order-edit.component';
+import { ItemListComponent } from './pages/inventory/item-list/item-list.component';
+import { ItemFormComponent } from './pages/inventory/item-form/item-form.component';
+import { DeleteDialogComponent } from './pages/inventory/item-list/delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,10 +30,13 @@ import { OrderEditComponent } from './pages/order/order-edit/order-edit.componen
     OrderSubmitComponent,
     OrderPrintComponent,
     OrderEditComponent,
-    ViewItemComponent ],
+    ItemListComponent,
+    ItemFormComponent,
+    DeleteDialogComponent ],
   imports: [ BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule, FlashMessagesModule ],
   providers: [AuthGuard],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  entryComponents: [DeleteDialogComponent]
 })
 
 export class AppModule {}

@@ -31,4 +31,16 @@ export class ItemsService {
       return i.SKU == sku;
     });
   }
+
+  updateItem(id: string, newItem: Item) {
+    return this.http.post(`/api/items/update/${id}`, newItem)
+  }
+
+  createItem(newItem: Item) {
+    return this.http.post('/api/items/new', newItem)
+  }
+
+  deleteItem(id: string){
+    return this.http.delete(`/api/items/delete/${id}`)
+  }
 }

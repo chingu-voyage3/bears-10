@@ -6,16 +6,16 @@ cache:
   - node_modules
 if: branch IN (master, development, features)
 before_install:
-  - npm install -g typescript
+- npm install -g typescript
 before_script:
-  - npm run setup
-  - npm run build:client
-  - npm run build:server
+- npm run setup
+- npm run build:client
+- npm run build:server
 deploy:
   provider: heroku
   skip_cleanup: true
   api_key:
-    secure: LHiI4Sn3hPS7TycXcYQwruSN0TQSjTwII1kzdCDJkK08WTkmem2TGG+oxS/XGWTJ5Md+JCVHZLZX5TcKk63SQMHuTabVGFmlSF6DcoCEBiVlJgzBN5Lmyzm53gwKewZqH77DOyIp56MgLp3H1hJ2DPxNtXjVpgTo80zHJCzfkvjr5+kCzHkmV6UoebpKgnjVxrCVeW8O7Jv03IFmnDrYcealUh/+ls9brkED4ww+bMOXY7sqxVw50BJWTtH9hL7gz1R+sBg2I1f6DdQO2a7dV1OnxwnwdvyJ7UZIwEiyZzBFcORJpk5QHq4AH/8WG+ETiF1qd1XEflWSswK8Lp4Kxi+1F1rlmumugZTZsn+ZzGMNYjz8w/f7WzpqgBDcsYjKNYqRbQ3e2m4ua+UoUOukgaZFiB9tSPVbYFjNgLsp1MLvYFrU43hxeS2oQ/p6gk+tFZuSbK5q/sSZkRWJIm5p12R1PDmlpNWusyTcSuK0g+h8BpZkCOGCLlV9wMyPtxETPtOz60DOmAd0szPBDkff3dE9ZcgmU7sCGwFPyx8wu4idA2teSC8uQiHjJ0Ptag+GdT9vwHQ95WnZbkz4jshGQY064L/NXXcl6pOUj/wpaS+yF/wXkvnENexpwRCLhoANm7hSVZemyC6BeF7aVMvYM8q2JIKCg4Q8Pac9Yo915Lw=
+    secure: L61TVxNIZxq/bGCvFrBbaTEWdfuofSFfcW8UGebtvoPuJuX1R5hPkY8SvMrF1t7LeqZoIKcLitdTyhmrExxM+Q6qsEpTbsXVJfmOK6jWcSo0dgVN2ErIjsY6JPkyJgfiOjjXsbd/zXKMU4hkpPf1pRAUKOKSo9B29NomK+2Bo/UrPCvo04QJ6iAvkyUIoOicruxDYi3cz10MKPk5iiIIvbUbSSEOIVFkXq1HpQKtLFPEukO/pz8xtCZWxXIa991a6C7sJefZOvwz8cnyHqda8r1Ao463wiqjHGxs7r8EKUc2FXh6e5loj77oqjQ5oedX3vATCYa3SaAgjOZvbqzn0eCJf3mGEakDKN1689wLSs6r/oeLTHjm+L9k4beDx7HuEAEpUtia/wB6NRC7Fw2eczR7Dib5KWOvfCzRf0RQZqBAlxfMMmtPr4PDZfUEnbc0IhmjHvAIVk+P5vH40QdvsoJ7ScgsD3rIx0CtS5MKFczQXjsJL/8BJ0lzc2qt0cpm89mkT/cpeUGexmEDrPaJo+UhuqutLMqwgaigEk56AadTRWFBZ4MSOfeNlww70oER+rYeLFLAhkESi3DDoJ7GqUPTqcQRVfWqbJ1EvAj1pNAgAt5kioKXUJqoB4+yqs2XxuKfbtFbPSYxlXu0SF2j3h2WQ/T0hZ/Iq7Msjb0yaco=
   app: bears-ims
   on:
     repo: chingu-voyage3/bears-10

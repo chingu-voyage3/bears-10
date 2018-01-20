@@ -16,5 +16,15 @@ itemRouter.post('/update/:itemId', itemControllers.updateItem);
 // DELETE AN EXISTING ITEM
 itemRouter.delete('/delete/:itemId', itemControllers.deleteItem);
 
+/**
+ * ITEMS / CATEGORIES:
+ */
+
+// GET ITEMS BY CATEGORY
+itemRouter.get('/categories/:category', itemControllers.getItemsByCategory);
+
+// GET ALL CATEGORIES
+itemRouter.get('/categories', itemControllers.getAllCategories);
+
 export default itemRouter;
 

@@ -10,9 +10,9 @@ import { Item } from '../../../models/item.interface';
 })
 
 export class ItemFormComponent implements OnInit {
-  
+
   constructor() { }
-  
+
   newItem: Item;
   isNewItem: boolean;
   @Input() item: Item;
@@ -43,7 +43,8 @@ export class ItemFormComponent implements OnInit {
         orderNeeded: false,
         orderPlaced: false,
         backordered: false,
-        expectedDelivery: null
+        expectedDelivery: null,
+        category: ''
       }
     }
   }

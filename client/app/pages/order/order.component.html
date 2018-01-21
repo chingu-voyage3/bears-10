@@ -1,59 +1,10 @@
 <mat-tab-group>
   <mat-tab label="Create Order">
-    <h2>New Order</h2>
-    <br>
-    <h3>Item</h3>
-    <div class="itemsAdded" ng-show="addItem">
-      <p>Sku</p>
-      <p>Vendor</p>
-      <p>Quantity</p>
-      <p>Price</p>
-    </div>
-    <div class="itemAdd">
-    <mat-form-field>
-    <input matInput placeholder="Sku #">
-  </mat-form-field>
-    <mat-form-field>
-    <input matInput placeholder="Vendor">
-  </mat-form-field>
-  <mat-form-field>
-  <input matInput placeholder="Quantity">
-</mat-form-field>
-<mat-form-field>
-<input matInput placeholder="Price">
-</mat-form-field>
-<button md-button>Clear</button>
-   <button md-button>Save Item</button>
-  </div>
-  <br>
-  <br>
-  <button type="button" name="button">Submit Order</button>
-  <button type="button" name="button">Clear Order</button>
+    <ims-order-new (saveNewOrder)="getOrders()"></ims-order-new>
   </mat-tab>
 
   <mat-tab label="Open Orders">
-    <br>
-    <input type="search" placeholder="Search By Vendor, Product, or Sku">
-    <br>
-    <mat-expansion-panel [expanded]="false" ng-repeat="x in x">
-      <mat-expansion-panel-header style="background: gray;">
-        <mat-panel-title>
-          <h3>Order # </h3>
-          <h3 style="padding-left: 50px;">Date Placed</h3>
-          <h3 style="padding-left: 50px;">Department</h3>
-        </mat-panel-title>
-    </mat-expansion-panel-header>
-
-     <p>Item:</p>
-     <p>Sku:</p>
-     <p>Vendor:</p>
-     <p>Quantity:</p>
-     <p>Price:</p>
-     <div class="settings" style="display: inline-block;">
-     <button type="button" name="button" style=" float: left;">Print Invoice</button>
-     <button type="button" name="button" style=" float: right; margin-left: 10px;">Edit Invoice</button>
-   </div>
-  </mat-expansion-panel>
+    <ims-order-open [orders]="orders" (saveEdit)="getOrders()"></ims-order-open>
   </mat-tab>
 
   <mat-tab label="Closed Orders">

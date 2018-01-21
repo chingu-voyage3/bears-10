@@ -4,21 +4,22 @@ const Schema = mongoose.Schema;
 
 interface IOrder extends mongoose.Document {
   item: string;
-  SKU: string;
+  sku: string;
   vendor: string;
   quantity: number;
   price: number;
-  orderNo: number;
-  dateOrder: number;
-  dateClosed: number;
+  orderNo?: number;
+  dateOrder?: string;
+  dateClosed?: number;
 }
 
 const orderSchema = new Schema({
   item: {
     type: String
   },
-  SKU: {
-    type: String
+  sku: {
+    type: String,
+    index: true
   },
   vendor: {
     type: String
@@ -30,10 +31,11 @@ const orderSchema = new Schema({
     type: Number
   },
   orderNo: {
-    type: Number
+    type: Number,
+    index: true
   },
   dateOrder: {
-    type: Number
+    type: String
   },
   dateClosed: {
     type: Number

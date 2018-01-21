@@ -1,31 +1,29 @@
 import { Order } from '../models/order';
-
-import * as express from 'express';
+import { Request, Response } from 'express';
 import * as mongoose from 'mongoose';
 
-function createOrder(req: express.Request, res: express.Response) {
+function createOrder(req: Request, res: Response) {
   const newOrder = new Order({
+    item: req.body.item,
     sku: req.body.sku,
     vendor: req.body.vendor,
     quantity: req.body.quantity,
-    price: req.body.price
+    price: req.body.price,
+    dateOrder: new Date(Date.now()).toDateString()
   });
 newOrder.save()
   .then((order) => {
     return res.json({'orderCreated': order});
   })
   .catch((err) => {
-    return res.status(500).json({
-      title: 'An error has occured',
-      error: err
-    });
+    return handleError(err, res);
   });
 }
-function updateOrder(req: express.Request, res: express.Response) {
-    const orderId = req.params.orderId;
-    Order.findById(orderId)
+function updateOrder(req: Request, res: Response) {
+    Order.findById(req.params.orderId)
         .then((order) => {
-          order.SKU = req.body.sku;
+          order.item = req.body.item
+          order.sku = req.body.sku;
           order.vendor = req.body.vendor;
           order.quantity = req.body.quantity;
           order.price = req.body.price;
@@ -34,50 +32,56 @@ function updateOrder(req: express.Request, res: express.Response) {
               return res.json({'orderUpdated': order });
           })
           .catch((err) => {
-              return res.status(500).json({
-                  title: 'An error has occured',
-                  error: err
-              });
+            return handleError(err, res);
           });
         })
         .catch((err) => {
-              return res.status(500).json({
-                  title: 'An error has occured',
-                  error: err
-              });
-          });
+          return handleError(err, res);
+        });
 }
 
-function deleteOrder(req: express.Request, res: express.Response) {
+function deleteOrder(req: Request, res: Response) {
     const orderId = req.params.orderId;
     Order.findById(orderId)
         .remove(() => {
             return res.json({'orderDeleted': orderId });
         })
         .catch((err) => {
-            return res.status(500).json({
-                title: 'An error has occured',
-                error: err
-            });
+          return handleError(err, res);
         });
 }
 
-function getOrder(req: express.Request, res: express.Response) {
-    Order.find({})
-        .exec((err, orders) => {
-            if (err) {
-                return res.status(500).json({
-                    title: 'An error occured',
-                    error: err
-                });
-            }
-            res.json({'Orders': orders});
-        });
+function getOrders(req: Request, res: Response) {
+  Order.find({})
+    .exec((err, orders) => {
+        if (err) {
+          return handleError(err, res);
+        }
+        res.json({'Orders': orders});
+    });
+}
+
+function getOrder(req: Request, res: Response) {
+  Order.findById(req.params.orderId)
+    .exec((err, order) => {
+      if (err) {
+        return handleError(err, res);
+      }
+      return res.json({ 'Order': order });
+    });
+}
+
+function handleError(err: Error, res: Response) {
+  return res.status(500).json({
+    title: 'An error occured',
+    error: err
+  });
 }
 
 export {
     createOrder,
     updateOrder,
     deleteOrder,
+    getOrders,
     getOrder
 };

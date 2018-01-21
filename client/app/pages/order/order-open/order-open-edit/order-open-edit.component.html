@@ -1,0 +1,33 @@
+<form [formGroup]="orderEditForm" (ngSubmit)="onSubmit()">
+  <p>Item:
+    <mat-form-field>
+      <input matInput formControlName="item">
+    </mat-form-field>
+  </p>
+  <p>Sku:
+    <mat-form-field>
+      <input matInput formControlName="sku">
+    </mat-form-field>
+  </p>
+  <p>Vendor:
+    <mat-form-field>
+      <input matInput formControlName="vendor">
+    </mat-form-field>
+  </p>
+  <p>Quantity:
+    <mat-form-field>
+      <input matInput formControlName="quantity">
+    </mat-form-field>
+  </p>
+  <p>Price:
+    <mat-form-field>
+      <input matInput formControlName="price">
+    </mat-form-field>
+  </p>
+  <div class="settings" style="display: inline-block;">
+    <button type="button" name="button" style=" float: left;">Print Invoice</button>
+    <button type="reset" name="button" style=" float: right;  margin-left: 10px;" (click)="cancelEdit()" *ngIf="order._id === editObj._id">Cancel Edit</button>
+    <button type="submit" name="button" style=" float: right;  margin-left: 10px;" *ngIf="order._id === editObj._id">Save Edit</button>
+    <button type="button" name="button" style=" float: right; margin-left: 10px;" (click)="edit(order)" *ngIf="order._id !== editObj._id">Edit Invoice</button>
+  </div>
+</form>

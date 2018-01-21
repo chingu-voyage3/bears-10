@@ -1,7 +1,8 @@
 export interface Order {
-  _id: string;
-  sku: number;
+  item: string;
+  sku: string;
   vendor: string;
   quantity: number;
   price: number;
+  _id?: string;
 }

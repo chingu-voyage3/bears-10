@@ -3,12 +3,14 @@ import * as orderControllers from '../actions/order';
 
 const orderRouter = Router();
 
-orderRouter.get('/getOrder', orderControllers.getOrder);
+orderRouter.get('/', orderControllers.getOrders);
 
-orderRouter.post('/newOrder', orderControllers.createOrder);
+orderRouter.post('/', orderControllers.createOrder);
 
-orderRouter.post('/updateOrder/:orderId', orderControllers.updateOrder);
+orderRouter.get('/:orderId', orderControllers.getOrder);
 
-orderRouter.delete('/deleteOrder/:orderId', orderControllers.deleteOrder);
+orderRouter.post('/:orderId', orderControllers.updateOrder);
+
+orderRouter.delete('/:orderId', orderControllers.deleteOrder);
 
 export default orderRouter;

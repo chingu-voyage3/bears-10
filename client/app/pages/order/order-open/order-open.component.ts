@@ -8,7 +8,7 @@ import { Order } from '../../../models/order.interface';
 })
 export class OrderOpenComponent implements OnInit {
 
-  @Input() orders: Order[];
+  @Input() openOrders: Order[];
 
   constructor() { }
 

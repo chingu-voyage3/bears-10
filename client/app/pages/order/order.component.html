@@ -4,29 +4,10 @@
   </mat-tab>
 
   <mat-tab label="Open Orders">
-    <ims-order-open [orders]="orders" (saveEdit)="getOrders()"></ims-order-open>
+    <ims-order-open [openOrders]="openOrders" (saveEdit)="getOrders()"></ims-order-open>
   </mat-tab>
 
   <mat-tab label="Closed Orders">
-    <br>
-    <input type="search" placeholder="Search By Vendor, Product, or Sku">
-    <br>
-    <mat-expansion-panel [expanded]="false" ng-repeat="x in x">
-      <mat-expansion-panel-header style="background: gray;">
-        <mat-panel-title>
-          <h3>Order # </h3>
-          <h3 style="padding-left: 50px;">Date Closed</h3>
-          <h3 style="padding-left: 50px;">Department</h3>
-        </mat-panel-title>
-    </mat-expansion-panel-header>
-     <p>Item:</p>
-     <p>Sku:</p>
-     <p>Vendor:</p>
-     <p>Quantity:</p>
-     <p>Price:</p>
-     <div class="settings" style="display: inline-block;">
-     <button type="button" name="button" style=" float: left;">Print Invoice</button>
-   </div>
-  </mat-expansion-panel>
+    <ims-order-closed [closedOrders]="closedOrders" ></ims-order-closed>
   </mat-tab>
 </mat-tab-group>

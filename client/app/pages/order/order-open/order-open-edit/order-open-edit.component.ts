@@ -10,12 +10,13 @@ import { OrderService } from '../../../../core/order.service';
 })
 export class OrderOpenEditComponent implements OnChanges {
 
-  @Input() order: Order
+  @Input() openOrder: Order
   @Output() saveEdit = new EventEmitter
 
   editObj = {
     _id: null
   }
+  checked = false
   orderEditForm: FormGroup
 
   constructor(
@@ -27,11 +28,12 @@ export class OrderOpenEditComponent implements OnChanges {
 
   ngOnChanges() {
     this.orderEditForm.reset({
-      item: { value: this.order.item, disabled: this.order._id !== this.editObj._id },
-      sku: { value: this.order.sku, disabled: this.order._id !== this.editObj._id },
-      vendor: { value: this.order.vendor, disabled: this.order._id !== this.editObj._id },
-      quantity: { value: this.order.quantity, disabled: this.order._id !== this.editObj._id },
-      price: { value: this.order.price, disabled: this.order._id !== this.editObj._id }
+      item: { value: this.openOrder.item, disabled: this.openOrder._id !== this.editObj._id },
+      sku: { value: this.openOrder.sku, disabled: this.openOrder._id !== this.editObj._id },
+      vendor: { value: this.openOrder.vendor, disabled: this.openOrder._id !== this.editObj._id },
+      quantity: { value: this.openOrder.quantity, disabled: this.openOrder._id !== this.editObj._id },
+      price: { value: this.openOrder.price, disabled: this.openOrder._id !== this.editObj._id },
+      closed: { value: this.openOrder.orderClosed, disabled: this.openOrder._id !== this.editObj._id }
     })
   }
 
@@ -42,6 +44,7 @@ export class OrderOpenEditComponent implements OnChanges {
       vendor: new FormControl({ value: '', disabled: true }),
       quantity: new FormControl({ value: '', disabled: true }),
       price: new FormControl({ value: '', disabled: true }),
+      closed: new FormControl({ value: this.checked, disabled: true })
     })
   }
 
@@ -58,19 +61,29 @@ export class OrderOpenEditComponent implements OnChanges {
   private prepSaveEdit() {
     const formModel = this.orderEditForm.value
     const saveOrderEdit: Order = {
-      _id: this.order._id,
+      _id: this.openOrder._id,
       item: formModel.item as string,
       sku: formModel.sku as string,
       vendor: formModel.vendor as string,
       quantity: formModel.quantity as number,
-      price: formModel.price as number
+      price: formModel.price as number,
+      orderClosed: formModel.closed as boolean,
+      dateClosed: this.isClosed(formModel.closed)
     }
     return saveOrderEdit
   }
 
+  isClosed(closed: boolean) {
+    if (closed) {
+      return new Date(Date.now()).toDateString()
+    } else {
+      return ''
+    }
+  }
+
   onSubmit() {
-    this.order = this.prepSaveEdit()
-    this.orderService.updateOrder(this.order)
+    this.openOrder = this.prepSaveEdit()
+    this.orderService.updateOrder(this.openOrder)
       .subscribe(
         (data) => {
           this.editObj._id = null

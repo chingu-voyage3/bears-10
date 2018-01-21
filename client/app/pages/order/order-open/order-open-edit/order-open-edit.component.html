@@ -24,10 +24,13 @@
       <input matInput formControlName="price">
     </mat-form-field>
   </p>
+  <p>Closed:
+    <mat-checkbox formControlName="closed" [(ngModel)]="checked"></mat-checkbox>
+  </p>
   <div class="settings" style="display: inline-block;">
     <button type="button" name="button" style=" float: left;">Print Invoice</button>
-    <button type="reset" name="button" style=" float: right;  margin-left: 10px;" (click)="cancelEdit()" *ngIf="order._id === editObj._id">Cancel Edit</button>
-    <button type="submit" name="button" style=" float: right;  margin-left: 10px;" *ngIf="order._id === editObj._id">Save Edit</button>
-    <button type="button" name="button" style=" float: right; margin-left: 10px;" (click)="edit(order)" *ngIf="order._id !== editObj._id">Edit Invoice</button>
+    <button type="reset" name="button" style=" float: right;  margin-left: 10px;" (click)="cancelEdit()" *ngIf="openOrder._id === editObj._id">Cancel Edit</button>
+    <button type="submit" name="button" style=" float: right;  margin-left: 10px;" *ngIf="openOrder._id === editObj._id">Save Edit</button>
+    <button type="button" name="button" style=" float: right; margin-left: 10px;" (click)="edit(order)" *ngIf="openOrder._id !== editObj._id">Edit Invoice</button>
   </div>
 </form>

@@ -27,6 +27,10 @@ function updateOrder(req: Request, res: Response) {
           order.vendor = req.body.vendor;
           order.quantity = req.body.quantity;
           order.price = req.body.price;
+          if (req.body.orderClosed) {
+            order.orderClosed = req.body.orderClosed
+            order.dateClosed = req.body.dateClosed
+          }
           order.save()
           .then(() => {
               return res.json({'orderUpdated': order });

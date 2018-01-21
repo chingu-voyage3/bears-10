@@ -11,6 +11,8 @@ export class OrderComponent implements OnInit {
   constructor(private orderService: OrderService) {}
 
   orders: Order[];
+  openOrders: Order[];
+  closedOrders: Order[];
 
   ngOnInit() {
     this.getOrders()
@@ -20,7 +22,14 @@ export class OrderComponent implements OnInit {
     this.orderService.getAllOrders()
     .subscribe((data) => {
       this.orders = data;
+      this.openOrders = this.orders.filter((o) => !o.orderClosed)
+      this.closedOrders = this.orders.filter((o) => o.orderClosed)
     });
+  }
+
+  deleteOrder(orderId: string) {
+    this.orderService.deleteOrder(orderId)
+      .subscribe(() => this.getOrders())
   }
 
 }

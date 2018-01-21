@@ -5,4 +5,6 @@ export interface Order {
   quantity: number;
   price: number;
   _id?: string;
+  orderClosed?: boolean;
+  dateClosed?: string;
 }

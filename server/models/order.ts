@@ -10,7 +10,8 @@ interface IOrder extends mongoose.Document {
   price: number;
   orderNo?: number;
   dateOrder?: string;
-  dateClosed?: number;
+  orderClosed?: boolean;
+  dateClosed?: string;
 }
 
 const orderSchema = new Schema({
@@ -37,9 +38,12 @@ const orderSchema = new Schema({
   dateOrder: {
     type: String
   },
-  dateClosed: {
-    type: Number
+  orderClosed: {
+    type: Boolean
   },
+  dateClosed: {
+    type: String
+  }
 
 });
 

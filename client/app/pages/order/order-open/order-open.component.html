@@ -10,6 +10,6 @@
     </mat-panel-title>
   </mat-expansion-panel-header>
 
-  <ims-order-open-edit [openOrder]="order" (saveEdit)="bubbleEdit()"></ims-order-open-edit>
+  <ims-order-open-edit [openOrder]="order" (saveEdit)="emitEdit.emit(order)" (deleteOrder)="deleteOpenOrder.emit($event)"></ims-order-open-edit>
 
 </mat-expansion-panel>

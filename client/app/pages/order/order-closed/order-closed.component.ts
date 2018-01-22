@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Order } from '../../../models/order.interface'
 
 @Component({
@@ -9,6 +9,7 @@ import { Order } from '../../../models/order.interface'
 export class OrderClosedComponent implements OnInit {
 
   @Input() closedOrders: Order[]
+  @Output() deleteClosedOrder = new EventEmitter
 
   constructor() { }
 

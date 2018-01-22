@@ -10,14 +10,11 @@ export class OrderOpenComponent implements OnInit {
 
   @Input() openOrders: Order[];
   @Output() emitEdit = new EventEmitter
+  @Output() deleteOpenOrder = new EventEmitter
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  bubbleEdit() {
-    this.emitEdit.emit('save')
   }
 
 }

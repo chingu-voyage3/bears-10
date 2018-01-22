@@ -12,6 +12,7 @@ export class OrderOpenEditComponent implements OnChanges {
 
   @Input() openOrder: Order
   @Output() saveEdit = new EventEmitter
+  @Output() deleteOrder = new EventEmitter
 
   editObj = {
     _id: null

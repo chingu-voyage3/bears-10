@@ -4,7 +4,7 @@
   </mat-tab>
 
   <mat-tab label="Open Orders">
-    <ims-order-open [openOrders]="openOrders" (saveEdit)="getOrders()"></ims-order-open>
+    <ims-order-open [openOrders]="openOrders" (emitEdit)="getOrders()"></ims-order-open>
   </mat-tab>
 
   <mat-tab label="Closed Orders">

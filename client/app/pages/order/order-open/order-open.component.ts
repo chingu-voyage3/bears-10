@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Order } from '../../../models/order.interface';
 
 @Component({
@@ -9,10 +9,15 @@ import { Order } from '../../../models/order.interface';
 export class OrderOpenComponent implements OnInit {
 
   @Input() openOrders: Order[];
+  @Output() emitEdit = new EventEmitter
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  bubbleEdit() {
+    this.emitEdit.emit('save')
   }
 
 }

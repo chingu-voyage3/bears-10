@@ -1,7 +1,7 @@
 <br>
 <input type="search" placeholder="Search By Vendor, Product, or Sku">
 <br>
-<mat-expansion-panel [expanded]="false" *ngFor="let order of openOrders">
+<mat-expansion-panel [expanded]="true" *ngFor="let order of openOrders">
   <mat-expansion-panel-header style="background: gray;">
     <mat-panel-title>
       <h3>Order # {{order._id}}</h3>
@@ -10,6 +10,6 @@
     </mat-panel-title>
   </mat-expansion-panel-header>
 
-  <ims-order-open-edit [openOrder]="order"></ims-order-open-edit>
+  <ims-order-open-edit [openOrder]="order" (saveEdit)="bubbleEdit()"></ims-order-open-edit>
 
 </mat-expansion-panel>

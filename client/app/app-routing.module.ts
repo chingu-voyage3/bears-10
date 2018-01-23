@@ -14,7 +14,10 @@ const routes: Routes = [
     path: 'login',
     loadChildren: './pages/login/login.module#LoginModule'
   },
-  { path: 'order', component: OrderComponent },
+  {
+    path: 'order',
+    loadChildren: './pages/order/order.module#OrderModule'
+  },
   {
     path: 'admin',
     loadChildren: './pages/admin/admin.module#AdminModule',

@@ -43,5 +43,6 @@ export class OrderService {
     return this.http.delete(`/api/orders/${orderId}`)
       .map((data) => data['orderDeleted'])
   }
+
 }
 

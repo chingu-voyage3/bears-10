@@ -1,40 +1,10 @@
-<form [formGroup]="newOrderForm" (ngSubmit)="onSubmit()">
-  <h2>New Order</h2>
-  <br>
-  <div class="itemsAdded" ng-show="addItem">
-    <p>
-      <mat-form-field>
-        <input matInput placeholder="Item" formControlName="item">
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field>
-        <input matInput placeholder="Sku #" formControlName="sku">
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field>
-        <input matInput placeholder="Vendor" formControlName="vendor">
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field>
-        <input matInput placeholder="Quantity" formControlName="quantity">
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field>
-        <input matInput placeholder="Price" formControlName="price">
-      </mat-form-field>
-    </p>
-  </div>
-  <!-- <div class="itemAdd">
-
-  <button md-button>Clear</button>
-  <button md-button>Save Item</button>
-  </div> -->
-  <br>
-  <br>
-  <button type="submit" [disabled]="!newOrderForm.valid">Submit Order</button>
-  <button type="reset" (click)="clearOrder()">Clear Order</button>
-</form>
+<h2>New Order</h2>
+<br>
+<mat-form-field>
+  <mat-select placeholder="Select Item" [(ngModel)]="selectedItem" [formControl]="select">
+    <mat-option *ngFor="let item of items" [value]="item">
+      {{item.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<ims-order-details [selectedItem]="selectedItem" (clearEmitter)="clearSelected()" (emitNewOrder)="saveNewOrder.emit('saved');"></ims-order-details>

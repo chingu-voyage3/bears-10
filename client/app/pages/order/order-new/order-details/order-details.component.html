@@ -1,0 +1,33 @@
+<form [formGroup]="newOrderForm" (ngSubmit)="onSubmit()">
+  <div class="itemsAdded" ng-show="addItem">
+    <p>
+      <mat-form-field>
+        <input matInput placeholder="Sku #" formControlName="sku">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input matInput placeholder="Vendor" formControlName="vendor">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input matInput placeholder="Quantity" formControlName="quantity">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input matInput placeholder="Price" formControlName="price">
+      </mat-form-field>
+    </p>
+  </div>
+  <!-- <div class="itemAdd">
+
+  <button md-button>Clear</button>
+  <button md-button>Save Item</button>
+  </div> -->
+  <br>
+  <br>
+  <button type="submit" [disabled]="!newOrderForm.valid">Submit Order</button>
+  <button type="reset" (click)="clearOrder()">Clear Order</button>
+</form>

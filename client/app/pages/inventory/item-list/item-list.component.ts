@@ -34,13 +34,17 @@ export class ItemListComponent implements OnInit {
       } else {
         this.deleteItem.emit(item);
       }
-    })
+    });
   }
+
   openAddCategoryDialog(item) {
     console.log('item is: ', item)
     this.addCategoryRef = this.dialog.open(AddCategoryComponent, { data: { item: item } });
   }
   deleteCategoryAtIndex(i, itemId) {
+    console.log('in item list component! items are: ' , this.items, 'item id is: ', itemId);
+    const selected = this.items.filter(e => e._id === itemId)[0];
+    selected.categories.splice(i, 1);
     this.categoryService.deleteAt(i, itemId);
   }
 }

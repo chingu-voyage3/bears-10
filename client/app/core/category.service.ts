@@ -7,13 +7,18 @@ export class CategoryService {
         private http: HttpClient
     ) {}
 
+
     deleteAt(i, itemId) {
         console.log('in delete at method', i, itemId);
+        this.http.put('/api/items/deleteCategory/' + i + '/' + itemId, null, {})
+            .subscribe(res => { console.log(res); });
 
     }
 
     submit(options) {
-        console.log('submitting category: ' + options);
+        console.log('submitting category: ' , options);
+        this.http.put('/api/items/addCategory/' + options.category + '/' + options.itemId, null, {})
+        .subscribe(res => { console.log(res); });
     }
 
 }

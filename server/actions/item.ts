@@ -132,6 +132,23 @@ function addCategory(req: express.Request, res: express.Response, next: express.
   });
 }
 
+function deleteCategory(req: express.Request, res: express.Response, next: express.NextFunction) {
+    Item.findById(req.params.itemId, (err, item) => {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            item.categories.splice(parseInt(req.params.categoryIndex, 10), 1);
+        }
+
+        item.save((error, savedItem) => {
+            if (err) {
+                res.status(500).send(err);
+            }
+            res.status(200).send(savedItem);
+        });
+    });
+}
+
 function getAllCategories(req: express.Request, res: express.Response, next: express.NextFunction) {
   queryItemsByProp('category')
     .then((doc) => res.json(doc))
@@ -150,6 +167,7 @@ export {
     updateItem,
     deleteItem,
     addCategory,
+    deleteCategory,
     getItemsByCategory,
     getAllCategories
 };

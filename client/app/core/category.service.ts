@@ -7,8 +7,13 @@ export class CategoryService {
         private http: HttpClient
     ) {}
 
-    submit(category) {
-        console.log('submitting category: ' + category);
+    deleteAt(i, itemId) {
+        console.log('in delete at method', i, itemId);
+
+    }
+
+    submit(options) {
+        console.log('submitting category: ' + options);
     }
 
 }

@@ -19,7 +19,7 @@ export class AddCategoryComponent implements OnInit {
   }
 
   cancel() {
-
+    this.dialogRef.close();
   }
 
   submitCategory() {

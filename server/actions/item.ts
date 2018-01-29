@@ -67,7 +67,11 @@ function updateItem(req: express.Request, res: express.Response) {
             item.orderPlaced = req.body.orderPlaced;
             item.backordered = req.body.backordered;
             item.expectedDelivery = req.body.expectedDelivery;
-            item.categories.push(req.body.category);
+            if (item.categories) {
+                item.categories.push(req.body.category);
+            } else {
+                item.categories = [''];
+            }
             item.save()
                 .then(() => {
                     return res.json({'itemUpdated': item });

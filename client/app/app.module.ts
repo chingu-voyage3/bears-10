@@ -15,6 +15,7 @@ import { InventoryComponent } from './pages/inventory/inventory.component';
 import { ItemListComponent } from './pages/inventory/item-list/item-list.component';
 import { ItemFormComponent } from './pages/inventory/item-form/item-form.component';
 import { DeleteDialogComponent } from './pages/inventory/item-list/delete-dialog/delete-dialog.component';
+import { AddCategoryComponent } from './pages/inventory/item-list/add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +25,13 @@ import { DeleteDialogComponent } from './pages/inventory/item-list/delete-dialog
     InventoryComponent,
     ItemListComponent,
     ItemFormComponent,
-    DeleteDialogComponent ],
+    DeleteDialogComponent,
+    AddCategoryComponent,
+   ],
   imports: [ BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule, FlashMessagesModule ],
   providers: [AuthGuard],
   bootstrap: [ AppComponent ],
-  entryComponents: [DeleteDialogComponent]
+  entryComponents: [DeleteDialogComponent, AddCategoryComponent]
 })
 
 export class AppModule {}

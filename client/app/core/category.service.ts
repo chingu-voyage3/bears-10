@@ -7,4 +7,8 @@ export class CategoryService {
         private http: HttpClient
     ) {}
 
+    submit(category) {
+        console.log('submitting category: ' + category);
+    }
+
 }

@@ -2,6 +2,7 @@ import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
 import { Item } from '../../../models/item.interface';
 
 @Component({
@@ -20,6 +21,7 @@ export class ItemListComponent implements OnInit {
   @Output() editItem = new EventEmitter();
   @Output() deleteItem = new EventEmitter();
   dialogRef: MatDialogRef<DeleteDialogComponent>;
+  addCategoryRef: MatDialogRef<AddCategoryComponent>;
 
   openDialog(item: Item) {
     this.dialogRef = this.dialog.open(DeleteDialogComponent);
@@ -31,6 +33,10 @@ export class ItemListComponent implements OnInit {
         this.deleteItem.emit(item);
       }
     })
+  }
+  openAddCategoryDialog(item) {
+    console.log('item is: ', item)
+    this.addCategoryRef = this.dialog.open(AddCategoryComponent, { data: { item: item } });
   }
 }
 

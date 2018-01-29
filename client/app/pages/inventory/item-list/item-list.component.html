@@ -38,7 +38,7 @@
             <mat-card-title>Categories:</mat-card-title>
             <ul style="list-style-type: none; padding-left: 0;">
               <li *ngFor="let category of item.categories; let i = index;" style="display: inline-block; margin-right: 5px;">
-                <a style="color: red" href="/{{i}}">{{category}}</a>
+                <a style="color: red" href="#" (click)="deleteCategoryAtIndex(i, item._id); false;">{{category}}</a>
               </li>
             </ul>
           </mat-card-content>

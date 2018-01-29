@@ -20,6 +20,8 @@ itemRouter.delete('/delete/:itemId', itemControllers.deleteItem);
  * ITEMS / CATEGORIES:
  */
 
+ itemRouter.put('/addCategory/:category/:itemId', itemControllers.addCategory);
+
 // GET ITEMS BY CATEGORY
 itemRouter.get('/categories/:category', itemControllers.getItemsByCategory);
 

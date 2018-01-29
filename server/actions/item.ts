@@ -67,7 +67,7 @@ function updateItem(req: express.Request, res: express.Response) {
             item.orderPlaced = req.body.orderPlaced;
             item.backordered = req.body.backordered;
             item.expectedDelivery = req.body.expectedDelivery;
-            item.category = req.body.category;
+            item.categories.push(req.body.category);
             item.save()
                 .then(() => {
                     return res.json({'itemUpdated': item });
@@ -113,6 +113,25 @@ function queryItemsByProp(prop: string) {
   return Item.distinct(prop);
 }
 
+function addCategory(req: express.Request, res: express.Response, next: express.NextFunction) {
+  Item.findById(req.params.itemId, (err, item) => {
+      if (err) {
+          res.status(500).send(err);
+      } else {
+          const categories = item.categories;
+          if (!categories.includes(req.params.category)) {
+              categories.push(req.params.category);
+          }
+      }
+      item.save((error, savedItem) => {
+          if (err) {
+              res.status(500).send(err);
+          }
+        res.status(200).send(savedItem);
+      });
+  });
+}
+
 function getAllCategories(req: express.Request, res: express.Response, next: express.NextFunction) {
   queryItemsByProp('category')
     .then((doc) => res.json(doc))
@@ -130,6 +149,7 @@ export {
     getAll,
     updateItem,
     deleteItem,
+    addCategory,
     getItemsByCategory,
     getAllCategories
 };

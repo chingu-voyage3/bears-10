@@ -34,7 +34,7 @@ function createItem(req: express.Request, res: express.Response) {
         orderPlaced: req.body.orderPlaced,
         backordered: req.body.backordered,
         expectedDelivery: req.body.expectedDelivery,
-        category: req.body.category
+        categories: req.body.categories
     });
     newItem.save()
         .then((item) => {

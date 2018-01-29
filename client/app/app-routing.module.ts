@@ -5,6 +5,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { InventoryComponent } from './pages/inventory/inventory.component';
 import { OrderComponent } from './pages/order/order.component';
 import { AuthGuard } from './core/auth.guard';
+import { CategoryService } from './core/category.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,7 +27,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  providers: [AuthGuard],
+  providers: [AuthGuard, CategoryService],
   exports: [RouterModule]
 })
 

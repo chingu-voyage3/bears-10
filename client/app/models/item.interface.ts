@@ -19,5 +19,5 @@ export interface Item {
     orderPlaced: boolean;
     backordered: boolean;
     expectedDelivery: Date;
-    category: string;
+    categories?: [string];
 }

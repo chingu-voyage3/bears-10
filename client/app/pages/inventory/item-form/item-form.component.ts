@@ -44,7 +44,7 @@ export class ItemFormComponent implements OnInit {
         orderPlaced: false,
         backordered: false,
         expectedDelivery: null,
-        category: ''
+        categories: ['']
       }
     }
   }

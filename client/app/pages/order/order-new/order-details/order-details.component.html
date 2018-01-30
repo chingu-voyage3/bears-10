@@ -1,5 +1,10 @@
 <form [formGroup]="newOrderForm" (ngSubmit)="onSubmit()">
   <div class="itemsAdded" ng-show="addItem">
+    <p *ngIf="!selectedItem">
+      <mat-form-field>
+        <input matInput placeholder="Enter New Item" formControlName="new">
+      </mat-form-field>
+      </p>
     <p>
       <mat-form-field>
         <input matInput placeholder="Sku #" formControlName="sku">

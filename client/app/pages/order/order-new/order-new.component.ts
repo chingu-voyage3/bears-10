@@ -24,77 +24,12 @@ export class OrderNewComponent implements OnChanges {
     private orderService: OrderService,
     public snackBar: MatSnackBar
   ) {
-    // this.createForm();
-    // this.selectItem();
+
   }
 
   ngOnChanges() {
-    // this.newOrderForm.reset({
-    //   item: '',
-    //   sku: '',
-    //   vendor: '',
-    //   quantity: null,
-    //   price: null,
-    // });
     this.select.reset();
   }
-
-  // onSubmit() {
-  //   this.submitNewOrder();
-  // }
-
-  // private createForm() {
-  //   this.newOrderForm = this.formBuilder.group({
-  //     item: [ '', Validators.required ],
-  //     sku: [ '', Validators.required ],
-  //     vendor: [ '', Validators.required ],
-  //     quantity: [ null, Validators.required ],
-  //     price: [ null, Validators.required ],
-  //   });
-  // }
-
-  // private prepSaveNewOrder() {
-  //   const formModel = this.newOrderForm.value;
-  //   const saveNewOrderObj: Order = {
-  //     item: formModel.item as string,
-  //     sku: formModel.sku as string,
-  //     vendor: formModel.vendor as string,
-  //     quantity: formModel.quantity as number,
-  //     price: formModel.price as number
-  //   };
-  //   return saveNewOrderObj;
-  // }
-
-  // private submitNewOrder() {
-  //   const newOrder = this.prepSaveNewOrder(); this.orderService.createOrder(newOrder)
-  //     .subscribe(
-  //       (data) => {
-  //         this.openSnackBar('Order saved.');
-  //         this.saveNewOrder.emit('saved');
-  //         this.ngOnChanges();
-  //       }
-  //     ,
-  //       (error) => this.openSnackBar('Error saving Order')
-  //     );
-  // }
-
-  // private clearOrder() {
-  //   this.ngOnChanges();
-  // }
-
-  // private openSnackBar(msg: string) {
-  //   this.snackBar.open(msg, 'Close', {
-  //     duration: 2000,
-  //     verticalPosition: 'top'
-  //   });
-  // }
-
-  // selectItem() {
-  //   const itemControl = this.newOrderForm.get('item');
-  //   itemControl.valueChanges.subscribe((data) => {
-  //     this.selectedItem = data;
-  //   });
-  // }
 
   clearSelected() {
     this.ngOnChanges();

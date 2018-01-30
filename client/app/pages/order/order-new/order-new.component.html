@@ -1,7 +1,8 @@
-<h2>New Order</h2>
+<h2>New Order - <span>Select existing or Enter new item</span></h2>
 <br>
 <mat-form-field>
   <mat-select placeholder="Select Item" [(ngModel)]="selectedItem" [formControl]="select">
+    <mat-option>-- None --</mat-option>
     <mat-option *ngFor="let item of items" [value]="item">
       {{item.name}}
     </mat-option>

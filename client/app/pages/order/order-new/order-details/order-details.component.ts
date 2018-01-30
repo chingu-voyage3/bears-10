@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { OrderService } from '../../../../core/order.service';
 import { Order } from '../../../../models/order.interface';
 import { Item } from '../../../../models/item.interface';
@@ -28,12 +28,23 @@ export class OrderDetailsComponent implements OnChanges {
 
   ngOnChanges() {
     this.newOrderForm.reset({
-      // item: '',
-      sku: this.selectedItem ? this.selectedItem.SKU : '',
-      vendor: '',
+      sku: this.selectedItemSku(),
+      vendor: this.selectedItemVendor(),
       quantity: null,
-      price: this.selectedItem ? this.selectedItem.orderPrice : '',
+      price: this.selectedItemPrice(),
     });
+  }
+
+  selectedItemSku() {
+    return this.selectedItem ? this.selectedItem.SKU : '';
+  }
+
+  selectedItemPrice() {
+    return this.selectedItem ? this.selectedItem.orderPrice : null;
+  }
+
+  selectedItemVendor() {
+    return this.selectedItem ? this.selectedItem.manufacturer : '';
   }
 
   onSubmit() {
@@ -42,17 +53,17 @@ export class OrderDetailsComponent implements OnChanges {
 
   private createForm() {
     this.newOrderForm = this.formBuilder.group({
-      // item: [ '', Validators.required ],
-      sku: [ '', Validators.required ],
-      vendor: [ '', Validators.required ],
-      quantity: [ null, Validators.required ],
-      price: [ null, Validators.required ],
+      new: new FormControl(''),
+      sku: new FormControl([ '', Validators.required ]),
+      vendor: new FormControl([ '', Validators.required ]),
+      quantity: new FormControl([ null, Validators.required ]),
+      price: new FormControl([ null, Validators.required ]),
     });
   }
 
   private prepSaveNewOrder() {
     const formModel = this.newOrderForm.value;
-    const itemName = this.selectedItem.name;
+    const itemName = this.itemName();
     const saveNewOrderObj: Order = {
       item: itemName as string,
       sku: formModel.sku as string,
@@ -63,26 +74,35 @@ export class OrderDetailsComponent implements OnChanges {
     return saveNewOrderObj;
   }
 
-  private submitNewOrder() {
-    const newOrder = this.prepSaveNewOrder(); this.orderService.createOrder(newOrder)
-      .subscribe(
-        (data) => {
-          this.openSnackBar('Order saved.');
-          this.emitNewOrder.emit('saved');
-          this.clearOrder();
-        }
-      ,
-        (error) => this.openSnackBar('Error saving Order')
-      );
+  itemName() {
+    return this.selectedItem ? this.selectedItem.name : this.newOrderForm.value.new;
   }
 
-  private clearOrder() {
+  private submitNewOrder() {
+    const newOrder = this.prepSaveNewOrder();
+    this.clearOrder();
+    this.sendSubmission(newOrder);
+  }
+
+  private sendSubmission(order: Order) {
+    this.orderService.createOrder(order)
+    .subscribe(
+      (data) => {
+        this.openSnackBar('Order saved.');
+        this.emitNewOrder.emit('saved');
+      }
+    ,
+      (error) => this.openSnackBar('Error saving Order')
+    );
+  }
+
+  clearOrder() {
     this.newOrderForm.reset({
-      // item: '',
+      new: '',
       sku:  '',
       vendor: '',
       quantity: null,
-      price: '',
+      price: null,
     });
     this.clearEmitter.emit();
   }

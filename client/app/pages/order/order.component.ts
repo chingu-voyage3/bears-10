@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { OrderService } from '../../core/order.service';
 import { ItemsService } from '../../core/items.service';
 import { Order } from '../../models/order.interface';
 import { Item } from '../../models/item.interface';
+
+import { DeleteDialogComponent } from '../inventory/item-list/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'ims-order',
@@ -12,7 +15,8 @@ import { Item } from '../../models/item.interface';
 export class OrderComponent implements OnInit {
   constructor(
     private orderService: OrderService,
-    private itemsService: ItemsService
+    private itemsService: ItemsService,
+    public dialog: MatDialog
   ) {}
 
   orders: Order[];
@@ -20,9 +24,23 @@ export class OrderComponent implements OnInit {
   closedOrders: Order[];
   items: Item[];
 
+  dialogRef: MatDialogRef<DeleteDialogComponent>;
+
   ngOnInit() {
     this.getOrders();
     this.getItems();
+  }
+
+  openDeleteDialog(order: Order) {
+    this.dialogRef = this.dialog.open(DeleteDialogComponent);
+
+    this.dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      } else {
+        this.deleteOrder(order);
+      }
+    });
   }
 
   getOrders() {

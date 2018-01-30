@@ -1,13 +1,13 @@
 <mat-tab-group>
   <mat-tab label="Create Order">
-    <ims-order-new (saveNewOrder)="getOrders()"></ims-order-new>
+    <ims-order-new [items]="items" (saveNewOrder)="getOrders()"></ims-order-new>
   </mat-tab>
 
   <mat-tab label="Open Orders">
-    <ims-order-open [openOrders]="openOrders" (emitEdit)="getOrders()" (deleteOpenOrder)="deleteOrder($event)"></ims-order-open>
+    <ims-order-open [openOrders]="openOrders" (emitEdit)="getOrders()" (deleteOpenOrder)="openDeleteDialog($event)"></ims-order-open>
   </mat-tab>
 
   <mat-tab label="Closed Orders">
-    <ims-order-closed [closedOrders]="closedOrders" (deleteClosedOrder)="deleteOrder($event)"></ims-order-closed>
+    <ims-order-closed [closedOrders]="closedOrders" (deleteClosedOrder)="openDeleteDialog($event)"></ims-order-closed>
   </mat-tab>
 </mat-tab-group>

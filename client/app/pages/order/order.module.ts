@@ -10,9 +10,10 @@ import { OrderNewComponent } from './order-new/order-new.component';
 import { OrderOpenComponent } from './order-open/order-open.component';
 import { OrderOpenEditComponent } from './order-open/order-open-edit/order-open-edit.component';
 import { OrderClosedComponent } from './order-closed/order-closed.component';
+import { OrderDetailsComponent } from './order-new/order-details/order-details.component';
 
 @NgModule({
   imports: [ CommonModule, ReactiveFormsModule, OrderRoutingModule, SharedModule ],
-  declarations: [ OrderComponent, OrderSubmitComponent, OrderNewComponent, OrderOpenComponent, OrderOpenEditComponent, OrderClosedComponent ]
+  declarations: [ OrderComponent, OrderSubmitComponent, OrderNewComponent, OrderOpenComponent, OrderOpenEditComponent, OrderClosedComponent, OrderDetailsComponent ]
 })
 export class OrderModule {}

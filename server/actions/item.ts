@@ -122,10 +122,14 @@ function addCategory(req: express.Request, res: express.Response, next: express.
       if (err) {
           res.status(500).send(err);
       } else {
-          const categories = item.categories;
-          if (!categories.includes(req.params.category)) {
-              categories.push(req.params.category);
-          }
+        if (item.categories) {
+            const categories = item.categories;
+            if (!categories.includes(req.params.category)) {
+                categories.push(req.params.category);
+            }
+        } else {
+            item.categories = [req.params.category];
+        }
       }
       item.save((error, savedItem) => {
           if (err) {

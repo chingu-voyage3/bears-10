@@ -9,16 +9,14 @@ export class CategoryService {
 
 
     deleteAt(i, itemId) {
-        console.log('in delete at method', i, itemId);
         this.http.put('/api/items/deleteCategory/' + i + '/' + itemId, null, {})
-            .subscribe(res => { console.log(res); });
+            .subscribe();
 
     }
 
     submit(options) {
-        console.log('submitting category: ' , options);
         this.http.put('/api/items/addCategory/' + options.category + '/' + options.itemId, null, {})
-        .subscribe(res => { console.log(res); });
+        .subscribe();
     }
 
 }

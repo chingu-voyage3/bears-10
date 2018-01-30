@@ -16,6 +16,7 @@ import { ItemListComponent } from './pages/inventory/item-list/item-list.compone
 import { ItemFormComponent } from './pages/inventory/item-form/item-form.component';
 import { DeleteDialogComponent } from './pages/inventory/item-list/delete-dialog/delete-dialog.component';
 import { AddCategoryComponent } from './pages/inventory/item-list/add-category/add-category.component';
+import { SearchPipe } from './search.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AddCategoryComponent } from './pages/inventory/item-list/add-category/a
     ItemFormComponent,
     DeleteDialogComponent,
     AddCategoryComponent,
+    SearchPipe,
    ],
   imports: [ BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule, FlashMessagesModule ],
   providers: [AuthGuard],

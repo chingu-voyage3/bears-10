@@ -23,8 +23,6 @@ export class AddCategoryComponent implements OnInit {
   }
 
   submitCategory() {
-    console.log('submitting category', this.category, 'item id is: ', this.data.item._id);
-    console.log('data is: ', this.data)
     this.data.item.categories.push(this.category);
     this.dialogRef.close();
     this.categoryService.submit({ category: this.category, itemId: this.data.item._id});

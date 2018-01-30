@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
       } else {
         errMessage = 'Incorrect username or password';
       }
-      console.log('flashing message...', res);
       if (messageIsAnError) {
         this.flashMessagesService.show(errMessage, {
           classes: ['alert', 'alert-warning'], // You can pass as many classes as you need

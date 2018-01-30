@@ -14,18 +14,35 @@ export class OrderService {
   orders: Order[] = [];
 
   getAllOrders() {
-    return this.http.get<Order[]>('/ap/order/getOrder')
+    return this.http.get<Order[]>('/api/orders/')
     .map(data => {
       return this.orders = data['Orders'];
     });
   }
+
   returnOrder() {
     return this.orders;
   }
-  getOrder(sku: number) {
-    return this.orders.find((i) => {
-      return i.sku === sku;
-    });
+
+  createOrder(order: Order) {
+    return this.http.post('/api/orders', order)
+      .map((data) => data['orderCreated'])
   }
+
+  getOrder(orderId: string) {
+    return this.http.get(`/api/orders/${orderId}`)
+      .map((data) => data['Order'])
+  }
+
+  updateOrder(order: Order) {
+    return this.http.post(`/api/orders/${order._id}`, order)
+      .map((data) => data['orderUpdated'])
+  }
+
+  deleteOrder(orderId: string) {
+    return this.http.delete(`/api/orders/${orderId}`)
+      .map((data) => data['orderDeleted'])
+  }
+
 }
 

@@ -22,13 +22,35 @@ export class InventoryComponent implements OnInit {
       });
   }
 
-  editItem(item: Item) {
+  onEditItem(item: Item) {
     this.selectedItem = item;
     this.showList = false;
   }
 
-  onSaveItem(item: Item) {
+  onSaveEdit(item: Item) {
     this.itemsService.updateItem(item._id, item)
+      .subscribe(() => {
+        this.itemsService.getAllItems()
+          .subscribe(data => {
+            this.items = data;
+            this.showList = true;
+          })
+      })
+  }
+
+  onSaveNew(item: Item) {
+    this.itemsService.createItem(item)
+      .subscribe(() => {
+        this.itemsService.getAllItems()
+          .subscribe(data => {
+            this.items = data;
+            this.showList = true;
+          })
+      })
+  }
+
+  onDeleteItem(item: Item){
+    this.itemsService.deleteItem(item._id)
       .subscribe(() => {
         this.itemsService.getAllItems()
           .subscribe(data => {

@@ -32,7 +32,15 @@ export class ItemsService {
     });
   }
 
-  updateItem(id: string, newItem: Item){
-    return this.http.post(`/api/items/update/${id}`, newItem)
+  updateItem(id: string, newItem: Item) {
+    return this.http.post(`/api/items/update/${id}`, newItem);
+  }
+
+  createItem(newItem: Item) {
+    return this.http.post('/api/items/new', newItem);
+  }
+
+  deleteItem(id: string){
+    return this.http.delete(`/api/items/delete/${id}`);
   }
 }

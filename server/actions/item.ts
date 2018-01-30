@@ -33,7 +33,8 @@ function createItem(req: express.Request, res: express.Response) {
         orderNeeded: req.body.orderNeeded,
         orderPlaced: req.body.orderPlaced,
         backordered: req.body.backordered,
-        expectedDelivery: req.body.expectedDelivery
+        expectedDelivery: req.body.expectedDelivery,
+        categories: req.body.categories
     });
     newItem.save()
         .then((item) => {
@@ -66,6 +67,11 @@ function updateItem(req: express.Request, res: express.Response) {
             item.orderPlaced = req.body.orderPlaced;
             item.backordered = req.body.backordered;
             item.expectedDelivery = req.body.expectedDelivery;
+            if (item.categories) {
+                item.categories.push(req.body.category);
+            } else {
+                item.categories = [''];
+            }
             item.save()
                 .then(() => {
                     return res.json({'itemUpdated': item });
@@ -99,9 +105,77 @@ function deleteItem(req: express.Request, res: express.Response) {
         });
 }
 
+/**
+ * Item category methods
+ */
+
+function queryItems(queryObject: object) {
+  return Item.find(queryObject);
+}
+
+function queryItemsByProp(prop: string) {
+  return Item.distinct(prop);
+}
+
+function addCategory(req: express.Request, res: express.Response, next: express.NextFunction) {
+  Item.findById(req.params.itemId, (err, item) => {
+      if (err) {
+          res.status(500).send(err);
+      } else {
+        if (item.categories) {
+            const categories = item.categories;
+            if (!categories.includes(req.params.category)) {
+                categories.push(req.params.category);
+            }
+        } else {
+            item.categories = [req.params.category];
+        }
+      }
+      item.save((error, savedItem) => {
+          if (err) {
+              res.status(500).send(err);
+          }
+        res.status(200).send(savedItem);
+      });
+  });
+}
+
+function deleteCategory(req: express.Request, res: express.Response, next: express.NextFunction) {
+    Item.findById(req.params.itemId, (err, item) => {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            item.categories.splice(parseInt(req.params.categoryIndex, 10), 1);
+        }
+
+        item.save((error, savedItem) => {
+            if (err) {
+                res.status(500).send(err);
+            }
+            res.status(200).send(savedItem);
+        });
+    });
+}
+
+function getAllCategories(req: express.Request, res: express.Response, next: express.NextFunction) {
+  queryItemsByProp('category')
+    .then((doc) => res.json(doc))
+    .catch((err) => next(err));
+}
+
+function getItemsByCategory(req: express.Request, res: express.Response, next: express.NextFunction) {
+  queryItems({category: req.params.category})
+    .then((docs) => res.json(docs))
+    .catch((err) => next(err));
+}
+
 export {
     createItem,
     getAll,
     updateItem,
-    deleteItem
+    deleteItem,
+    addCategory,
+    deleteCategory,
+    getItemsByCategory,
+    getAllCategories
 };

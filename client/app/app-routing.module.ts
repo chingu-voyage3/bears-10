@@ -5,6 +5,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { InventoryComponent } from './pages/inventory/inventory.component';
 import { OrderComponent } from './pages/order/order.component';
 import { AuthGuard } from './core/auth.guard';
+import { CategoryService } from './core/category.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,7 +15,10 @@ const routes: Routes = [
     path: 'login',
     loadChildren: './pages/login/login.module#LoginModule'
   },
-  { path: 'order', component: OrderComponent },
+  {
+    path: 'order',
+    loadChildren: './pages/order/order.module#OrderModule'
+  },
   {
     path: 'admin',
     loadChildren: './pages/admin/admin.module#AdminModule',
@@ -23,7 +27,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  providers: [AuthGuard],
+  providers: [AuthGuard, CategoryService],
   exports: [RouterModule]
 })
 

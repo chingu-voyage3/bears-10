@@ -13,11 +13,20 @@ export class ItemFormComponent implements OnInit {
 
   constructor() { }
 
+  newItem: Item;
+  isNewItem: boolean;
+  @Input() item: Item;
+  @Output() submitEdit = new EventEmitter;
+  @Output() submitNew = new EventEmitter;
+  @Output() cancel = new EventEmitter;
+
   ngOnInit() {
-    if (this.item._id) {
+    if (this.item) {
+      this.isNewItem = false;
       this.newItem = Object.assign({}, this.item);
     }
     else {
+      this.isNewItem = true;
       this.newItem = {
         _id: '',
         name: '',
@@ -34,13 +43,10 @@ export class ItemFormComponent implements OnInit {
         orderNeeded: false,
         orderPlaced: false,
         backordered: false,
-        expectedDelivery: null
+        expectedDelivery: null,
+        categories: ['']
       }
     }
   }
 
-  newItem: Item;
-  @Input() item: Item;
-  @Output() submit = new EventEmitter;
-  @Output() cancel = new EventEmitter;
 }

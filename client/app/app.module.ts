@@ -12,12 +12,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { InventoryComponent } from './pages/inventory/inventory.component';
-import { OrderComponent } from './pages/order/order.component';
-import { OrderSubmitComponent } from './pages/order/order-submit/order-submit.component';
-import { OrderPrintComponent } from './pages/order/order-print/order-print.component';
-import { OrderEditComponent } from './pages/order/order-edit/order-edit.component';
 import { ItemListComponent } from './pages/inventory/item-list/item-list.component';
 import { ItemFormComponent } from './pages/inventory/item-form/item-form.component';
+import { DeleteDialogComponent } from './pages/inventory/item-list/delete-dialog/delete-dialog.component';
+import { AddCategoryComponent } from './pages/inventory/item-list/add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -25,15 +23,15 @@ import { ItemFormComponent } from './pages/inventory/item-form/item-form.compone
     HomeComponent,
     SignupComponent,
     InventoryComponent,
-    OrderComponent,
-    OrderSubmitComponent,
-    OrderPrintComponent,
-    OrderEditComponent,
     ItemListComponent,
-    ItemFormComponent ],
+    ItemFormComponent,
+    DeleteDialogComponent,
+    AddCategoryComponent,
+   ],
   imports: [ BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule, FlashMessagesModule ],
   providers: [AuthGuard],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  entryComponents: [DeleteDialogComponent, AddCategoryComponent]
 })
 
 export class AppModule {}

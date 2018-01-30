@@ -1,0 +1,11 @@
+<h2>New Order - <span>Select existing or Enter new item</span></h2>
+<br>
+<mat-form-field>
+  <mat-select placeholder="Select Item" [(ngModel)]="selectedItem" [formControl]="select">
+    <mat-option>-- None --</mat-option>
+    <mat-option *ngFor="let item of items" [value]="item">
+      {{item.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<ims-order-details [selectedItem]="selectedItem" (clearEmitter)="clearSelected()" (emitNewOrder)="saveNewOrder.emit('saved');"></ims-order-details>

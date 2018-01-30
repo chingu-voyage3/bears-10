@@ -4,7 +4,6 @@ import * as jwt from 'jsonwebtoken';
     // return a login middleware
  export default function(req, res, next) {
     User.findOne({username: req.body.username}, function(err, user) {
-        console.log('in login user action');
         if (err) {
             return err;
         }

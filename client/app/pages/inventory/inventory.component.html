@@ -1,5 +1,7 @@
-<div>
+<div class="title">
   <h1>Inventory</h1>
 </div>
-<ims-item-list *ngIf="showList" [items]="items" (editItem)="editItem($event)"></ims-item-list>
-<ims-item-form *ngIf="!showList" [item]="selectedItem" (cancel)="onCancelEdit()" (submit)="onSaveItem($event)"></ims-item-form>
+<div class="content">
+  <ims-item-list *ngIf="showList" [items]="items" (editItem)="onEditItem($event)" (deleteItem)="onDeleteItem($event)"></ims-item-list>
+  <ims-item-form *ngIf="!showList" [item]="selectedItem" (cancel)="onCancelEdit()" (submitEdit)="onSaveEdit($event)" (submitNew)="onSaveNew($event)"></ims-item-form>
+</div>

@@ -2,7 +2,9 @@ import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
 import { Item } from '../../../models/item.interface';
+import { CategoryService } from '../../../core/category.service';
 
 @Component({
   selector: 'ims-item-list',
@@ -11,7 +13,8 @@ import { Item } from '../../../models/item.interface';
 })
 export class ItemListComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+              private categoryService: CategoryService) { }
 
   ngOnInit() {
   }
@@ -20,6 +23,7 @@ export class ItemListComponent implements OnInit {
   @Output() editItem = new EventEmitter();
   @Output() deleteItem = new EventEmitter();
   dialogRef: MatDialogRef<DeleteDialogComponent>;
+  addCategoryRef: MatDialogRef<AddCategoryComponent>;
 
   openDialog(item: Item) {
     this.dialogRef = this.dialog.open(DeleteDialogComponent);
@@ -30,7 +34,18 @@ export class ItemListComponent implements OnInit {
       } else {
         this.deleteItem.emit(item);
       }
-    })
+    });
+  }
+
+  openAddCategoryDialog(item) {
+    console.log('item is: ', item)
+    this.addCategoryRef = this.dialog.open(AddCategoryComponent, { data: { item: item } });
+  }
+  deleteCategoryAtIndex(i, itemId) {
+    console.log('in item list component! items are: ' , this.items, 'item id is: ', itemId);
+    const selected = this.items.filter(e => e._id === itemId)[0];
+    selected.categories.splice(i, 1);
+    this.categoryService.deleteAt(i, itemId);
   }
 }
 

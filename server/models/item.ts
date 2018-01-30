@@ -17,7 +17,7 @@ interface IItem extends mongoose.Document {
   orderPlaced: boolean;
   backordered: boolean;
   expectedDelivery: Date;
-  category: string;
+  categories: [string];
 }
 
 const itemSchema = new Schema({
@@ -72,8 +72,8 @@ const itemSchema = new Schema({
   expectedDelivery: {
     type: Date
   },
-  category: {
-    type: String
+  categories: {
+    type: [String]
   }
 });
 

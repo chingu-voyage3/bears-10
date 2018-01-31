@@ -23,6 +23,7 @@ export class UserService {
   };
   loggedIn: boolean;
   isLoggedIn = new BehaviorSubject<boolean>(this.loggedIn);
+  isAdmin = new BehaviorSubject<boolean>(false);
   // proxy = 'https://cors-anywhere.herokuapp.com/';
   constructor(private http: HttpClient,
               private router: Router,
@@ -125,6 +126,7 @@ export class UserService {
     const decodedToken = jwt_decode(token);
     const tokenExpiration = JSON.stringify(decodedToken.exp * 1000);
     const adminCheck = JSON.stringify(decodedToken.isAdmin);
+    this.isAdmin.next(adminCheck === 'true');
     localStorage.setItem('expiresIn', tokenExpiration);
     localStorage.setItem('isAdmin', adminCheck);
     localStorage.setItem('token', token);

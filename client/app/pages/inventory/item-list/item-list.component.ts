@@ -13,6 +13,8 @@ import { CategoryService } from '../../../core/category.service';
 })
 export class ItemListComponent implements OnInit {
 
+  searchText = '';
+
   constructor(public dialog: MatDialog,
               private categoryService: CategoryService) { }
 

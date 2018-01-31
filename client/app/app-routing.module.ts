@@ -4,8 +4,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { InventoryComponent } from './pages/inventory/inventory.component';
 import { OrderComponent } from './pages/order/order.component';
-import { AuthGuard } from './core/auth.guard';
+import { AuthGuard } from './core/guards/auth.guard';
 import { CategoryService } from './core/category.service';
+import { AdminGuard } from './core/guards/admin.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,12 +23,13 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: './pages/admin/admin.module#AdminModule',
+    canActivate: [AdminGuard]
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  providers: [AuthGuard, CategoryService],
+  providers: [AuthGuard, AdminGuard, CategoryService],
   exports: [RouterModule]
 })
 

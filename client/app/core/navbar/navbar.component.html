@@ -19,7 +19,7 @@
   <span>
     <button mat-button routerLink="/order">Orders</button>
   </span>
-  <span>
+  <span *ngIf="userService.isAdmin._value">
     <button mat-button routerLink="/admin">Admin</button>
   </span>
   <span>

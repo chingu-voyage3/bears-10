@@ -6,21 +6,20 @@ import {
   Router
 } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { UserService } from './user.service';
+import { UserService } from '../user.service';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(private user: UserService, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.user.isTokenValid) {
-      return true;
-    } else {
-      this.router.navigate(['login']);
-      return false;
-    }
+      let checkIfAdmin = false;
+      this.user.isAdmin.subscribe(isAdmin => {
+          checkIfAdmin = isAdmin;
+      });
+      return checkIfAdmin;
   }
 }

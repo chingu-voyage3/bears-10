@@ -13,6 +13,7 @@ import { MatSnackBar } from '@angular/material';
 })
 export class OrderDetailsComponent implements OnChanges {
   newOrderForm: FormGroup;
+  checked = false;
 
   @Input() selectedItem: Item;
   @Output() emitNewOrder = new EventEmitter;
@@ -58,6 +59,7 @@ export class OrderDetailsComponent implements OnChanges {
       vendor: new FormControl([ '', Validators.required ]),
       quantity: new FormControl([ null, Validators.required ]),
       price: new FormControl([ null, Validators.required ]),
+      closed: new FormControl({ value: this.checked })
     });
   }
 
@@ -69,7 +71,9 @@ export class OrderDetailsComponent implements OnChanges {
       sku: formModel.sku as string,
       vendor: formModel.vendor as string,
       quantity: formModel.quantity as number,
-      price: formModel.price as number
+      price: formModel.price as number,
+      orderClosed: formModel.closed as boolean,
+      dateClosed: this.isClosed(formModel.closed)
     };
     return saveNewOrderObj;
   }
@@ -97,14 +101,16 @@ export class OrderDetailsComponent implements OnChanges {
   }
 
   clearOrder() {
-    this.newOrderForm.reset({
-      new: '',
-      sku:  '',
-      vendor: '',
-      quantity: null,
-      price: null,
-    });
+    this.newOrderForm.reset();
     this.clearEmitter.emit();
+  }
+
+  isClosed(closed: boolean) {
+    if (closed) {
+      return new Date(Date.now()).toDateString();
+    } else {
+      return '';
+    }
   }
 
   private openSnackBar(msg: string) {

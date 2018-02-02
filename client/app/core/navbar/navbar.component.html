@@ -1,28 +1,23 @@
 <mat-toolbar *ngIf="!userService.loggedIn" color="primary">
-  <span>
-    <button mat-button routerLink="/" routerLinkActive="active">Bears IMS</button>
-  </span>
-  <span>
-    <button mat-button routerLink="login" routerLinkActive="active">Sign In</button>
-  </span>
-  <span>
-    <button mat-button routerLink="/sign_up" routerLinkActive="active">Sign Up</button>
-  </span>
+    <span>
+      <button mat-button routerLink="login" routerLinkActive="active">Sign In</button>
+    </span>
+    <span class="nav-spacer"></span>
+    <button mat-button routerLink="/" routerLinkActive="active">Home</button>
 </mat-toolbar>
 <mat-toolbar *ngIf="userService.loggedIn" color="primary">
-  <span>
-    <button mat-button routerLink="/" routerLinkActive="active">Bears IMS</button>
-  </span>
-  <span>
-    <button mat-button routerLink="/inventory">Inventory</button>
-  </span>
-  <span>
-    <button mat-button routerLink="/order">Orders</button>
-  </span>
-  <span *ngIf="userService.isAdmin._value">
-    <button mat-button routerLink="/admin">Admin</button>
-  </span>
-  <span>
-    <button mat-button imsLogout>Log Out</button>
-  </span>
+    <span>
+      <button mat-button routerLink="/inventory">Inventory</button>
+    </span>
+    <span>
+      <button mat-button routerLink="/order">Orders</button>
+    </span>
+    <span *ngIf="userService.isAdmin._value">
+      <button mat-button routerLink="/admin">Admin</button>
+    </span>
+    <span>
+      <button mat-button imsLogout>Log Out</button>
+    </span>
+    <span class="nav-spacer"></span>
+    <button mat-button routerLink="/" routerLinkActive="active">Home</button>
 </mat-toolbar>

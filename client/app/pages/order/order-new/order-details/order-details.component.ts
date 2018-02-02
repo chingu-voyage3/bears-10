@@ -73,7 +73,7 @@ export class OrderDetailsComponent implements OnChanges {
       quantity: formModel.quantity as number,
       price: formModel.price as number,
       orderClosed: formModel.closed as boolean,
-      dateClosed: this.isClosed(formModel.closed)
+      dateClosed: this.orderService.isClosed(formModel.closed)
     };
     return saveNewOrderObj;
   }
@@ -103,14 +103,6 @@ export class OrderDetailsComponent implements OnChanges {
   clearOrder() {
     this.newOrderForm.reset();
     this.clearEmitter.emit();
-  }
-
-  isClosed(closed: boolean) {
-    if (closed) {
-      return new Date(Date.now()).toDateString();
-    } else {
-      return '';
-    }
   }
 
   private openSnackBar(msg: string) {

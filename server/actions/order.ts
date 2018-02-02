@@ -9,7 +9,9 @@ function createOrder(req: Request, res: Response) {
     vendor: req.body.vendor,
     quantity: req.body.quantity,
     price: req.body.price,
-    dateOrder: new Date(Date.now()).toDateString()
+    dateOrder: new Date(Date.now()).toDateString(),
+    orderClosed: req.body.orderClosed,
+    dateClosed: req.body.dateClosed
   });
 newOrder.save()
   .then((order) => {
@@ -22,14 +24,14 @@ newOrder.save()
 function updateOrder(req: Request, res: Response) {
     Order.findById(req.params.orderId)
         .then((order) => {
-          order.item = req.body.item
+          order.item = req.body.item;
           order.sku = req.body.sku;
           order.vendor = req.body.vendor;
           order.quantity = req.body.quantity;
           order.price = req.body.price;
           if (req.body.orderClosed) {
-            order.orderClosed = req.body.orderClosed
-            order.dateClosed = req.body.dateClosed
+            order.orderClosed = req.body.orderClosed;
+            order.dateClosed = req.body.dateClosed;
           }
           order.save()
           .then(() => {

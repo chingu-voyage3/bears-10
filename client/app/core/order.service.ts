@@ -26,22 +26,30 @@ export class OrderService {
 
   createOrder(order: Order) {
     return this.http.post('/api/orders', order)
-      .map((data) => data['orderCreated'])
+      .map((data) => data['orderCreated']);
   }
 
   getOrder(orderId: string) {
     return this.http.get(`/api/orders/${orderId}`)
-      .map((data) => data['Order'])
+      .map((data) => data['Order']);
   }
 
   updateOrder(order: Order) {
     return this.http.post(`/api/orders/${order._id}`, order)
-      .map((data) => data['orderUpdated'])
+      .map((data) => data['orderUpdated']);
   }
 
   deleteOrder(orderId: string) {
     return this.http.delete(`/api/orders/${orderId}`)
-      .map((data) => data['orderDeleted'])
+      .map((data) => data['orderDeleted']);
+  }
+
+  isClosed(closed: boolean) {
+    if (closed) {
+      return new Date(Date.now()).toDateString();
+    } else {
+      return '';
+    }
   }
 
 }

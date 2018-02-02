@@ -25,6 +25,10 @@
         <input matInput placeholder="Price" formControlName="price">
       </mat-form-field>
     </p>
+    <p>Close:
+      <mat-checkbox formControlName="closed" [(ngModel)]="checked"></mat-checkbox>
+      <small>Check to complete order on submission.</small>
+    </p>
   </div>
   <!-- <div class="itemAdd">
 

@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+
 import { OrderService } from '../../../../core/order.service';
 import { Order } from '../../../../models/order.interface';
 import { Item } from '../../../../models/item.interface';
@@ -14,6 +16,7 @@ import { MatSnackBar } from '@angular/material';
 export class OrderDetailsComponent implements OnChanges {
   newOrderForm: FormGroup;
   checked = false;
+  mask: Function;
 
   @Input() selectedItem: Item;
   @Output() emitNewOrder = new EventEmitter;
@@ -24,6 +27,7 @@ export class OrderDetailsComponent implements OnChanges {
     private orderService: OrderService,
     public snackBar: MatSnackBar
   ) {
+    this.mask = createNumberMask({ allowDecimal: true });
     this.createForm();
   }
 
@@ -34,6 +38,7 @@ export class OrderDetailsComponent implements OnChanges {
       quantity: null,
       price: this.selectedItemPrice(),
     });
+    this.validatNew(this.newOrderForm);
   }
 
   selectedItemSku() {
@@ -52,9 +57,21 @@ export class OrderDetailsComponent implements OnChanges {
     this.submitNewOrder();
   }
 
+  validatNew(input: AbstractControl) {
+    const newControl = input.get('new');
+    if (!this.selectedItem) {
+      newControl.setValidators([Validators.required]);
+      newControl.updateValueAndValidity();
+    } else {
+      newControl.clearValidators();
+      newControl.updateValueAndValidity();
+    }
+  }
+
+
   private createForm() {
     this.newOrderForm = this.formBuilder.group({
-      new: new FormControl('', Validators.required),
+      new: new FormControl(''),
       sku: new FormControl('', Validators.required),
       vendor: new FormControl('', Validators.required),
       quantity: new FormControl(null, Validators.required),

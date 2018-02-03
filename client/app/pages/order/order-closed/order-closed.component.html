@@ -1,12 +1,22 @@
 <br>
-<input type="search" placeholder="Search By Vendor, Product, or Sku">
+<input
+  type="search"
+  placeholder="Search By Vendor, Product, or Sku"
+  >
 <br>
-<mat-expansion-panel [expanded]="true" *ngFor="let order of closedOrders">
+<mat-expansion-panel
+  [expanded]="true"
+  *ngFor="let order of closedOrders"
+  >
   <mat-expansion-panel-header style="background: gray;">
     <mat-panel-title>
       <h3>Order # {{order._id}}</h3>
-      <h3 style="padding-left: 50px;">Date Closed {{order.dateClosed}}</h3>
-      <h3 style="padding-left: 50px;">Department</h3>
+      <h3 style="padding-left: 50px;">
+        Date Closed {{order.dateClosed}}
+      </h3>
+      <h3 style="padding-left: 50px;">
+        Department
+      </h3>
     </mat-panel-title>
   </mat-expansion-panel-header>
   <p>Item: {{order.item}}</p>

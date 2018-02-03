@@ -14,12 +14,12 @@ function createOrder(req: Request, res: Response) {
     orderClosed: req.body.orderClosed,
     dateClosed: req.body.dateClosed
   });
-    if (newOrder.orderClosed) {
-      updateItem(
-        { SKU: req.body.sku },
-        { $inc: { count: req.body.quantity }}
-      );
-    }
+  if (newOrder.orderClosed) {
+    updateItem(
+      { SKU: req.body.sku },
+      { $inc: { count: req.body.quantity }}
+    );
+  }
   newOrder.save()
     .then((order) => {
       return res.json({'orderCreated': order});
@@ -28,6 +28,7 @@ function createOrder(req: Request, res: Response) {
       return handleError(err, res);
     });
 }
+
 function updateOrder(req: Request, res: Response) {
     Order.findById(req.params.orderId)
         .then((order) => {

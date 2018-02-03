@@ -15,6 +15,7 @@
           matInput
           placeholder="Sku #"
           formControlName="sku"
+          [attr.disabled]="selectedItem"
           >
       </mat-form-field>
     </p>
@@ -24,6 +25,7 @@
           matInput
           placeholder="Vendor"
           formControlName="vendor"
+          [attr.disabled]="selectedItem"
           >
       </mat-form-field>
     </p>
@@ -41,9 +43,11 @@
       <mat-form-field>
         <input
           matInput
+          type="text"
           placeholder="Price"
           formControlName="price"
           [textMask]="{mask: mask}"
+          [attr.disabled]="selectedItem"
           >
       </mat-form-field>
     </p>

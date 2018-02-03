@@ -2,27 +2,53 @@
   <div class="itemsAdded" ng-show="addItem">
     <p *ngIf="!selectedItem">
       <mat-form-field>
-        <input matInput placeholder="Enter New Item" formControlName="new">
+        <input
+          matInput
+          placeholder="Enter New Item"
+          formControlName="new"
+          >
       </mat-form-field>
       </p>
     <p>
       <mat-form-field>
-        <input matInput placeholder="Sku #" formControlName="sku">
+        <input
+          matInput
+          placeholder="Sku #"
+          formControlName="sku"
+          [attr.disabled]="selectedItem"
+          >
       </mat-form-field>
     </p>
     <p>
       <mat-form-field>
-        <input matInput placeholder="Vendor" formControlName="vendor">
+        <input
+          matInput
+          placeholder="Vendor"
+          formControlName="vendor"
+          [attr.disabled]="selectedItem"
+          >
       </mat-form-field>
     </p>
     <p>
       <mat-form-field>
-        <input matInput placeholder="Quantity" formControlName="quantity">
+        <input
+          matInput
+          type="number"
+          placeholder="Quantity"
+          formControlName="quantity"
+          >
       </mat-form-field>
     </p>
     <p>
       <mat-form-field>
-        <input matInput placeholder="Price" formControlName="price">
+        <input
+          matInput
+          type="text"
+          placeholder="Price"
+          formControlName="price"
+          [textMask]="{mask: mask}"
+          [attr.disabled]="selectedItem"
+          >
       </mat-form-field>
     </p>
     <p>Close:
@@ -37,6 +63,20 @@
   </div> -->
   <br>
   <br>
-  <button type="submit" [disabled]="!newOrderForm.valid">Submit Order</button>
-  <button type="reset" (click)="clearOrder()">Clear Order</button>
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="!newOrderForm.valid || newOrderForm.pristine"
+    >
+    Submit Order
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    type="reset"
+    (click)="clearOrder()"
+    >
+    Clear Order
+  </button>
 </form>

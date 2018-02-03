@@ -7,7 +7,7 @@ interface IOrder extends mongoose.Document {
   sku: string;
   vendor: string;
   quantity: number;
-  price: number;
+  price: string;
   orderNo?: number;
   dateOrder?: string;
   orderClosed?: boolean;
@@ -29,7 +29,7 @@ const orderSchema = new Schema({
     type: Number
   },
   price: {
-    type: Number
+    type: String
   },
   orderNo: {
     type: Number,

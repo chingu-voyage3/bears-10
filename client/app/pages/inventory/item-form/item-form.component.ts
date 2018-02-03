@@ -33,7 +33,7 @@ export class ItemFormComponent implements OnInit {
         SKU: '',
         sellable: false,
         retailPrice: 0,
-        orderPrice: 0,
+        orderPrice: '0',
         manufacturer: '',
         description: '',
         size: '',
@@ -45,7 +45,7 @@ export class ItemFormComponent implements OnInit {
         backordered: false,
         expectedDelivery: null,
         categories: ['']
-      }
+      };
     }
   }
 

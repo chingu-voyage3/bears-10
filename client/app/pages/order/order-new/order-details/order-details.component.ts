@@ -61,9 +61,6 @@ export class OrderDetailsComponent implements OnChanges {
 
   validateNew(input: AbstractControl) {
     const newControl = input.get('new');
-    const skuControl = input.get('sku');
-    const vendorControl = input.get('vendor');
-    const priceControl = input.get('price');
     if (!this.selectedItem) {
       newControl.setValidators([Validators.required]);
     } else {

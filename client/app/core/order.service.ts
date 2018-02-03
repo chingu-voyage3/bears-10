@@ -48,7 +48,7 @@ export class OrderService {
     if (closed) {
       return new Date(Date.now()).toDateString();
     } else {
-      return '';
+      return null;
     }
   }
 

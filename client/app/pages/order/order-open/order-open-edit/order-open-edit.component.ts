@@ -67,7 +67,7 @@ export class OrderOpenEditComponent implements OnChanges {
       sku: formModel.sku as string,
       vendor: formModel.vendor as string,
       quantity: formModel.quantity as number,
-      price: formModel.price as number,
+      price: formModel.price as string,
       orderClosed: formModel.closed as boolean,
       dateClosed: this.orderService.isClosed(formModel.closed)
     };

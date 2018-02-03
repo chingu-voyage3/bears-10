@@ -1,6 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+
 import { OrderService } from '../../../../core/order.service';
+import { ItemsService } from '../../../../core/items.service';
 import { Order } from '../../../../models/order.interface';
 import { Item } from '../../../../models/item.interface';
 import { MatSnackBar } from '@angular/material';
@@ -14,6 +17,7 @@ import { MatSnackBar } from '@angular/material';
 export class OrderDetailsComponent implements OnChanges {
   newOrderForm: FormGroup;
   checked = false;
+  mask: Function;
 
   @Input() selectedItem: Item;
   @Output() emitNewOrder = new EventEmitter;
@@ -22,8 +26,10 @@ export class OrderDetailsComponent implements OnChanges {
   constructor(
     private formBuilder: FormBuilder,
     private orderService: OrderService,
+    private itemService: ItemsService,
     public snackBar: MatSnackBar
   ) {
+    this.mask = createNumberMask({ allowDecimal: true });
     this.createForm();
   }
 
@@ -34,6 +40,7 @@ export class OrderDetailsComponent implements OnChanges {
       quantity: null,
       price: this.selectedItemPrice(),
     });
+    this.validateNew(this.newOrderForm);
   }
 
   selectedItemSku() {
@@ -52,13 +59,24 @@ export class OrderDetailsComponent implements OnChanges {
     this.submitNewOrder();
   }
 
+  validateNew(input: AbstractControl) {
+    const newControl = input.get('new');
+    if (!this.selectedItem) {
+      newControl.setValidators([Validators.required]);
+    } else {
+      newControl.clearValidators();
+    }
+    newControl.updateValueAndValidity();
+  }
+
+
   private createForm() {
     this.newOrderForm = this.formBuilder.group({
       new: new FormControl(''),
-      sku: new FormControl([ '', Validators.required ]),
-      vendor: new FormControl([ '', Validators.required ]),
-      quantity: new FormControl([ null, Validators.required ]),
-      price: new FormControl([ null, Validators.required ]),
+      sku: new FormControl('', Validators.required),
+      vendor: new FormControl('', Validators.required),
+      quantity: new FormControl(null, Validators.required),
+      price: new FormControl('', Validators.required),
       closed: new FormControl({ value: this.checked })
     });
   }
@@ -71,11 +89,15 @@ export class OrderDetailsComponent implements OnChanges {
       sku: formModel.sku as string,
       vendor: formModel.vendor as string,
       quantity: formModel.quantity as number,
-      price: formModel.price as number,
+      price: formModel.price as string,
       orderClosed: formModel.closed as boolean,
-      dateClosed: this.orderService.isClosed(formModel.closed)
+      dateClosed: this.orderService.isClosed(formModel.closed),
     };
     return saveNewOrderObj;
+  }
+
+  isNewOrder () {
+    return this.selectedItem ? false : true;
   }
 
   itemName() {
@@ -89,6 +111,29 @@ export class OrderDetailsComponent implements OnChanges {
   }
 
   private sendSubmission(order: Order) {
+    if (this.isNewOrder()) {
+      this.itemService.createItem({
+        name: order.item,
+        SKU: order.sku,
+        sellable: true,
+        retailPrice: 0,
+        orderPrice: order.price,
+        manufacturer: order.vendor,
+        description: '',
+        size: '',
+        taxExempt: false,
+        count: order.quantity,
+        reorderedCount: 0,
+        orderNeeded: false,
+        orderPlaced: false,
+        backordered: false,
+        expectedDelivery: new Date(Date.now())
+      })
+      .subscribe(
+        (data) => this.openSnackBar('New Item saved.'),
+        (error) => this.openSnackBar('Error saving Item')
+      );
+    }
     this.orderService.createOrder(order)
     .subscribe(
       (data) => {

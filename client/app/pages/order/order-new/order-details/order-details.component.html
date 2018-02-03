@@ -17,12 +17,12 @@
     </p>
     <p>
       <mat-form-field>
-        <input matInput placeholder="Quantity" formControlName="quantity">
+        <input matInput type="number" placeholder="Quantity" formControlName="quantity">
       </mat-form-field>
     </p>
     <p>
       <mat-form-field>
-        <input matInput placeholder="Price" formControlName="price">
+        <input matInput format="currency" placeholder="Price" formControlName="price">
       </mat-form-field>
     </p>
     <p>Close:
@@ -37,6 +37,20 @@
   </div> -->
   <br>
   <br>
-  <button type="submit" [disabled]="!newOrderForm.valid">Submit Order</button>
-  <button type="reset" (click)="clearOrder()">Clear Order</button>
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="!newOrderForm.valid || newOrderForm.pristine"
+    >
+    Submit Order
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    type="reset"
+    (click)="clearOrder()"
+    >
+    Clear Order
+  </button>
 </form>

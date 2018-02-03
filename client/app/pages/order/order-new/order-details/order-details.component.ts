@@ -54,11 +54,11 @@ export class OrderDetailsComponent implements OnChanges {
 
   private createForm() {
     this.newOrderForm = this.formBuilder.group({
-      new: new FormControl(''),
-      sku: new FormControl([ '', Validators.required ]),
-      vendor: new FormControl([ '', Validators.required ]),
-      quantity: new FormControl([ null, Validators.required ]),
-      price: new FormControl([ null, Validators.required ]),
+      new: new FormControl('', Validators.required),
+      sku: new FormControl('', Validators.required),
+      vendor: new FormControl('', Validators.required),
+      quantity: new FormControl(null, Validators.required),
+      price: new FormControl(null, Validators.required),
       closed: new FormControl({ value: this.checked })
     });
   }

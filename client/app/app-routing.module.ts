@@ -13,6 +13,10 @@ const routes: Routes = [
   { path: 'sign_up', component: SignupComponent },
   { path: 'inventory', component: InventoryComponent, canActivate: [AuthGuard] },
   {
+    path: 'make_sale',
+    loadChildren: './pages/makesale/makesale.module#MakesaleModule',
+  },
+  {
     path: 'login',
     loadChildren: './pages/login/login.module#LoginModule'
   },

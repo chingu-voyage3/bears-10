@@ -37,10 +37,15 @@ li {
     padding: 0 1%;
     span {
         text-align: left;
+        line-height: 36px;
         width: 33%;
         padding: 0;
         margin: 0;
     }
     display: flex;
     justify-content: space-between;
+}
+
+.complete {
+    margin-top: 10px;
 }

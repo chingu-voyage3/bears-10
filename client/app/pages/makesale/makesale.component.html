@@ -1,9 +1,9 @@
 <div class="container">
   <div>
       <mat-form-field>
-        <mat-select placeholder="Favorite food" [(value)] ="food">
-        <mat-option *ngFor="let food of foods" [value]="food">
-          {{ food }}
+        <mat-select placeholder="Item" [(value)]="currentItem">
+        <mat-option *ngFor="let item of availableItems" [value]="item">
+          {{ item }}
         </mat-option>
       </mat-select>
 
@@ -18,11 +18,15 @@
  <button mat-raised-button color="primary" (click)="addItem()">
       Add Item
     </button>
-
   </div>
    
 
   <ul>
-    <li *ngFor="let food of itemList"><span>{{food.item}}</span><span>{{food.count}}</span> <button mat-raised-button color="warn">X</button></li>
+    <li *ngFor="let availableItem of itemList; let i = index;"><span>{{availableItem.item}}</span><span>{{availableItem.count}}</span> <button mat-raised-button color="warn" (click)="deleteElement(i)">X</button></li>
   </ul>
+  <div>
+ <button class="complete" mat-raised-button color="primary" (click)="completeReceipt()">
+   Complete Receipt
+    </button>
+  </div>
 </div>

@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./makesale.component.scss']
 })
 export class MakesaleComponent implements OnInit {
-  foods = ['apple', 'pear', 'banana'];
-  food = null;
+  availableItems = ['apple', 'pear', 'banana'];
+  currentItem = null;
   itemList = [
     {
       item: 'pear',
@@ -30,9 +30,9 @@ export class MakesaleComponent implements OnInit {
 
   addItem() {
     console.log('adding item!');
-    console.log('food is: ', this.food, ' quantity is: ', this.quantity);
+    console.log('item is: ', this.currentItem, ' quantity is: ', this.quantity);
     this.itemList.push({
-      item: this.food,
+      item: this.currentItem,
       count: this.quantity
     });
   }
@@ -42,4 +42,11 @@ export class MakesaleComponent implements OnInit {
     this.quantity = val;
   }
 
+  deleteElement(i) {
+    console.log('deleting item at: ', i);
+  }
+
+  completeReceipt() {
+
+  }
 }

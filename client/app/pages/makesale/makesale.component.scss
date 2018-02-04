@@ -1,0 +1,30 @@
+.container {
+    text-align: center;
+    width: 100%;
+    margin-top: 2%;
+}
+div > div {
+    width: 38%;
+    text-align: center;
+    margin: 0 auto;
+}
+mat-form-field {
+    width: 50%;
+    margin: 0 auto;
+}
+
+mat-form-field:nth-of-type(2) {
+    width: 15%;
+
+    margin: 0 30% 0 4%;
+}
+
+button {
+    float: left;
+}
+
+mat-list {
+    display: block;
+    margin-top: 10px;
+    background-color: blue;
+}

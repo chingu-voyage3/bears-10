@@ -1,0 +1,25 @@
+<div class="container">
+  <div>
+      <mat-form-field>
+        <mat-select placeholder="Favorite food" [(value)] ="food">
+        <mat-option *ngFor="let food of foods" [value]="food">
+          {{ food }}
+        </mat-option>
+      </mat-select>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput #quantityInput (keyup)="keyup(quantityInput.value)" style="display: inline"/>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" (click)="addItem()">
+      Add Item
+    </button>
+  </div>
+  <mat-list role="list">
+    <mat-list-item>{{food}} {{quantity}}</mat-list-item>
+
+
+  </mat-list>
+</div>

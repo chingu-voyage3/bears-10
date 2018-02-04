@@ -8,6 +8,20 @@ import { Component, OnInit } from '@angular/core';
 export class MakesaleComponent implements OnInit {
   foods = ['apple', 'pear', 'banana'];
   food = null;
+  itemList = [
+    {
+      item: 'pear',
+      count: 10
+    },
+    {
+      item: 'apple',
+      count: 15
+    },
+    {
+      item: 'pineapple',
+      count: 25
+    }
+  ];
   quantity = 0;
   constructor() { }
 
@@ -17,6 +31,10 @@ export class MakesaleComponent implements OnInit {
   addItem() {
     console.log('adding item!');
     console.log('food is: ', this.food, ' quantity is: ', this.quantity);
+    this.itemList.push({
+      item: this.food,
+      count: this.quantity
+    });
   }
 
   keyup(val) {

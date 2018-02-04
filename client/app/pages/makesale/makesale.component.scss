@@ -1,30 +1,50 @@
 .container {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     margin-top: 2%;
 }
 div > div {
-    width: 38%;
-    text-align: center;
-    margin: 0 auto;
+    display: block;
+    padding-left: 45px;
+
+    margin: 0 auto 0 auto;
+    width: 50%;
+}
+div > div:nth-of-type(2) {
+    display: block;
+    width: 50%;
 }
 mat-form-field {
-    width: 50%;
-    margin: 0 auto;
+    width: 35%;
 }
 
 mat-form-field:nth-of-type(2) {
     width: 15%;
-
-    margin: 0 30% 0 4%;
+    margin-left: 5%;
 }
 
 button {
-    float: left;
+    width: 5%;
 }
 
-mat-list {
+ul {
     display: block;
-    margin-top: 10px;
-    background-color: blue;
+    width: 50%;
+    margin: 50px auto 0 auto;
+    list-style-type: none;
+}
+
+li {
+    margin: 2% 0 0 0;
+    width: 100%;
+    padding: 0 1%;
+    span {
+        text-align: left;
+        width: 33%;
+        padding: 0;
+        margin: 0;
+    }
+    display: flex;
+    justify-content: space-between;
 }

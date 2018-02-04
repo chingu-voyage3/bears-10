@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemsService } from '../../core/items.service';
+import { ReceiptService } from '../../core/receipt.service';
+import { Item } from '../../models/item.interface';
 
 @Component({
   selector: 'ims-makesale',
@@ -6,31 +9,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./makesale.component.scss']
 })
 export class MakesaleComponent implements OnInit {
-  availableItems = ['apple', 'pear', 'banana'];
+  data = [];
+  availableItems = [];
   currentItem = null;
-  itemList = [
-    {
-      item: 'pear',
-      count: 10
-    },
-    {
-      item: 'apple',
-      count: 15
-    },
-    {
-      item: 'pineapple',
-      count: 25
-    }
-  ];
+  itemList = [];
   quantity = 0;
-  constructor() { }
+  constructor(private itemsService: ItemsService,
+              private receiptService: ReceiptService) { }
 
   ngOnInit() {
+    this.itemsService.getAllItems()
+      .subscribe(data => {
+        this.data = data;
+        this.availableItems = data.map(e => e.name);
+      });
   }
 
   addItem() {
-    console.log('adding item!');
-    console.log('item is: ', this.currentItem, ' quantity is: ', this.quantity);
     this.itemList.push({
       item: this.currentItem,
       count: this.quantity
@@ -38,15 +33,17 @@ export class MakesaleComponent implements OnInit {
   }
 
   keyup(val) {
-    console.log('changing input value: ', val);
-    this.quantity = val;
+    this.quantity = parseInt(val, 10);
   }
 
   deleteElement(i) {
-    console.log('deleting item at: ', i);
+    this.itemList.splice(i, 1);
   }
 
   completeReceipt() {
-
+    this.itemList.forEach(e => {
+      e.id = this.data.filter(el => el.name === e.item)[0]._id;
+    });
+    this.receiptService.completeReceipt(this.itemList.map(e => ({id: e.id, count: e.count})));
   }
 }

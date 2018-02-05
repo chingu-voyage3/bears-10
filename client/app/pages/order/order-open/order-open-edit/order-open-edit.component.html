@@ -16,12 +16,12 @@
   </p>
   <p>Quantity:
     <mat-form-field>
-      <input matInput formControlName="quantity">
+      <input matInput type="number" min="0" formControlName="quantity">
     </mat-form-field>
   </p>
   <p>Price:
     <mat-form-field>
-      <input matInput formControlName="price">
+      <input matInput [textMask]="{mask: mask}" formControlName="price">
     </mat-form-field>
   </p>
   <p>Closed:
@@ -34,6 +34,7 @@
       type="button"
       name="printButton"
       style=" float: left;"
+      (click)="openPrint(openOrder)"
       >
       Print Invoice
     </button>

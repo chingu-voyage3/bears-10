@@ -1,7 +1,10 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { Order } from '../../../../models/order.interface';
 import { OrderService } from '../../../../core/order.service';
+import { OrderPrintComponent } from '../../order-print/order-print.component';
 
 @Component({
   selector: 'ims-order-open-edit',
@@ -13,18 +16,22 @@ export class OrderOpenEditComponent implements OnChanges {
   @Input() openOrder: Order;
   @Output() saveEdit = new EventEmitter;
   @Output() deleteOrder = new EventEmitter;
+  printDialogRef: MatDialogRef<OrderPrintComponent>;
 
   editObj = {
     _id: null
   };
   checked = false;
   orderEditForm: FormGroup;
+  mask: Function;
 
   constructor(
+    public dialog: MatDialog,
     private formBuilder: FormBuilder,
     private orderService: OrderService
   ) {
     this.createForm();
+    this.mask = createNumberMask({ allowDecimal: true });
   }
 
   ngOnChanges() {
@@ -72,6 +79,10 @@ export class OrderOpenEditComponent implements OnChanges {
       dateClosed: this.orderService.isClosed(formModel.closed)
     };
     return saveOrderEdit;
+  }
+
+  openPrint(order) {
+    this.printDialogRef = this.dialog.open(OrderPrintComponent, { data: order });
   }
 
   onSubmit() {

@@ -1,0 +1,32 @@
+<div class="container">
+  <div>
+      <mat-form-field>
+        <mat-select placeholder="Item" [(value)]="currentItem">
+        <mat-option *ngFor="let item of availableItems" [value]="item">
+          {{ item }}
+        </mat-option>
+      </mat-select>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput #quantityInput (keyup)="keyup(quantityInput.value)" style="display: inline" placeholder="Quantity"/>
+    </mat-form-field>
+
+  </div>
+  <div>
+ <button mat-raised-button color="primary" (click)="addItem()">
+      Add Item
+    </button>
+  </div>
+   
+
+  <ul>
+    <li *ngFor="let availableItem of itemList; let i = index;"><span>{{availableItem.item}}</span><span>{{availableItem.count}}</span> <button mat-raised-button color="warn" (click)="deleteElement(i)">X</button></li>
+  </ul>
+  <div>
+ <button class="complete" mat-raised-button color="primary" (click)="completeReceipt()">
+   Complete Receipt
+    </button>
+  </div>
+</div>

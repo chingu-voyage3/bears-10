@@ -1,0 +1,22 @@
+.content{
+    flex: 1 0 auto;
+    padding: 0 5vw;
+}
+
+.wrapper{
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.footer{
+    flex-shrink: 0;
+    padding: 15px;
+    color: #555;
+    text-align: right;
+}
+
+.footer a, .footer a:link, .footer a:visited, .footer a:active, .footer a:hover{
+    text-decoration: none;
+    color: #555;
+}

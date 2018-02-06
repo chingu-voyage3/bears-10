@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserService } from './user.service';
 import { OrderService } from './order.service';
+import { ReceiptService } from './receipt.service';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { LogoutDirective } from './directives/logout.directive';
 import { ItemsService } from './items.service';
@@ -13,7 +14,7 @@ import { ItemsService } from './items.service';
 @NgModule({
   imports: [ CommonModule, HttpClientModule, RouterModule, SharedModule ],
   exports: [ NavbarComponent ],
-  providers: [ UserService, ItemsService, OrderService ],
+  providers: [ UserService, ItemsService, OrderService, ReceiptService ],
   declarations: [ NavbarComponent, LogoutDirective ]
 })
 export class CoreModule {

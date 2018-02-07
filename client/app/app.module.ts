@@ -17,6 +17,7 @@ import { ItemListComponent } from './pages/inventory/item-list/item-list.compone
 import { ItemFormComponent } from './pages/inventory/item-form/item-form.component';
 import { DeleteDialogComponent } from './pages/inventory/item-list/delete-dialog/delete-dialog.component';
 import { AddCategoryComponent } from './pages/inventory/item-list/add-category/add-category.component';
+import { OrderPrintComponent } from './pages/order/order-print/order-print.component';
 import { MakesaleComponent } from './pages/makesale/makesale.component';
 import { SearchPipe } from './search.pipe';
 
@@ -30,12 +31,17 @@ import { SearchPipe } from './search.pipe';
     ItemFormComponent,
     DeleteDialogComponent,
     AddCategoryComponent,
+    OrderPrintComponent,
     SearchPipe,
    ],
   imports: [ BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule, FlashMessagesModule ],
   providers: [AuthGuard],
   bootstrap: [ AppComponent ],
-  entryComponents: [DeleteDialogComponent, AddCategoryComponent]
+  entryComponents: [
+    DeleteDialogComponent,
+    AddCategoryComponent,
+    OrderPrintComponent
+  ]
 })
 
 export class AppModule {}

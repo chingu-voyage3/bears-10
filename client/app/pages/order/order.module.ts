@@ -14,6 +14,14 @@ import { OrderDetailsComponent } from './order-new/order-details/order-details.c
 
 @NgModule({
   imports: [ CommonModule, ReactiveFormsModule, OrderRoutingModule, SharedModule ],
-  declarations: [ OrderComponent, OrderSubmitComponent, OrderNewComponent, OrderOpenComponent, OrderOpenEditComponent, OrderClosedComponent, OrderDetailsComponent ]
+  declarations: [
+    OrderComponent,
+    OrderSubmitComponent,
+    OrderNewComponent,
+    OrderOpenComponent,
+    OrderOpenEditComponent,
+    OrderClosedComponent,
+    OrderDetailsComponent
+  ]
 })
 export class OrderModule {}

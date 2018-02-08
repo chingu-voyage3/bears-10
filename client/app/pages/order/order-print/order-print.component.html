@@ -1,27 +1,32 @@
-<div class="container">
-  <h2>Invoice</h2>
-  <br>
-  <h4 style="float:left;">Order #</h4>
-  <div class="itemDetail" ng-repeat="x in x">
-    <ul>
-      <li>
-        <p>Sku #:</p>
-      </li>
-      <li>
-        <p>Vendor:</p>
-      </li>
-      <li>
-        <p>Description:</p>
-      </li>
-      <li>
-        <p>Price:</p>
-      </li>
-      <li>
-        <p>Quantity:</p>
-      </li>
-    </ul>
+<div class="print-dialog-container">
+  <div class="dialog print-dialog">
+    <h2 mat-dialog-title>Invoice</h2>
+    <div mat-dialog-content>
+      <h4>Order # {{data._id}}</h4>
+      <h5>Date of order: {{data.dateOrder}}</h5>
+      <div>
+        <ul>
+          <li>
+            <p>Sku #: {{data.sku}}</p>
+          </li>
+          <li>
+            <p>Vendor: {{data.vendor}}</p>
+          </li>
+          <li>
+            <p>Description: {{data.description}}</p>
+          </li>
+          <li>
+            <p>Price: {{data.price}}</p>
+          </li>
+          <li>
+            <p>Quantity: {{data.quantity}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button color="primary" (click)="printWindow()">Print Invoice</button>
+      <button mat-button color="primary" (click)="closePrint()">Close</button>
+    </div>
   </div>
-<button type="button" name="button">Print Invoice</button>
-    <br>
-    <a href="">Return to Menu</a>
 </div>

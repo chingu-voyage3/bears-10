@@ -18,14 +18,35 @@
       </li>
       <li>
         <mat-form-field hintLabel="Delete Item, Change to 0">
-          <input matInput input maxlength="13" placeholder="Quantity">
-          <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+          <input
+            matInput
+            input
+            maxlength="13"
+            placeholder="Quantity"
+            >
+          <mat-hint align="end">
+            {{input.value?.length || 0}}/10
+          </mat-hint>
         </mat-form-field>
       </li>
     </ul>
   </div>
-    <button type="button" name="button">Complete Order</button>
-    <button type="button" name="button">Delete Order</button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      name="button"
+      >
+      Complete Order
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      name="button"
+      >
+      Delete Order
+    </button>
     <br>
     <a href="">Return to Menu</a>
 </div>

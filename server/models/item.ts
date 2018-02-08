@@ -6,7 +6,7 @@ interface IItem extends mongoose.Document {
   SKU: string;
   sellable: boolean;
   retailPrice: number;
-  orderPrice: number;
+  orderPrice: string;
   manufacturer: string;
   description: string;
   size: string;
@@ -35,7 +35,7 @@ const itemSchema = new Schema({
     type: Number
   },
   orderPrice: {
-    type: Number
+    type: String
   },
   manufacturer: {
     type: String

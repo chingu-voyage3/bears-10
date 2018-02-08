@@ -1,29 +1,50 @@
-# Bears10
+# Bear Tracking
 
-`npm run build` runs ng build and node server.ts
+## An Inventory Management system
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
+> Bear Tracking allows organizations to manage in stock inventory and restock orders.
 
-## Development server
+[![Build Status](https://travis-ci.org/chingu-voyage3/bears-10.svg?branch=master)](https://travis-ci.org/chingu-voyage3/bears-10)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+![Preview](./client/assets/landing_image.png)
 
-## Code scaffolding
+##### The app is deployed to [Bear Track](https://bears-ims.herokuapp.com/)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Users
+This system allows managers with administrator status to create accounts with appropriate access privileges for their employees.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
+## Inventory
+Inventory items can be created and modified in the system, and item counts can be modified. 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Order
+Orders can be opened when placed and closed when the ordered items are received.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+## Release History
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* 0.0.1
+    * Work in progress
+
+---
+
+## Development setup
+Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
+
+
+```
+git clone
+cd project/folder
+npm install
+npm run serve:live
+```
+
+## Contributing
+
+1. Fork it (<https://github.com/chingu-voyage3/bears-10/fork>)
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -am 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Create a new Pull Request

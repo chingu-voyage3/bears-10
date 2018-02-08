@@ -3,12 +3,12 @@
 */
 
 export interface Item {
-    _id: string;
+    _id?: string;
     name: string;
     SKU: string;
     sellable: boolean;
     retailPrice: number;
-    orderPrice: number;
+    orderPrice: string;
     manufacturer: string;
     description: string;
     size: string;

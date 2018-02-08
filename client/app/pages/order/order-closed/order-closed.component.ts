@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { Order } from '../../../models/order.interface'
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { Order } from '../../../models/order.interface';
+import { OrderPrintComponent } from '../order-print/order-print.component';
 
 @Component({
   selector: 'ims-order-closed',
@@ -8,12 +10,18 @@ import { Order } from '../../../models/order.interface'
 })
 export class OrderClosedComponent implements OnInit {
 
-  @Input() closedOrders: Order[]
-  @Output() deleteClosedOrder = new EventEmitter
+  @Input() closedOrders: Order[];
+  @Output() deleteClosedOrder = new EventEmitter;
+  printDialogRef: MatDialogRef<OrderPrintComponent>;
 
-  constructor() { }
+  constructor(
+    public dialog: MatDialog,
+  ) { }
 
   ngOnInit() {
   }
 
+  openPrint(order) {
+    this.printDialogRef = this.dialog.open(OrderPrintComponent, { data: order });
+  }
 }

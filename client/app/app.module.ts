@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
-import { AuthGuard } from './core/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { FlashMessagesModule } from 'ngx-flash-messages';
 import { ItemsService } from './core/items.service';
 
@@ -16,6 +17,9 @@ import { ItemListComponent } from './pages/inventory/item-list/item-list.compone
 import { ItemFormComponent } from './pages/inventory/item-form/item-form.component';
 import { DeleteDialogComponent } from './pages/inventory/item-list/delete-dialog/delete-dialog.component';
 import { AddCategoryComponent } from './pages/inventory/item-list/add-category/add-category.component';
+import { OrderPrintComponent } from './pages/order/order-print/order-print.component';
+import { MakesaleComponent } from './pages/makesale/makesale.component';
+import { SearchPipe } from './search.pipe';
 
 @NgModule({
   declarations: [
@@ -27,11 +31,17 @@ import { AddCategoryComponent } from './pages/inventory/item-list/add-category/a
     ItemFormComponent,
     DeleteDialogComponent,
     AddCategoryComponent,
+    OrderPrintComponent,
+    SearchPipe,
    ],
   imports: [ BrowserModule, BrowserAnimationsModule, SharedModule, CoreModule, AppRoutingModule, FlashMessagesModule ],
   providers: [AuthGuard],
   bootstrap: [ AppComponent ],
-  entryComponents: [DeleteDialogComponent, AddCategoryComponent]
+  entryComponents: [
+    DeleteDialogComponent,
+    AddCategoryComponent,
+    OrderPrintComponent
+  ]
 })
 
 export class AppModule {}

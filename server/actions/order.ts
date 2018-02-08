@@ -1,4 +1,5 @@
 import { Order } from '../models/order';
+import { Item } from '../models/item';
 import { Request, Response } from 'express';
 import * as mongoose from 'mongoose';
 
@@ -9,27 +10,40 @@ function createOrder(req: Request, res: Response) {
     vendor: req.body.vendor,
     quantity: req.body.quantity,
     price: req.body.price,
-    dateOrder: new Date(Date.now()).toDateString()
+    dateOrder: new Date(Date.now()).toDateString(),
+    orderClosed: req.body.orderClosed,
+    dateClosed: req.body.dateClosed
   });
-newOrder.save()
-  .then((order) => {
-    return res.json({'orderCreated': order});
-  })
-  .catch((err) => {
-    return handleError(err, res);
-  });
+  if (newOrder.orderClosed) {
+    updateItem(
+      { SKU: req.body.sku },
+      { $inc: { count: req.body.quantity }}
+    );
+  }
+  newOrder.save()
+    .then((order) => {
+      return res.json({'orderCreated': order});
+    })
+    .catch((err) => {
+      return handleError(err, res);
+    });
 }
+
 function updateOrder(req: Request, res: Response) {
     Order.findById(req.params.orderId)
         .then((order) => {
-          order.item = req.body.item
+          order.item = req.body.item;
           order.sku = req.body.sku;
           order.vendor = req.body.vendor;
           order.quantity = req.body.quantity;
           order.price = req.body.price;
           if (req.body.orderClosed) {
-            order.orderClosed = req.body.orderClosed
-            order.dateClosed = req.body.dateClosed
+            order.orderClosed = req.body.orderClosed;
+            order.dateClosed = req.body.dateClosed;
+            updateItem(
+              { SKU: req.body.sku },
+              { $inc: { count: req.body.quantity }}
+            );
           }
           order.save()
           .then(() => {
@@ -73,6 +87,11 @@ function getOrder(req: Request, res: Response) {
       }
       return res.json({ 'Order': order });
     });
+}
+
+function updateItem (queryObj: object, updateObj: object) {
+  Item.findOneAndUpdate(queryObj, updateObj)
+    .exec().then(data => data.save());
 }
 
 function handleError(err: Error, res: Response) {

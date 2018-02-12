@@ -2,7 +2,6 @@ import { Router } from 'express';
 import itemRouter from './itemRoutes';
 import orderRouter from './orderRoutes';
 import userRouter from './userRoutes';
-import receiptRouter from './receiptRoutes';
 import * as passport from 'passport';
 import * as passportJWT from 'passport-jwt';
 import { User } from '../models/user';
@@ -19,6 +18,5 @@ require('../../config/jwtAuth')(passport, ExtractJwt, JWTStrategy); // configure
 apiRouter.use('/', userRouter);
 apiRouter.use('/items', itemRouter);
 apiRouter.use('/orders', orderRouter);
-apiRouter.use('/receipts', receiptRouter);
 
 export default apiRouter;

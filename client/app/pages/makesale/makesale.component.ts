@@ -31,26 +31,26 @@ export class MakesaleComponent implements OnInit {
       item: this.currentItem,
       count: this.quantity
     });
-    const item = this.data.filter(e => e.name === this.currentItem)[0];
-    this.total += item.retailPrice * this.quantity;
+    const item = this.getCurrentItem(),
+          retailPrice = item ? item.retailPrice : 0;
+    this.total += retailPrice * this.quantity;
   }
 
   keyup(val) {
     this.quantity = parseInt(val, 10);
   }
 
+  getCurrentItem() {
+    return this.data.filter(e => e.name === this.currentItem)[0];
+  }
   deleteElement(i) {
+    const item = this.getCurrentItem();
 
-    const item = this.data.filter(e => e.name === this.currentItem)[0];
+    const price    = item ? item.retailPrice : 0,
+          quantity = this.itemList[i].count;
 
-
-    const price    = this.data.filter(e => e === e.name)[0].retailPrice,
-          quantity = item.count;
-
-    console.log('price is: ' + price)
-    console.log('count is: ' + quantity)
-   // this.total -= price * quantity;
     this.itemList.splice(i, 1);
+    this.total -= price * quantity;
   }
 
   completeReceipt() {

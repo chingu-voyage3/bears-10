@@ -14,6 +14,7 @@ export class MakesaleComponent implements OnInit {
   currentItem = null;
   itemList = [];
   quantity = 0;
+  total = 0;
   constructor(private itemsService: ItemsService,
               private receiptService: ReceiptService) { }
 
@@ -30,6 +31,8 @@ export class MakesaleComponent implements OnInit {
       item: this.currentItem,
       count: this.quantity
     });
+    const item = this.data.filter(e => e.name === this.currentItem)[0];
+    this.total += item.retailPrice * this.quantity;
   }
 
   keyup(val) {
@@ -37,6 +40,16 @@ export class MakesaleComponent implements OnInit {
   }
 
   deleteElement(i) {
+
+    const item = this.data.filter(e => e.name === this.currentItem)[0];
+
+
+    const price    = this.data.filter(e => e === e.name)[0].retailPrice,
+          quantity = item.count;
+
+    console.log('price is: ' + price)
+    console.log('count is: ' + quantity)
+   // this.total -= price * quantity;
     this.itemList.splice(i, 1);
   }
 

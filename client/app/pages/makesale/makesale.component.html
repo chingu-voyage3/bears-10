@@ -25,6 +25,8 @@
     <li *ngFor="let availableItem of itemList; let i = index;"><span>{{availableItem.item}}</span><span>{{availableItem.count}}</span> <button mat-raised-button color="warn" (click)="deleteElement(i)">X</button></li>
   </ul>
   <div>
+
+  <p>Total:   </p><p>${{total}}</p>
  <button class="complete" mat-raised-button color="primary" (click)="completeReceipt()">
    Complete Receipt
     </button>

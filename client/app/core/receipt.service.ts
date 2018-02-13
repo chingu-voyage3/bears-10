@@ -8,11 +8,13 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ReceiptService {
-    constructor(private httpClient: HttpClient) {}
+    constructor(private http: HttpClient) {}
 
     completeReceipt(receipt) {
         console.log('complete receipt method fired!');
         console.log('receipt is: ', receipt);
         // this.httpClient.post(`/api/receipts/new`, receipt);
+        this.http.post('/api/receipts', receipt)
+                 .subscribe(data => data);
     }
 }

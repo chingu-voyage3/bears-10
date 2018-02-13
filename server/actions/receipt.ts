@@ -2,6 +2,7 @@ import { Item } from '../models/item';
 import { Request, Response } from 'express';
 
 function createReceipt(req: Request, res: Response) {
+  console.log('create receipt method called');
   function updateCount(item) {
     const itemId    = item.id,
           itemCount = item.count;

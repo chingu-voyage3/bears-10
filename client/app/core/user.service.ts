@@ -30,6 +30,7 @@ export class UserService {
               private flashMessagesService: FlashMessagesService
               ) {
                 if (this.isTokenValid) {
+                  this.isAdmin.next(this.getIsAdmin);
                   this.setLoggedInStatus(true);
                 } else if (!this.isTokenValid) {
                   this.logout();
@@ -128,7 +129,7 @@ export class UserService {
     const adminCheck = JSON.stringify(decodedToken.isAdmin);
     this.isAdmin.next(adminCheck === 'true');
     localStorage.setItem('expiresIn', tokenExpiration);
-    localStorage.setItem('isAdmin', adminCheck);
+    // localStorage.setItem('isAdmin', adminCheck);
     localStorage.setItem('token', token);
   }
 
@@ -138,6 +139,16 @@ export class UserService {
     this.router.navigate(['/']);
   }
 
+  get getIsAdmin() {
+    const token = localStorage.getItem('token');
+    const decodedToken = jwt_decode(token);
+
+    if (decodedToken) {
+      return decodedToken.isAdmin;
+    } else {
+      return false;
+    }
+  }
 
   get isTokenValid(): boolean {
     const expiresIn = JSON.parse(localStorage.getItem('expiresIn'));

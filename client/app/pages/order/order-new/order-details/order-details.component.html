@@ -64,20 +64,23 @@
   </div> -->
   <br>
   <br>
-  <button
-    mat-raised-button
-    color="primary"
-    type="submit"
-    [disabled]="!newOrderForm.valid || newOrderForm.pristine"
+  <mat-action-row>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!newOrderForm.valid || newOrderForm.pristine"
     >
-    Submit Order
-  </button>
-  <button
-    mat-raised-button
-    color="primary"
-    type="reset"
-    (click)="clearOrder()"
+      Submit Order
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      type="reset"
+      (click)="clearOrder()"
+      style="margin-left: 10px;"
     >
-    Clear Order
-  </button>
+      Clear Order
+    </button>
+  </mat-action-row>
 </form>

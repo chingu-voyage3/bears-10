@@ -22,6 +22,7 @@ export class OrderOpenEditComponent implements OnChanges {
     _id: null
   };
   checked = false;
+  editing = false;
   orderEditForm: FormGroup;
   mask: Function;
 
@@ -90,6 +91,7 @@ export class OrderOpenEditComponent implements OnChanges {
     this.orderService.updateOrder(this.openOrder)
       .subscribe(
         (data) => {
+          this.editing = false;
           this.editObj._id = null;
           this.ngOnChanges();
           this.saveEdit.emit('saved');

@@ -1,7 +1,9 @@
 <br>
 <input type="search" placeholder="Search By Vendor, Product, or Sku">
 <br>
-<mat-expansion-panel [expanded]="true" *ngFor="let order of openOrders">
+<mat-expansion-panel
+  *ngFor="let order of openOrders"
+  >
   <mat-expansion-panel-header style="background: gray;">
     <mat-panel-title>
       <h3>Order # {{order._id}}</h3>
@@ -10,6 +12,8 @@
     </mat-panel-title>
   </mat-expansion-panel-header>
 
-  <ims-order-open-edit [openOrder]="order" (saveEdit)="emitEdit.emit(order)" (deleteOrder)="deleteOpenOrder.emit($event)"></ims-order-open-edit>
+  <ng-template matExpansionPanelContent>
+    <ims-order-open-edit [openOrder]="order" (saveEdit)="emitEdit.emit(order)" (deleteOrder)="deleteOpenOrder.emit($event)"></ims-order-open-edit>
+  </ng-template>
 
 </mat-expansion-panel>

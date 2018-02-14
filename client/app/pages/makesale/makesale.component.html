@@ -10,7 +10,7 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput #quantityInput (keyup)="keyup(quantityInput.value)" style="display: inline" placeholder="Quantity"/>
+      <input matInput #quantityInput [value]="quantity" (keyup)="keyup(quantityInput.value)" style="display: inline" placeholder="Quantity"/>
     </mat-form-field>
 
   </div>
@@ -25,8 +25,10 @@
     <li *ngFor="let availableItem of itemList; let i = index;"><span>{{availableItem.item}}</span><span>{{availableItem.count}}</span> <button mat-raised-button color="warn" (click)="deleteElement(i)">X</button></li>
   </ul>
   <div>
+
+  <p>Total: ${{total}}</p>
  <button class="complete" mat-raised-button color="primary" (click)="completeReceipt()">
-   Complete Receipt
+   Complete Transaction
     </button>
   </div>
 </div>

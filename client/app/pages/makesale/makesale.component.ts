@@ -14,6 +14,7 @@ export class MakesaleComponent implements OnInit {
   currentItem = null;
   itemList = [];
   quantity = 0;
+  total = 0;
   constructor(private itemsService: ItemsService,
               private receiptService: ReceiptService) { }
 
@@ -30,14 +31,34 @@ export class MakesaleComponent implements OnInit {
       item: this.currentItem,
       count: this.quantity
     });
+    const item = this.getCurrentItem(),
+          retailPrice = item ? item.retailPrice : 0;
+    this.total += retailPrice * this.quantity;
   }
 
   keyup(val) {
-    this.quantity = parseInt(val, 10);
+    const parsed = parseInt(val, 10);
+    this.quantity = isNaN(parsed) ? 0 : parsed;
   }
 
+  getCurrentItem() {
+    return this.data.filter(e => e.name === this.currentItem)[0];
+  }
   deleteElement(i) {
+    const item = this.getCurrentItem();
+
+    const price    = item ? item.retailPrice : 0,
+          quantity = this.itemList[i].count;
+
     this.itemList.splice(i, 1);
+    this.total -= price * quantity;
+  }
+
+  clearScreen() {
+    this.currentItem = null;
+    this.itemList = [];
+    this.quantity = 0;
+    this.total = 0;
   }
 
   completeReceipt() {
@@ -45,5 +66,6 @@ export class MakesaleComponent implements OnInit {
       e.id = this.data.filter(el => el.name === e.item)[0]._id;
     });
     this.receiptService.completeReceipt(this.itemList.map(e => ({id: e.id, count: e.count})));
+    this.clearScreen();
   }
 }

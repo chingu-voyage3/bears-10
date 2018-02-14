@@ -10,7 +10,7 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput #quantityInput (keyup)="keyup(quantityInput.value)" style="display: inline" placeholder="Quantity"/>
+      <input matInput #quantityInput [value]="quantity" (keyup)="keyup(quantityInput.value)" style="display: inline" placeholder="Quantity"/>
     </mat-form-field>
 
   </div>
@@ -28,7 +28,7 @@
 
   <p>Total: ${{total}}</p>
  <button class="complete" mat-raised-button color="primary" (click)="completeReceipt()">
-   Complete Receipt
+   Complete Transaction
     </button>
   </div>
 </div>

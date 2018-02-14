@@ -27,39 +27,17 @@
   <p>Closed:
     <mat-checkbox formControlName="closed" [(ngModel)]="checked"></mat-checkbox>
   </p>
-  <div class="settings" style="display: inline-block;">
+  <!-- <div class="settings" style="display: inline-block;"> -->
+  <mat-action-row>
     <button
       mat-raised-button
       color="primary"
       type="button"
       name="printButton"
-      style=" float: left;"
       (click)="openPrint(openOrder)"
-      >
+      *ngIf="!editing"
+    >
       Print Invoice
-    </button>
-
-    <button
-      mat-raised-button
-      color="primary"
-      type="button"
-      name="deleteButton"
-      style=" float: right; margin-left: 10px;"
-      (click)="deleteOrder.emit(openOrder)"
-      >
-      Delete Invoice
-    </button>
-
-    <button
-      mat-raised-button
-      color="primary"
-      type="reset"
-      name="cancelButton"
-      style=" float: right;  margin-left: 10px;"
-      (click)="cancelEdit()"
-      *ngIf="openOrder._id === editObj._id"
-      >
-      Cancel Edit
     </button>
 
     <button
@@ -67,21 +45,45 @@
       color="primary"
       type="submit"
       name="saveButton"
-      style=" float: right;  margin-left: 10px;" *ngIf="openOrder._id === editObj._id"
-      >
+      style="margin-left: 10px;" *ngIf="openOrder._id === editObj._id"
+    >
       Save Edit
     </button>
 
     <button
       mat-raised-button
-      color="primary"
+      color="accent"
+      type="reset"
+      name="cancelButton"
+      style="margin-left: 10px;"
+      (click)="cancelEdit(); editing = false"
+      *ngIf="openOrder._id === editObj._id"
+    >
+      Cancel Edit
+    </button>
+
+    <button
+      mat-raised-button
+      color="accent"
       type="button"
       name="editButton"
-      style=" float: right; margin-left: 10px;"
-      (click)="edit(openOrder)"
+      style="margin-left: 10px;"
+      (click)="edit(openOrder); editing = true"
       *ngIf="openOrder._id !== editObj._id"
-      >
+    >
       Edit Invoice
     </button>
-  </div>
+
+    <button
+      mat-raised-button
+      color="warn"
+      type="button"
+      name="deleteButton"
+      style="margin-left: 10px;"
+      (click)="deleteOrder.emit(openOrder); editing = false"
+    >
+      Delete Invoice
+    </button>
+  </mat-action-row>
+  <!-- </div> -->
 </form>

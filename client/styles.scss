@@ -9,6 +9,16 @@ html, body {
     margin: 0;
 }
 
+
+div.mat-expansion-panel-body {
+    padding: 0px 24px !important;
+}
+
+// .mat-action-row {
+//     justify-content: left !important;
+//     padding: 16px 8px 16px 4px !important;
+// }
+
 @media print {
   body * {
       visibility: hidden;

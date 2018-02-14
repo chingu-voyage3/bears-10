@@ -53,10 +53,18 @@ export class MakesaleComponent implements OnInit {
     this.total -= price * quantity;
   }
 
+  clearScreen() {
+    this.currentItem = null;
+    this.itemList = [];
+    this.quantity = 0;
+    this.total = 0;
+  }
+
   completeReceipt() {
     this.itemList.forEach(e => {
       e.id = this.data.filter(el => el.name === e.item)[0]._id;
     });
     this.receiptService.completeReceipt(this.itemList.map(e => ({id: e.id, count: e.count})));
+    this.clearScreen();
   }
 }

@@ -15,7 +15,7 @@ export class ReceiptService {
     completeReceipt(receipt) {
         return this.http.post('/api/receipts', receipt)
                  .subscribe(data => {
-                     this.flashMessagesService.show('Receipt submitted!', {
+                     this.flashMessagesService.show('Transaction completed!', {
                         classes: ['alert'],
                         timeout: 2000,
                       });

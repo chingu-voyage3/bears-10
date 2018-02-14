@@ -37,7 +37,8 @@ export class MakesaleComponent implements OnInit {
   }
 
   keyup(val) {
-    this.quantity = parseInt(val, 10);
+    const parsed = parseInt(val, 10);
+    this.quantity = isNaN(parsed) ? 0 : parsed;
   }
 
   getCurrentItem() {

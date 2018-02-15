@@ -5,12 +5,24 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SearchPipe implements PipeTransform {
 
-  transform(values: any, searchString: string): any {
-    return values ? values.filter(e => {
-      return e.name.includes(searchString)
-      || e.description.includes(searchString)
-      || e.size.includes(searchString);
-    }) : [];
-  }
+  transform(items: any, searchString: string): any {
+    if (!items) { return []; }
+    if (!searchString) { return items; }
 
+    const searchFor = searchString.toLowerCase();
+
+    return items.filter(item => {
+      if (typeof item === 'object' && !Array.isArray(item)) {
+        for (const property in item) {
+          if (!item[property]) {
+            continue;
+          }
+          if (item[property].toString().toLowerCase().includes(searchFor)) {
+            return true;
+          }
+        }
+      }
+    });
+
+  }
 }

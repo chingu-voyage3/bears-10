@@ -13,6 +13,7 @@ export class OrderClosedComponent implements OnInit {
   @Input() closedOrders: Order[];
   @Output() deleteClosedOrder = new EventEmitter;
   printDialogRef: MatDialogRef<OrderPrintComponent>;
+  searchText = '';
 
   constructor(
     public dialog: MatDialog,

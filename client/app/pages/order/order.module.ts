@@ -13,7 +13,12 @@ import { OrderClosedComponent } from './order-closed/order-closed.component';
 import { OrderDetailsComponent } from './order-new/order-details/order-details.component';
 
 @NgModule({
-  imports: [ CommonModule, ReactiveFormsModule, OrderRoutingModule, SharedModule ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    OrderRoutingModule,
+    SharedModule
+  ],
   declarations: [
     OrderComponent,
     OrderSubmitComponent,

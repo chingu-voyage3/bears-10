@@ -14,7 +14,7 @@ export class SearchPipe implements PipeTransform {
     return items.filter(item => {
       if (typeof item === 'object' && !Array.isArray(item)) {
         for (const property in item) {
-          if (!item[property]) {
+          if (item[property] == null || item[property] === undefined) {
             continue;
           }
           if (item[property].toString().toLowerCase().includes(searchFor)) {

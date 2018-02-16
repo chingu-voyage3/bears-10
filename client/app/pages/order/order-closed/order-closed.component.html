@@ -1,11 +1,15 @@
 <br>
-<input
-  type="search"
-  placeholder="Search By Vendor, Product, or Sku"
-  >
+  <mat-form-field class="w50">
+    <input
+      type="search"
+      placeholder="Search Orders by Order#, Item, Vendor, Product, Quantity, or Sku"
+      [(ngModel)]="searchText"
+      matInput
+      >
+  </mat-form-field>
 <br>
 <mat-expansion-panel
-  *ngFor="let order of closedOrders"
+  *ngFor="let order of (closedOrders | search : searchText)"
   >
   <mat-expansion-panel-header  style="background: gray;">
     <mat-panel-title>
